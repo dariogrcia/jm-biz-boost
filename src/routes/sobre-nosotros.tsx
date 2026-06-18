@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Heart, Lightbulb, Handshake, Target, MapPin } from "lucide-react";
+import { Heart, Lightbulb, Handshake, Target, MapPin, UserCircle2 } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 
 export const Route = createFileRoute("/sobre-nosotros")({
@@ -21,13 +21,6 @@ const valores = [
   { i: Lightbulb, t: "Innovación", d: "Combinamos asesoría tradicional con herramientas digitales modernas." },
 ];
 
-const equipo = [
-  { n: "Javier Martín", r: "Socio fundador · Fiscal" },
-  { n: "Marta Ruiz", r: "Responsable Contable" },
-  { n: "Carlos Vega", r: "Responsable Laboral" },
-  { n: "Lucía Soler", r: "Asesora Jurídica" },
-];
-
 function SobreNosotros() {
   return (
     <SiteLayout>
@@ -43,33 +36,33 @@ function SobreNosotros() {
 
       {/* Historia */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div className="flex flex-col items-center lg:items-start">
+          <div className="aspect-[3/4] w-full max-w-sm rounded-2xl bg-secondary flex flex-col items-center justify-center border border-border">
+            <UserCircle2 className="h-24 w-24 text-muted-foreground/40" />
+            <p className="mt-4 text-xs text-muted-foreground">Foto profesional · próximamente</p>
+          </div>
+        </div>
         <div>
           <span className="text-sm font-semibold text-brand uppercase tracking-wider">Nuestra historia</span>
-          <h2 className="mt-2 text-3xl md:text-4xl font-bold text-primary">Más de 20 años en el corazón de Antequera</h2>
+          <h2 className="mt-2 text-3xl md:text-4xl font-bold text-primary">Maribel Aguilera Orellana</h2>
+          <p className="mt-2 text-sm text-muted-foreground">Asesora Fiscal, Contable y Laboral · Fundadora de JM Asesores</p>
           <div className="mt-6 space-y-4 text-muted-foreground text-lg leading-relaxed">
             <p>
-              JM Asesores abrió sus puertas en Antequera con un objetivo claro: ofrecer a empresas y autónomos de la comarca una asesoría profesional, cercana y de calidad.
+              Graduada en Administración y Dirección de Empresas por la Universidad de Málaga, Maribel inició su trayectoria profesional en el ámbito de la asesoría fiscal y contable hace más de 15 años, especializándose en el acompañamiento a autónomos y pequeñas empresas en toda la comarca de Antequera.
             </p>
             <p>
-              Hoy somos referente en la zona, con más de 500 clientes activos a los que acompañamos en sus áreas fiscal, contable, laboral y jurídica. Y, desde hace unos años, también en su digitalización.
+              Fundó JM Asesores con el objetivo de ofrecer un servicio cercano, riguroso y personalizado, alejado del trato impersonal de las grandes gestorías. Su formación continuada en normativa fiscal, laboral y contable le permite ofrecer una asesoría actualizada y de confianza.
+            </p>
+            <p>
+              Especialidades: Declaración de la Renta · IVA · Impuesto de Sociedades · Nóminas y Seguridad Social · Contabilidad oficial · Constitución de empresas.
+            </p>
+            <p className="text-sm text-muted-foreground/70 italic">
+              [Texto provisional — será actualizado con la información real de Maribel]
             </p>
             <div className="flex items-center gap-2 text-sm font-medium text-brand pt-2">
               <MapPin className="h-4 w-4" /> Calle Infante Don Fernando, Antequera (Málaga)
             </div>
           </div>
-        </div>
-        <div className="grid grid-cols-2 gap-4">
-          {[
-            { n: "2003", l: "Fundación" },
-            { n: "+500", l: "Clientes" },
-            { n: "+20", l: "Profesionales" },
-            { n: "4", l: "Áreas" },
-          ].map((s) => (
-            <div key={s.l} className="rounded-2xl bg-secondary/60 p-8 border border-border">
-              <div className="text-4xl font-bold text-primary">{s.n}</div>
-              <div className="mt-1 text-sm text-muted-foreground">{s.l}</div>
-            </div>
-          ))}
         </div>
       </section>
 
@@ -89,25 +82,6 @@ function SobreNosotros() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Equipo */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
-        <div className="text-center max-w-2xl mx-auto">
-          <span className="text-sm font-semibold text-brand uppercase tracking-wider">Equipo</span>
-          <h2 className="mt-2 text-3xl md:text-4xl font-bold text-primary">Profesionales que te atienden</h2>
-        </div>
-        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {equipo.map((m) => (
-            <div key={m.n} className="text-center">
-              <div className="aspect-square rounded-2xl bg-brand-gradient flex items-center justify-center text-5xl font-bold text-brand-foreground shadow-soft">
-                {m.n.split(" ").map((x) => x[0]).join("")}
-              </div>
-              <div className="mt-4 font-semibold text-primary">{m.n}</div>
-              <div className="text-sm text-muted-foreground">{m.r}</div>
-            </div>
-          ))}
         </div>
       </section>
     </SiteLayout>

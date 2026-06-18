@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Calculator, BookOpen, Users, Scale, ShieldCheck, MapPin, Clock, Award, Monitor, Wrench, Plug, Database, GraduationCap, Server, Lightbulb } from "lucide-react";
+import { ArrowRight, Calculator, BookOpen, Users, Scale, ShieldCheck, MapPin, Clock, Award, Monitor, Wrench, Plug, Database, GraduationCap, Server, Lightbulb, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiteLayout } from "@/components/site/Layout";
 
@@ -73,22 +73,6 @@ function Home() {
         </div>
       </section>
 
-      {/* STATS */}
-      <section className="border-y border-border bg-secondary/40">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { n: "+500", l: "Clientes activos" },
-            { n: "+20", l: "Años en Antequera" },
-            { n: "98%", l: "Fidelización" },
-            { n: "4", l: "Áreas de asesoría" },
-          ].map((s) => (
-            <div key={s.l}>
-              <div className="text-3xl md:text-4xl font-bold text-primary">{s.n}</div>
-              <div className="mt-1 text-sm text-muted-foreground">{s.l}</div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* SERVICIOS */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
@@ -167,6 +151,21 @@ function Home() {
             <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">También en JM Asesores</span>
             <h3 className="mt-1 text-2xl font-bold text-primary">Servicios de digitalización para empresas</h3>
             <p className="mt-2 text-muted-foreground">Webs corporativas, CRM, software de gestión y digitalización de procesos. Un complemento a nuestra asesoría para que tu negocio crezca con buenas bases tecnológicas.</p>
+            <div className="mt-4 space-y-2 text-sm text-muted-foreground">
+              <p>Para más información sobre nuestros servicios de digitalización, puedes contactar con nosotros directamente:</p>
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-brand" />
+                <span>Teléfono 1: <span className="text-foreground">[número pendiente]</span></span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-brand" />
+                <span>Teléfono 2: <span className="text-foreground">[número pendiente]</span></span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4 text-brand" />
+                <span>Email: <span className="text-foreground">[correo pendiente]</span></span>
+              </div>
+            </div>
           </div>
           <Button asChild variant="outline" className="border-brand text-brand hover:bg-brand hover:text-brand-foreground">
             <Link to="/servicios">Saber más</Link>

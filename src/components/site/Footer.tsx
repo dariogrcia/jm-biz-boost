@@ -58,6 +58,7 @@ export function Footer() {
           <p>© {new Date().getFullYear()} JM Asesores. Todos los derechos reservados.</p>
           <p>Hecho con dedicación en España.</p>
         </div>
+        <p className="text-xs text-primary-foreground/40 text-center mt-2 pb-6">Desarrollado por Devhaus</p>
       </div>
     </footer>
   );
