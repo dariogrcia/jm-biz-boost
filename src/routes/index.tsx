@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Calculator, BookOpen, Users, Scale, ShieldCheck, MapPin, Clock, Award, Monitor, Wrench, Plug, Database, GraduationCap, Server, Lightbulb, Phone, Mail } from "lucide-react";
+import { ArrowRight, Calculator, BookOpen, Users, Scale, ShieldCheck, MapPin, Clock, Award, Monitor, Wrench, Database, Server, Globe, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiteLayout } from "@/components/site/Layout";
 
@@ -23,12 +23,10 @@ const servicios = [
 ];
 
 const complementarios = [
-  { i: Wrench, t: "Mantenimiento y soporte técnico", d: "Resolución de incidencias, actualizaciones y vigilancia continua de tus sistemas y aplicaciones." },
-  { i: Plug, t: "Integraciones de APIs", d: "Conectamos tus herramientas: ERP, CRM, plataformas de pago, correo, redes sociales y más." },
-  { i: Database, t: "Migración de datos", d: "Trasladamos tus datos de forma segura entre sistemas, sin pérdidas ni interrupciones." },
-  { i: GraduationCap, t: "Formación a usuarios", d: "Capacitamos a tu equipo para sacar el máximo partido a las herramientas implantadas." },
-  { i: Server, t: "Hosting y dominios", d: "Gestión de alojamiento web, dominios, certificados SSL y copias de seguridad." },
-  { i: Lightbulb, t: "Consultoría tecnológica", d: "Te ayudamos a elegir las mejores soluciones tecnológicas para las necesidades reales de tu negocio." },
+  { i: Globe, t: "Desarrollo web", d: "Diseño y desarrollo de webs corporativas, landing pages y tiendas online profesionales." },
+  { i: Database, t: "Desarrollo de CRM", d: "Implantación y desarrollo de sistemas CRM a medida para gestionar tus clientes y procesos de venta." },
+  { i: Server, t: "Hosting y dominios", d: "Gestión de alojamiento web, dominios, certificados SSL y copias de seguridad automáticas." },
+  { i: Wrench, t: "Mantenimiento y soporte", d: "Soporte técnico continuo, actualizaciones y resolución de incidencias para tu web o aplicación." },
 ];
 
 function Home() {
@@ -36,7 +34,7 @@ function Home() {
     <SiteLayout>
       {/* HERO */}
       <section
-        className="relative flex min-h-screen items-center justify-center overflow-hidden text-white"
+        className="relative flex min-h-[520px] items-center justify-center overflow-hidden text-white"
         style={{
           backgroundImage:
             "linear-gradient(to bottom right, rgba(0,0,0,0.55), rgba(0,0,0,0.40)), url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1920&q=80')",
@@ -44,8 +42,10 @@ function Home() {
           backgroundPosition: "center",
         }}
       >
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 md:py-36 text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur px-4 py-1.5 text-xs font-medium text-brand">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
+          <p className="text-2xl font-bold tracking-widest text-white uppercase">JM Asesores</p>
+          <p className="mt-2 text-base md:text-lg italic text-white/70">Porque detrás de cada número, hay una persona.</p>
+          <span className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur px-4 py-1.5 text-xs font-medium text-brand">
             <MapPin className="h-3 w-3" /> Antequera · Málaga
           </span>
           <h1 className="mt-6 text-4xl sm:text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight">
@@ -128,7 +128,7 @@ function Home() {
           <h2 className="mt-2 text-3xl md:text-4xl font-bold text-primary">Amplía las capacidades de tu empresa</h2>
           <p className="mt-4 text-muted-foreground text-lg">Soluciones técnicas que complementan nuestros servicios principales y mantienen tu negocio siempre operativo y conectado.</p>
         </div>
-        <div className="mt-14 grid grid-cols-2 gap-6 lg:grid-cols-3">
+        <div className="mt-14 grid grid-cols-2 gap-6 lg:grid-cols-4">
           {complementarios.map(({ i: Icon, t, d }) => (
             <div key={t} className="group rounded-2xl border border-border bg-card p-6 shadow-soft hover:shadow-elegant hover:-translate-y-1 transition-all">
               <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-brand-foreground">

@@ -34,30 +34,27 @@ function SobreNosotros() {
         </div>
       </section>
 
-      {/* Historia */}
+      {/* Maribel — protagonista */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 grid gap-12 lg:grid-cols-2 lg:items-center">
         <div className="flex flex-col items-center lg:items-start">
           <div className="aspect-[3/4] w-full max-w-sm rounded-2xl bg-secondary flex flex-col items-center justify-center border border-border">
-            <UserCircle2 className="h-24 w-24 text-muted-foreground/40" />
+            <UserCircle2 className="h-40 w-40 text-muted-foreground/40" />
             <p className="mt-4 text-xs text-muted-foreground">Foto profesional · próximamente</p>
           </div>
         </div>
         <div>
           <span className="text-sm font-semibold text-brand uppercase tracking-wider">Nuestra historia</span>
-          <h2 className="mt-2 text-3xl md:text-4xl font-bold text-primary">Maribel Aguilera Orellana</h2>
-          <p className="mt-2 text-sm text-muted-foreground">Asesora Fiscal, Contable y Laboral · Fundadora de JM Asesores</p>
-          <div className="mt-6 space-y-4 text-muted-foreground text-lg leading-relaxed">
+          <h2 className="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-primary">Maribel Aguilera Orellana</h2>
+          <p className="mt-3 text-base font-medium text-muted-foreground">Asesora Fiscal, Contable y Laboral · Fundadora de JM Asesores</p>
+          <div className="mt-8 space-y-5 text-muted-foreground text-lg leading-relaxed">
             <p>
               Graduada en Administración y Dirección de Empresas por la Universidad de Málaga, Maribel inició su trayectoria profesional en el ámbito de la asesoría fiscal y contable hace más de 15 años, especializándose en el acompañamiento a autónomos y pequeñas empresas en toda la comarca de Antequera.
             </p>
             <p>
               Fundó JM Asesores con el objetivo de ofrecer un servicio cercano, riguroso y personalizado, alejado del trato impersonal de las grandes gestorías. Su formación continuada en normativa fiscal, laboral y contable le permite ofrecer una asesoría actualizada y de confianza.
             </p>
-            <p>
+            <p className="font-medium text-foreground">
               Especialidades: Declaración de la Renta · IVA · Impuesto de Sociedades · Nóminas y Seguridad Social · Contabilidad oficial · Constitución de empresas.
-            </p>
-            <p className="text-sm text-muted-foreground/70 italic">
-              [Texto provisional — será actualizado con la información real de Maribel]
             </p>
             <div className="flex items-center gap-2 text-sm font-medium text-brand pt-2">
               <MapPin className="h-4 w-4" /> Calle Infante Don Fernando, Antequera (Málaga)
