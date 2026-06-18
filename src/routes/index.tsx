@@ -138,6 +138,26 @@ function Home() {
         </div>
       </section>
 
+      {/* SERVICIOS COMPLEMENTARIOS */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
+        <div className="max-w-2xl mx-auto text-center">
+          <span className="text-sm font-semibold text-brand uppercase tracking-wider">Servicios Complementarios</span>
+          <h2 className="mt-2 text-3xl md:text-4xl font-bold text-primary">Amplía las capacidades de tu empresa</h2>
+          <p className="mt-4 text-muted-foreground text-lg">Soluciones técnicas que complementan nuestros servicios principales y mantienen tu negocio siempre operativo y conectado.</p>
+        </div>
+        <div className="mt-14 grid grid-cols-2 gap-6 lg:grid-cols-3">
+          {complementarios.map(({ i: Icon, t, d }) => (
+            <div key={t} className="group rounded-2xl border border-border bg-card p-6 shadow-soft hover:shadow-elegant hover:-translate-y-1 transition-all">
+              <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-brand-foreground">
+                <Icon className="h-6 w-6" />
+              </div>
+              <h3 className="mt-5 text-lg font-semibold text-primary">{t}</h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* DIGITALIZACIÓN — secundaria */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
         <div className="rounded-2xl border border-border bg-card p-8 md:p-12 flex flex-col md:flex-row gap-8 md:items-center">
