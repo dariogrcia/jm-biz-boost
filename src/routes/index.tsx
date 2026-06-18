@@ -22,6 +22,15 @@ const servicios = [
   { i: Scale, t: "Asesoría Jurídica", d: "Constitución de sociedades, contratos mercantiles y asesoramiento legal." },
 ];
 
+const complementarios = [
+  { i: Wrench, t: "Mantenimiento y soporte técnico", d: "Resolución de incidencias, actualizaciones y vigilancia continua de tus sistemas y aplicaciones." },
+  { i: Plug, t: "Integraciones de APIs", d: "Conectamos tus herramientas: ERP, CRM, plataformas de pago, correo, redes sociales y más." },
+  { i: Database, t: "Migración de datos", d: "Trasladamos tus datos de forma segura entre sistemas, sin pérdidas ni interrupciones." },
+  { i: GraduationCap, t: "Formación a usuarios", d: "Capacitamos a tu equipo para sacar el máximo partido a las herramientas implantadas." },
+  { i: Server, t: "Hosting y dominios", d: "Gestión de alojamiento web, dominios, certificados SSL y copias de seguridad." },
+  { i: Lightbulb, t: "Consultoría tecnológica", d: "Te ayudamos a elegir las mejores soluciones tecnológicas para las necesidades reales de tu negocio." },
+];
+
 function Home() {
   return (
     <SiteLayout>
