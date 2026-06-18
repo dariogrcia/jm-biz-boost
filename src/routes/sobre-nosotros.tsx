@@ -1,31 +1,31 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Heart, Lightbulb, Handshake, Target } from "lucide-react";
+import { Heart, Lightbulb, Handshake, Target, MapPin } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 
 export const Route = createFileRoute("/sobre-nosotros")({
   head: () => ({
     meta: [
-      { title: "Sobre nosotros — JM Asesores" },
-      { name: "description", content: "Conoce a JM Asesores: nuestra historia, valores y equipo experto en digitalización empresarial." },
+      { title: "Sobre nosotros — JM Asesores Antequera" },
+      { name: "description", content: "JM Asesores: más de 20 años como asesoría fiscal, contable, laboral y jurídica de referencia en Antequera (Málaga)." },
       { property: "og:title", content: "Sobre nosotros — JM Asesores" },
-      { property: "og:description", content: "Más de 15 años ayudando a empresas a dar el salto digital." },
+      { property: "og:description", content: "Asesoría de confianza para empresas y autónomos en la comarca de Antequera." },
     ],
   }),
   component: SobreNosotros,
 });
 
 const valores = [
-  { i: Heart, t: "Cercanía", d: "Trato directo y sin tecnicismos. Tu proyecto es nuestro proyecto." },
-  { i: Lightbulb, t: "Innovación", d: "Aplicamos tecnología puntera con sentido común empresarial." },
-  { i: Handshake, t: "Compromiso", d: "Acompañamos a largo plazo, no solo entregamos y nos vamos." },
-  { i: Target, t: "Resultados", d: "Buscamos impacto medible: tiempo, costes y crecimiento." },
+  { i: Heart, t: "Cercanía", d: "Trato directo y humano. Te atiende siempre la misma persona, no un call center." },
+  { i: Handshake, t: "Confianza", d: "Tu información, tus cuentas y tu tranquilidad están en manos profesionales." },
+  { i: Target, t: "Rigor", d: "Cumplimiento estricto de plazos y normativa. Sin sorpresas." },
+  { i: Lightbulb, t: "Innovación", d: "Combinamos asesoría tradicional con herramientas digitales modernas." },
 ];
 
 const equipo = [
-  { n: "Javier Martín", r: "CEO & Fundador" },
-  { n: "Marta Ruiz", r: "Directora de Software" },
-  { n: "Carlos Vega", r: "Lead Web & SEO" },
-  { n: "Lucía Soler", r: "Consultora ERP" },
+  { n: "Javier Martín", r: "Socio fundador · Fiscal" },
+  { n: "Marta Ruiz", r: "Responsable Contable" },
+  { n: "Carlos Vega", r: "Responsable Laboral" },
+  { n: "Lucía Soler", r: "Asesora Jurídica" },
 ];
 
 function SobreNosotros() {
@@ -34,9 +34,9 @@ function SobreNosotros() {
       <section className="bg-hero text-primary-foreground">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
           <span className="text-sm font-semibold text-brand uppercase tracking-wider">Sobre nosotros</span>
-          <h1 className="mt-3 text-4xl md:text-6xl font-bold tracking-tight max-w-3xl">Personas detrás de la tecnología</h1>
+          <h1 className="mt-3 text-4xl md:text-6xl font-bold tracking-tight max-w-3xl">La asesoría de referencia en Antequera</h1>
           <p className="mt-5 max-w-2xl text-lg text-primary-foreground/80">
-            Somos un equipo multidisciplinar que cree en la digitalización como motor de crecimiento sostenible.
+            Un equipo cercano y multidisciplinar al servicio de empresas y autónomos de la comarca de Antequera y toda la provincia de Málaga.
           </p>
         </div>
       </section>
@@ -45,22 +45,25 @@ function SobreNosotros() {
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 grid gap-12 lg:grid-cols-2 lg:items-center">
         <div>
           <span className="text-sm font-semibold text-brand uppercase tracking-wider">Nuestra historia</span>
-          <h2 className="mt-2 text-3xl md:text-4xl font-bold text-primary">Más de 15 años acompañando a empresas</h2>
+          <h2 className="mt-2 text-3xl md:text-4xl font-bold text-primary">Más de 20 años en el corazón de Antequera</h2>
           <div className="mt-6 space-y-4 text-muted-foreground text-lg leading-relaxed">
             <p>
-              JM Asesores nació en 2010 con una idea sencilla: hacer accesible la transformación digital a pymes y empresas familiares que sentían que la tecnología les venía grande.
+              JM Asesores abrió sus puertas en Antequera con un objetivo claro: ofrecer a empresas y autónomos de la comarca una asesoría profesional, cercana y de calidad.
             </p>
             <p>
-              Hoy somos un equipo de más de 20 profesionales que ha ayudado a digitalizar más de 150 negocios, desde talleres hasta cadenas de distribución.
+              Hoy somos referente en la zona, con más de 500 clientes activos a los que acompañamos en sus áreas fiscal, contable, laboral y jurídica. Y, desde hace unos años, también en su digitalización.
             </p>
+            <div className="flex items-center gap-2 text-sm font-medium text-brand pt-2">
+              <MapPin className="h-4 w-4" /> Calle Infante Don Fernando, Antequera (Málaga)
+            </div>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4">
           {[
-            { n: "2010", l: "Fundación" },
-            { n: "+150", l: "Proyectos" },
+            { n: "2003", l: "Fundación" },
+            { n: "+500", l: "Clientes" },
             { n: "+20", l: "Profesionales" },
-            { n: "12", l: "Sectores" },
+            { n: "4", l: "Áreas" },
           ].map((s) => (
             <div key={s.l} className="rounded-2xl bg-secondary/60 p-8 border border-border">
               <div className="text-4xl font-bold text-primary">{s.n}</div>
@@ -75,7 +78,7 @@ function SobreNosotros() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto">
             <span className="text-sm font-semibold text-brand uppercase tracking-wider">Valores</span>
-            <h2 className="mt-2 text-3xl md:text-4xl font-bold text-primary">Lo que nos mueve cada día</h2>
+            <h2 className="mt-2 text-3xl md:text-4xl font-bold text-primary">Cómo entendemos la asesoría</h2>
           </div>
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {valores.map(({ i: Icon, t, d }) => (
@@ -93,7 +96,7 @@ function SobreNosotros() {
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
         <div className="text-center max-w-2xl mx-auto">
           <span className="text-sm font-semibold text-brand uppercase tracking-wider">Equipo</span>
-          <h2 className="mt-2 text-3xl md:text-4xl font-bold text-primary">Las personas que lo hacen posible</h2>
+          <h2 className="mt-2 text-3xl md:text-4xl font-bold text-primary">Profesionales que te atienden</h2>
         </div>
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {equipo.map((m) => (

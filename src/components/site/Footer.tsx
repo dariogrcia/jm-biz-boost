@@ -13,7 +13,7 @@ export function Footer() {
             <span className="font-display text-lg font-semibold">JM Asesores</span>
           </div>
           <p className="mt-4 text-sm text-primary-foreground/70 leading-relaxed">
-            Asesoría especializada en digitalización de empresas. Software a medida y presencia online.
+            Asesoría fiscal, contable, laboral y jurídica en Antequera (Málaga). Cerca de ti, contigo todo el año.
           </p>
         </div>
 
@@ -41,8 +41,8 @@ export function Footer() {
           <h4 className="text-sm font-semibold mb-4">Contacto</h4>
           <ul className="space-y-3 text-sm text-primary-foreground/70">
             <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-brand" /> hola@jmasesores.es</li>
-            <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-brand" /> +34 900 123 456</li>
-            <li className="flex items-start gap-2"><MapPin className="h-4 w-4 text-brand mt-0.5" /> Calle Mayor 12, Madrid</li>
+            <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-brand" /> +34 952 84 00 00</li>
+            <li className="flex items-start gap-2"><MapPin className="h-4 w-4 text-brand mt-0.5" /> C/ Infante Don Fernando, 25<br />29200 Antequera, Málaga</li>
           </ul>
           <div className="flex gap-3 mt-5">
             {[Linkedin, Twitter, Facebook, Instagram].map((Icon, i) => (
