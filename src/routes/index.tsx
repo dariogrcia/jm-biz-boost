@@ -151,6 +151,21 @@ function Home() {
             <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">También en JM Asesores</span>
             <h3 className="mt-1 text-2xl font-bold text-primary">Servicios de digitalización para empresas</h3>
             <p className="mt-2 text-muted-foreground">Webs corporativas, CRM, software de gestión y digitalización de procesos. Un complemento a nuestra asesoría para que tu negocio crezca con buenas bases tecnológicas.</p>
+            <div className="mt-4 space-y-2 text-sm text-muted-foreground">
+              <p>Para más información sobre nuestros servicios de digitalización, puedes contactar con nosotros directamente:</p>
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-brand" />
+                <span>Teléfono 1: <span className="text-foreground">[número pendiente]</span></span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-brand" />
+                <span>Teléfono 2: <span className="text-foreground">[número pendiente]</span></span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4 text-brand" />
+                <span>Email: <span className="text-foreground">[correo pendiente]</span></span>
+              </div>
+            </div>
           </div>
           <Button asChild variant="outline" className="border-brand text-brand hover:bg-brand hover:text-brand-foreground">
             <Link to="/servicios">Saber más</Link>

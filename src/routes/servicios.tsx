@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Calculator, BookOpen, Users, Scale, Check, ArrowRight, Monitor, Globe, Database, Workflow } from "lucide-react";
+import { Calculator, BookOpen, Users, Scale, Check, ArrowRight, Monitor, Globe, Database, Workflow, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiteLayout } from "@/components/site/Layout";
 import type { LucideIcon } from "lucide-react";
@@ -142,6 +142,21 @@ function Servicios() {
                 <p className="mt-2 text-sm text-muted-foreground">{d}</p>
               </div>
             ))}
+          </div>
+          <div className="mt-8 space-y-2 text-sm text-muted-foreground">
+            <p>Para más información sobre nuestros servicios de digitalización, puedes contactar con nosotros directamente:</p>
+            <div className="flex items-center gap-2">
+              <Phone className="h-4 w-4 text-brand" />
+              <span>Teléfono 1: <span className="text-foreground">[número pendiente]</span></span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Phone className="h-4 w-4 text-brand" />
+              <span>Teléfono 2: <span className="text-foreground">[número pendiente]</span></span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Mail className="h-4 w-4 text-brand" />
+              <span>Email: <span className="text-foreground">[correo pendiente]</span></span>
+            </div>
           </div>
         </div>
       </section>
