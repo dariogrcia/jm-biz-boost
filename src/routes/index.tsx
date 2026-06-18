@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Calculator, BookOpen, Users, Scale, ShieldCheck, MapPin, Clock, Award, Monitor, Wrench, Plug, Database, GraduationCap, Server, Lightbulb } from "lucide-react";
+import { ArrowRight, Calculator, BookOpen, Users, Scale, ShieldCheck, MapPin, Clock, Award, Monitor, Wrench, Plug, Database, GraduationCap, Server, Lightbulb, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiteLayout } from "@/components/site/Layout";
 
@@ -73,22 +73,6 @@ function Home() {
         </div>
       </section>
 
-      {/* STATS */}
-      <section className="border-y border-border bg-secondary/40">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { n: "+500", l: "Clientes activos" },
-            { n: "+20", l: "Años en Antequera" },
-            { n: "98%", l: "Fidelización" },
-            { n: "4", l: "Áreas de asesoría" },
-          ].map((s) => (
-            <div key={s.l}>
-              <div className="text-3xl md:text-4xl font-bold text-primary">{s.n}</div>
-              <div className="mt-1 text-sm text-muted-foreground">{s.l}</div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* SERVICIOS */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
