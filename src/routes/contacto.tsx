@@ -1,0 +1,133 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
+import { SiteLayout } from "@/components/site/Layout";
+
+export const Route = createFileRoute("/contacto")({
+  head: () => ({
+    meta: [
+      { title: "Contacto — JM Asesores" },
+      { name: "description", content: "Contacta con JM Asesores. Primera consulta gratuita para digitalizar tu empresa." },
+      { property: "og:title", content: "Contacto — JM Asesores" },
+      { property: "og:description", content: "Cuéntanos tu proyecto. Te respondemos en menos de 24 horas." },
+    ],
+  }),
+  component: Contacto,
+});
+
+function Contacto() {
+  const [loading, setLoading] = useState(false);
+
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      (e.target as HTMLFormElement).reset();
+      toast.success("Mensaje enviado", { description: "Te respondemos en menos de 24 horas." });
+    }, 800);
+  }
+
+  return (
+    <SiteLayout>
+      <section className="bg-hero text-primary-foreground">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+          <span className="text-sm font-semibold text-brand uppercase tracking-wider">Contacto</span>
+          <h1 className="mt-3 text-4xl md:text-6xl font-bold tracking-tight">Hablemos de tu proyecto</h1>
+          <p className="mt-5 max-w-2xl text-lg text-primary-foreground/80">
+            Cuéntanos qué necesitas. La primera consulta es gratuita y sin compromiso.
+          </p>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 grid gap-10 lg:grid-cols-5">
+        {/* Form */}
+        <div className="lg:col-span-3">
+          <div className="rounded-2xl border border-border bg-card p-8 md:p-10 shadow-soft">
+            <h2 className="text-2xl font-semibold text-primary">Envíanos un mensaje</h2>
+            <p className="mt-2 text-sm text-muted-foreground">Te respondemos en menos de 24 horas laborables.</p>
+            <form onSubmit={onSubmit} className="mt-8 grid gap-5">
+              <div className="grid gap-5 sm:grid-cols-2">
+                <div className="grid gap-2">
+                  <Label htmlFor="nombre">Nombre *</Label>
+                  <Input id="nombre" required placeholder="Tu nombre" />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="email">Email *</Label>
+                  <Input id="email" type="email" required placeholder="tu@empresa.com" />
+                </div>
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="telefono">Teléfono</Label>
+                <Input id="telefono" type="tel" placeholder="+34 600 000 000" />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="mensaje">Mensaje *</Label>
+                <Textarea id="mensaje" required rows={6} placeholder="Cuéntanos brevemente tu proyecto..." />
+              </div>
+              <Button type="submit" disabled={loading} size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 justify-self-start">
+                {loading ? "Enviando..." : <>Enviar mensaje <Send className="ml-2 h-4 w-4" /></>}
+              </Button>
+              <p className="text-xs text-muted-foreground">Al enviar aceptas nuestra política de privacidad.</p>
+            </form>
+          </div>
+        </div>
+
+        {/* Info */}
+        <div className="lg:col-span-2 space-y-6">
+          <div className="rounded-2xl bg-primary text-primary-foreground p-8 shadow-elegant">
+            <h3 className="font-semibold text-lg">Información de contacto</h3>
+            <ul className="mt-6 space-y-5 text-sm">
+              <li className="flex items-start gap-3">
+                <Mail className="h-5 w-5 text-brand mt-0.5" />
+                <div>
+                  <div className="text-primary-foreground/60 text-xs">Email</div>
+                  <div className="font-medium">hola@jmasesores.es</div>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <Phone className="h-5 w-5 text-brand mt-0.5" />
+                <div>
+                  <div className="text-primary-foreground/60 text-xs">Teléfono</div>
+                  <div className="font-medium">+34 900 123 456</div>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin className="h-5 w-5 text-brand mt-0.5" />
+                <div>
+                  <div className="text-primary-foreground/60 text-xs">Dirección</div>
+                  <div className="font-medium">Calle Mayor 12, 2ª planta<br />28013 Madrid, España</div>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <Clock className="h-5 w-5 text-brand mt-0.5" />
+                <div>
+                  <div className="text-primary-foreground/60 text-xs">Horario</div>
+                  <div className="font-medium">Lun – Vie · 9:00 – 18:00</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Map placeholder */}
+          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border bg-secondary">
+            <div className="absolute inset-0 bg-hero opacity-20" />
+            <div className="absolute inset-0 grid place-items-center">
+              <div className="text-center">
+                <MapPin className="h-10 w-10 text-brand mx-auto" />
+                <div className="mt-3 font-semibold text-primary">Calle Mayor 12, Madrid</div>
+                <div className="text-xs text-muted-foreground mt-1">Mapa interactivo próximamente</div>
+              </div>
+            </div>
+            <div className="absolute inset-0" style={{ backgroundImage: "linear-gradient(oklch(0.25 0.08 255 / 0.05) 1px, transparent 1px), linear-gradient(90deg, oklch(0.25 0.08 255 / 0.05) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+          </div>
+        </div>
+      </section>
+    </SiteLayout>
+  );
+}
