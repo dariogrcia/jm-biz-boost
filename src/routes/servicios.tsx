@@ -77,7 +77,15 @@ const bloques: Bloque[] = [
 function Servicios() {
   return (
     <SiteLayout>
-      <section className="bg-hero text-primary-foreground">
+      <section
+        className="text-primary-foreground"
+        style={{
+          backgroundImage:
+            "linear-gradient(to bottom right, rgba(0,0,0,0.55), rgba(0,0,0,0.40)), url('https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1920&q=80')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
           <span className="text-sm font-semibold text-brand uppercase tracking-wider">Servicios</span>
           <h1 className="mt-3 text-4xl md:text-6xl font-bold tracking-tight">Asesoría integral para tu negocio</h1>
