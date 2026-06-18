@@ -39,7 +39,7 @@ function Home() {
         className="relative flex min-h-screen items-center justify-center overflow-hidden text-white"
         style={{
           backgroundImage:
-            "linear-gradient(to bottom right, rgba(0,0,0,0.55), rgba(0,0,0,0.40)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80')",
+            "linear-gradient(to bottom right, rgba(0,0,0,0.55), rgba(0,0,0,0.40)), url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1920&q=80')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -49,12 +49,11 @@ function Home() {
             <MapPin className="h-3 w-3" /> Antequera · Málaga
           </span>
           <h1 className="mt-6 text-4xl sm:text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight">
-            Tu negocio, <br />
-            sin complicaciones <br />
-            <span className="text-brand">digitales.</span>
+            Tu negocio,<br/>
+            en <span className="text-brand">buenas manos.</span>
           </h1>
           <p className="mt-6 text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-            Desarrollo de software a medida, webs corporativas y CRM para empresas que quieren crecer sin depender de nadie más.
+            Asesoría fiscal, contable y laboral para autónomos y empresas de Antequera y toda Málaga. Y si también necesitas una web, un CRM o software a medida, también te cubrimos.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <Button asChild size="lg" className="bg-brand text-brand-foreground hover:bg-brand/90 shadow-elegant">
