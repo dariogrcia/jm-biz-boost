@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Calculator, BookOpen, Users, Scale, ShieldCheck, MapPin, Clock, Award, Monitor } from "lucide-react";
+import { ArrowRight, Calculator, BookOpen, Users, Scale, ShieldCheck, MapPin, Clock, Award, Monitor, Wrench, Plug, Database, GraduationCap, Server, Lightbulb } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiteLayout } from "@/components/site/Layout";
 
@@ -22,34 +22,54 @@ const servicios = [
   { i: Scale, t: "Asesoría Jurídica", d: "Constitución de sociedades, contratos mercantiles y asesoramiento legal." },
 ];
 
+const complementarios = [
+  { i: Wrench, t: "Mantenimiento y soporte técnico", d: "Resolución de incidencias, actualizaciones y vigilancia continua de tus sistemas y aplicaciones." },
+  { i: Plug, t: "Integraciones de APIs", d: "Conectamos tus herramientas: ERP, CRM, plataformas de pago, correo, redes sociales y más." },
+  { i: Database, t: "Migración de datos", d: "Trasladamos tus datos de forma segura entre sistemas, sin pérdidas ni interrupciones." },
+  { i: GraduationCap, t: "Formación a usuarios", d: "Capacitamos a tu equipo para sacar el máximo partido a las herramientas implantadas." },
+  { i: Server, t: "Hosting y dominios", d: "Gestión de alojamiento web, dominios, certificados SSL y copias de seguridad." },
+  { i: Lightbulb, t: "Consultoría tecnológica", d: "Te ayudamos a elegir las mejores soluciones tecnológicas para las necesidades reales de tu negocio." },
+];
+
 function Home() {
   return (
     <SiteLayout>
       {/* HERO */}
-      <section className="relative overflow-hidden bg-hero text-primary-foreground">
-        <div className="absolute inset-0 opacity-30" style={{ backgroundImage: "radial-gradient(circle at 15% 20%, oklch(0.66 0.17 50 / 0.6), transparent 45%), radial-gradient(circle at 85% 80%, oklch(0.55 0.16 40 / 0.5), transparent 45%)" }} />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 md:py-36">
-          <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur px-4 py-1.5 text-xs font-medium text-brand">
-              <MapPin className="h-3 w-3" /> Antequera · Málaga
-            </span>
-            <h1 className="mt-6 text-4xl sm:text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight">
-              Tu asesoría de confianza<br />
-              <span className="text-brand">en Antequera</span>
-            </h1>
-            <p className="mt-6 text-lg md:text-xl text-primary-foreground/80 max-w-2xl leading-relaxed">
-              Servicios <strong className="text-primary-foreground">fiscales, contables, laborales y jurídicos</strong> para autónomos y empresas de la comarca de Antequera y toda la provincia de Málaga. Tranquilidad para ti, control para tu negocio.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="bg-brand text-brand-foreground hover:bg-brand/90 shadow-elegant">
-                <Link to="/contacto">
-                  Pide cita gratis <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="border-white/30 bg-white/5 text-primary-foreground hover:bg-white/10">
-                <Link to="/servicios">Ver servicios</Link>
-              </Button>
-            </div>
+      <section
+        className="relative flex min-h-screen items-center justify-center overflow-hidden text-white"
+        style={{
+          backgroundImage:
+            "linear-gradient(to bottom right, rgba(0,0,0,0.55), rgba(0,0,0,0.40)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 md:py-36 text-center">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur px-4 py-1.5 text-xs font-medium text-brand">
+            <MapPin className="h-3 w-3" /> Antequera · Málaga
+          </span>
+          <h1 className="mt-6 text-4xl sm:text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight">
+            Tu negocio, <br />
+            sin complicaciones <br />
+            <span className="text-brand">digitales.</span>
+          </h1>
+          <p className="mt-6 text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+            Desarrollo de software a medida, webs corporativas y CRM para empresas que quieren crecer sin depender de nadie más.
+          </p>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <Button asChild size="lg" className="bg-brand text-brand-foreground hover:bg-brand/90 shadow-elegant">
+              <Link to="/contacto">
+                Pide cita gratis <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="border-white/30 bg-white/5 text-white hover:bg-white/10">
+              <Link to="/servicios">Ver servicios</Link>
+            </Button>
+          </div>
+          <div className="mt-12 text-center">
+            <p className="text-white font-semibold">Maribel Aguilera Orellana</p>
+            <div className="mx-auto my-2 h-px w-16 bg-white/30" />
+            <p className="text-xs text-brand">Fundadora & CEO</p>
           </div>
         </div>
       </section>
@@ -115,6 +135,26 @@ function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* SERVICIOS COMPLEMENTARIOS */}
+      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
+        <div className="max-w-2xl mx-auto text-center">
+          <span className="text-sm font-semibold text-brand uppercase tracking-wider">Servicios Complementarios</span>
+          <h2 className="mt-2 text-3xl md:text-4xl font-bold text-primary">Amplía las capacidades de tu empresa</h2>
+          <p className="mt-4 text-muted-foreground text-lg">Soluciones técnicas que complementan nuestros servicios principales y mantienen tu negocio siempre operativo y conectado.</p>
+        </div>
+        <div className="mt-14 grid grid-cols-2 gap-6 lg:grid-cols-3">
+          {complementarios.map(({ i: Icon, t, d }) => (
+            <div key={t} className="group rounded-2xl border border-border bg-card p-6 shadow-soft hover:shadow-elegant hover:-translate-y-1 transition-all">
+              <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-gradient text-brand-foreground">
+                <Icon className="h-6 w-6" />
+              </div>
+              <h3 className="mt-5 text-lg font-semibold text-primary">{t}</h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{d}</p>
+            </div>
+          ))}
         </div>
       </section>
 
