@@ -1,11 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { Phone, Smartphone, MapPin, Clock, Send, MessageCircle } from "lucide-react";
+import { Phone, Smartphone, MapPin, Clock, Send, MessageCircle, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { toast } from "sonner";
 import { SiteLayout } from "@/components/site/Layout";
 import heroAntequera from "@/assets/hero-contacto-antequera.jpg";
 
@@ -22,16 +20,18 @@ export const Route = createFileRoute("/contacto")({
 });
 
 function Contacto() {
-  const [loading, setLoading] = useState(false);
-
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      (e.target as HTMLFormElement).reset();
-      toast.success("Mensaje enviado", { description: "Te respondemos en menos de 24 horas." });
-    }, 800);
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    const nombre = String(fd.get("nombre") ?? "").trim();
+    const email = String(fd.get("email") ?? "").trim();
+    const telefono = String(fd.get("telefono") ?? "").trim();
+    const mensaje = String(fd.get("mensaje") ?? "").trim();
+    if (!nombre || !telefono || !mensaje) return;
+    const text = `Hola, soy ${nombre}. Teléfono: ${telefono}. Email: ${email}. Mensaje: ${mensaje}`;
+    const url = `https://wa.me/34696387037?text=${encodeURIComponent(text)}`;
+    window.open(url, "_blank");
   }
 
   return (
@@ -63,24 +63,11 @@ function Contacto() {
               <div className="grid gap-5 sm:grid-cols-2">
                 <div className="grid gap-2">
                   <Label htmlFor="nombre">Nombre *</Label>
-                  <Input id="nombre" required placeholder="Tu nombre" />
+                  <Input id="nombre" name="nombre" required placeholder="Tu nombre" />
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" placeholder="tu@correo.com" />
-                </div>
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="telefono">Teléfono *</Label>
-                <Input id="telefono" type="tel" required placeholder="+34 600 000 000" />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="mensaje">Mensaje *</Label>
-                <Textarea id="mensaje" required rows={6} placeholder="Cuéntanos en qué podemos ayudarte..." />
-              </div>
-              <Button type="submit" disabled={loading} size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 justify-self-start">
-                {loading ? "Enviando..." : <>Enviar mensaje <Send className="ml-2 h-4 w-4" /></>}
-              </Button>
+                  <Input id="email" name="email" type=" ...
               <p className="text-xs text-muted-foreground">Al enviar aceptas nuestra política de privacidad.</p>
             </form>
           </div>
