@@ -7,6 +7,11 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  // Base public path. On GitHub Pages (project site) the app is served from
+  // /<repo>/, so CI sets BASE_PATH=/jm-biz-boost/. Local dev/build default to "/".
+  vite: {
+    base: process.env.BASE_PATH || "/",
+  },
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
