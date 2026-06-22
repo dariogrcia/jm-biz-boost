@@ -238,11 +238,17 @@ function Home() {
             <div className="mt-8 space-y-3 text-sm">
               <div className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-brand" />
-                <span>952 00 00 00</span>
+                <a href="tel:+34952702214" className="hover:text-brand">952 70 22 14 (Telf. y Fax)</a>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-brand" />
-                <span>hola@jmasesores.com</span>
+                <a href="tel:+34698387037" className="hover:text-brand">698 38 70 37 (Móvil)</a>
+              </div>
+              <div className="flex items-center gap-3">
+                <Mail className="h-4 w-4 text-brand" />
+                <a href="https://wa.me/34696387037" target="_blank" rel="noopener noreferrer" className="hover:text-brand">
+                  WhatsApp: +34 696 387 037
+                </a>
               </div>
             </div>
           </div>
@@ -308,14 +314,15 @@ function Home() {
             <div className="rounded-2xl bg-white/10 backdrop-blur border border-white/20 p-8 space-y-4">
               <div>
                 <div className="text-xs uppercase tracking-widest text-brand">Dirección</div>
-                <div className="mt-1 font-semibold">Calle Infante Don Fernando, 00</div>
+                <div className="mt-1 font-semibold">Urb. Parquesol, bloque 9, bajo</div>
                 <div className="text-white/70 text-sm">29200 Antequera (Málaga)</div>
               </div>
               <div className="h-px bg-white/15" />
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
                   <div className="text-xs uppercase tracking-widest text-brand">Teléfono</div>
-                  <div className="mt-1 font-semibold">952 00 00 00</div>
+                  <div className="mt-1 font-semibold">952 70 22 14</div>
+                  <div className="text-white/70 text-xs">Móvil 698 38 70 37</div>
                 </div>
                 <div>
                   <div className="text-xs uppercase tracking-widest text-brand">Horario</div>

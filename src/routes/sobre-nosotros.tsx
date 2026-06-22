@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Heart, Lightbulb, Handshake, Target, MapPin, UserCircle2 } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
+import heroSobre from "@/assets/hero-sobre-nosotros.jpg";
 
 export const Route = createFileRoute("/sobre-nosotros")({
   head: () => ({
@@ -24,11 +25,18 @@ const valores = [
 function SobreNosotros() {
   return (
     <SiteLayout>
-      <section className="bg-hero text-primary-foreground">
+      <section
+        className="relative text-primary-foreground"
+        style={{
+          backgroundImage: `linear-gradient(to bottom right, rgba(38,25,15,0.78), rgba(20,12,6,0.65)), url(${heroSobre})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
           <span className="text-sm font-semibold text-brand uppercase tracking-wider">Sobre nosotros</span>
           <h1 className="mt-3 text-4xl md:text-6xl font-bold tracking-tight max-w-3xl">La asesoría de referencia en Antequera</h1>
-          <p className="mt-5 max-w-2xl text-lg text-primary-foreground/80">
+          <p className="mt-5 max-w-2xl text-lg text-white/80">
             Un equipo cercano y multidisciplinar al servicio de empresas y autónomos de la comarca de Antequera y toda la provincia de Málaga.
           </p>
         </div>
@@ -57,7 +65,7 @@ function SobreNosotros() {
               Especialidades: Declaración de la Renta · IVA · Impuesto de Sociedades · Nóminas y Seguridad Social · Contabilidad oficial · Constitución de empresas.
             </p>
             <div className="flex items-center gap-2 text-sm font-medium text-brand pt-2">
-              <MapPin className="h-4 w-4" /> Calle Infante Don Fernando, Antequera (Málaga)
+              <MapPin className="h-4 w-4" /> Urb. Parquesol, bloque 9, bajo · 29200 Antequera (Málaga)
             </div>
           </div>
         </div>

@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoPrincipal from "@/assets/logo-principal.png.asset.json";
 
 const links = [
   { to: "/", label: "Inicio" },
@@ -11,20 +12,21 @@ const links = [
   { to: "/contacto", label: "Contacto" },
 ] as const;
 
+const WHATSAPP_URL = "https://wa.me/34696387037";
+
 export function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 group">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand-gradient text-brand-foreground shadow-soft">
-              <Sparkles className="h-5 w-5" strokeWidth={2.5} />
-            </span>
-            <span className="font-display text-lg font-semibold tracking-tight text-primary">
-              JM <span className="text-foreground/70">Asesores</span>
-            </span>
+        <div className="flex h-16 items-center justify-between gap-4">
+          <Link to="/" className="flex items-center group shrink-0" aria-label="JM Asesores — Inicio">
+            <img
+              src={logoPrincipal.url}
+              alt="JM Asesores — Gestión de Empresas"
+              className="h-9 md:h-10 w-auto"
+            />
           </Link>
 
           <nav className="hidden md:flex items-center gap-1">
@@ -43,8 +45,10 @@ export function Navbar() {
           </nav>
 
           <div className="hidden md:block">
-            <Button asChild size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-              <Link to="/contacto">Hablemos</Link>
+            <Button asChild size="sm" className="bg-[#25D366] hover:bg-[#1ebe5a] text-white">
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                <MessageCircle className="mr-1.5 h-4 w-4" /> Hablemos
+              </a>
             </Button>
           </div>
 
@@ -72,8 +76,10 @@ export function Navbar() {
                 {l.label}
               </Link>
             ))}
-            <Button asChild className="mt-2 bg-primary text-primary-foreground">
-              <Link to="/contacto" onClick={() => setOpen(false)}>Hablemos</Link>
+            <Button asChild className="mt-2 bg-[#25D366] hover:bg-[#1ebe5a] text-white">
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
+                <MessageCircle className="mr-1.5 h-4 w-4" /> Hablemos por WhatsApp
+              </a>
             </Button>
           </div>
         )}
