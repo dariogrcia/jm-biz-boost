@@ -67,7 +67,20 @@ function Contacto() {
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" name="email" type=" ...
+                  <Input id="email" name="email" type="email" placeholder="tu@correo.com" />
+                </div>
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="telefono">Teléfono *</Label>
+                <Input id="telefono" name="telefono" type="tel" required placeholder="+34 600 000 000" />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="mensaje">Mensaje *</Label>
+                <Textarea id="mensaje" name="mensaje" required rows={6} placeholder="Cuéntanos en qué podemos ayudarte..." />
+              </div>
+              <Button type="submit" size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 justify-self-start">
+                Enviar mensaje <Send className="ml-2 h-4 w-4" />
+              </Button>
               <p className="text-xs text-muted-foreground">Al enviar aceptas nuestra política de privacidad.</p>
             </form>
           </div>
@@ -106,6 +119,13 @@ function Contacto() {
                   <a href="https://wa.me/34696387037" target="_blank" rel="noopener noreferrer" className="font-medium hover:text-brand">
                     +34 696 387 037
                   </a>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <Mail className="h-5 w-5 text-brand mt-0.5 shrink-0" />
+                <div>
+                  <div className="text-primary-foreground/60 text-xs">Email</div>
+                  <a href="mailto:jm_asesores@hotmail.com" className="font-medium hover:text-brand">jm_asesores@hotmail.com</a>
                 </div>
               </li>
               <li className="flex items-start gap-3">

@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Phone, Smartphone, MapPin, MessageCircle } from "lucide-react";
+import { Phone, Smartphone, MapPin, MessageCircle, Mail } from "lucide-react";
 import logoFooter from "@/assets/logo-footer.png";
 
 export function Footer() {
@@ -56,6 +56,10 @@ export function Footer() {
               <a href="https://wa.me/34696387037" target="_blank" rel="noopener noreferrer" className="hover:text-brand">
                 WhatsApp: +34 696 387 037
               </a>
+            </li>
+            <li className="flex items-start gap-2">
+              <Mail className="h-4 w-4 text-brand mt-0.5 shrink-0" />
+              <a href="mailto:jm_asesores@hotmail.com" className="hover:text-brand">jm_asesores@hotmail.com</a>
             </li>
             <li className="flex items-start gap-2">
               <MapPin className="h-4 w-4 text-brand mt-0.5 shrink-0" />
