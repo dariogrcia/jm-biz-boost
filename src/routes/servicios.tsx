@@ -1,16 +1,31 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Calculator, BookOpen, Users, Scale, Check, ArrowRight, Monitor, Globe, Database, Workflow, Phone, Mail } from "lucide-react";
+import {
+  Calculator,
+  BookOpen,
+  Users,
+  Check,
+  ArrowRight,
+  Globe,
+  Database,
+  Workflow,
+  Phone,
+  Mail,
+  LineChart,
+  Cpu,
+  ShieldCheck,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiteLayout } from "@/components/site/Layout";
 import type { LucideIcon } from "lucide-react";
+import digitalizacionImg from "@/assets/digitalizacion.jpg";
 
 export const Route = createFileRoute("/servicios")({
   head: () => ({
     meta: [
       { title: "Servicios — JM Asesores Antequera" },
-      { name: "description", content: "Asesoría fiscal, contable, laboral y jurídica en Antequera. Además, servicios de digitalización para empresas." },
+      { name: "description", content: "Asesoría fiscal, contable y laboral en Antequera. Además, transformación digital para empresas." },
       { property: "og:title", content: "Servicios — JM Asesores" },
-      { property: "og:description", content: "Cuatro áreas de asesoría más servicios de digitalización." },
+      { property: "og:description", content: "Tres áreas de asesoría más servicios de transformación digital." },
     ],
   }),
   component: Servicios,
@@ -60,18 +75,6 @@ const bloques: Bloque[] = [
       "Auditoría laboral y planes de igualdad",
     ],
   },
-  {
-    icon: Scale,
-    titulo: "Asesoría Jurídica",
-    intro: "Asesoramiento legal especializado en derecho mercantil y de empresa.",
-    items: [
-      "Constitución de sociedades y autónomos",
-      "Contratos mercantiles y civiles",
-      "Reclamación de impagos",
-      "Protección de datos (LOPD/RGPD)",
-      "Asesoramiento legal continuado",
-    ],
-  },
 ];
 
 function Servicios() {
@@ -81,25 +84,28 @@ function Servicios() {
         className="text-primary-foreground"
         style={{
           backgroundImage:
-            "linear-gradient(to bottom right, rgba(0,0,0,0.55), rgba(0,0,0,0.40)), url('https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1920&q=80')",
+            "linear-gradient(to bottom right, rgba(0,0,0,0.6), rgba(0,0,0,0.45)), url('https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1920&q=80')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-          <span className="text-sm font-semibold text-brand uppercase tracking-wider">Servicios</span>
+          <span className="text-sm font-semibold text-brand uppercase tracking-[0.2em]">Servicios</span>
           <h1 className="mt-3 text-4xl md:text-6xl font-bold tracking-tight">Asesoría integral para tu negocio</h1>
           <p className="mt-5 max-w-2xl text-lg text-primary-foreground/80">
-            Cuatro áreas de especialización para acompañarte en todo lo que tu actividad necesita, desde Antequera para toda Málaga.
+            Tres áreas de especialización para acompañarte en todo lo que tu actividad necesita, desde Antequera para toda Málaga.
           </p>
         </div>
       </section>
 
       {/* Bloques asesoría */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
-        <div className="grid gap-8 lg:grid-cols-2">
+        <div className="grid gap-8 md:grid-cols-3">
           {bloques.map(({ icon: Icon, titulo, intro, items }) => (
-            <div key={titulo} className="rounded-2xl border border-border bg-card p-8 shadow-soft hover:shadow-elegant transition-shadow">
+            <div
+              key={titulo}
+              className="rounded-2xl border border-border bg-card p-8 shadow-soft hover:shadow-elegant transition-shadow"
+            >
               <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-gradient text-brand-foreground shadow-soft">
                 <Icon className="h-7 w-7" />
               </div>
@@ -121,49 +127,76 @@ function Servicios() {
 
         <div className="mt-12 text-center">
           <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
-            <Link to="/contacto">Solicitar información <ArrowRight className="ml-2 h-4 w-4" /></Link>
+            <Link to="/contacto">
+              Solicitar información <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
           </Button>
         </div>
       </section>
 
-      {/* Sección secundaria: Digitalización */}
-      <section className="bg-secondary/50 border-y border-border py-20">
+      {/* DIGITALIZACIÓN — sección profesional */}
+      <section className="bg-secondary/40 border-y border-border py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3">
-            <Monitor className="h-5 w-5 text-brand" />
-            <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Servicios complementarios</span>
-          </div>
-          <div className="mt-3 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-            <h2 className="text-2xl md:text-3xl font-bold text-primary max-w-2xl">Digitalización para empresas</h2>
-            <p className="text-muted-foreground max-w-md text-sm">Además de la asesoría, ayudamos a nuestros clientes a dar el salto digital.</p>
-          </div>
-
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {[
-              { i: Globe, t: "Páginas web corporativas", d: "Diseño y desarrollo de webs profesionales para presentar tu empresa." },
-              { i: Database, t: "CRM y software de gestión", d: "Implantación de CRM y herramientas de gestión empresarial." },
-              { i: Workflow, t: "Digitalización de procesos", d: "Automatización de tareas internas para ganar tiempo y eficiencia." },
-            ].map(({ i: Icon, t, d }) => (
-              <div key={t} className="rounded-xl bg-card p-6 border border-border">
-                <Icon className="h-6 w-6 text-brand" />
-                <h3 className="mt-4 font-semibold text-primary">{t}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{d}</p>
+          <div className="grid gap-12 md:grid-cols-2 md:items-center">
+            <div className="relative order-2 md:order-1">
+              <img
+                src={digitalizacionImg}
+                alt="Equipo desarrollando software a medida"
+                loading="lazy"
+                width={1024}
+                height={1024}
+                className="rounded-2xl shadow-elegant w-full h-auto object-cover"
+              />
+              <div className="absolute -bottom-6 -left-6 hidden md:flex items-center gap-3 rounded-2xl bg-primary text-primary-foreground px-6 py-4 shadow-elegant">
+                <Cpu className="h-6 w-6 text-brand" />
+                <div>
+                  <div className="text-xs uppercase tracking-widest text-brand">Tecnología</div>
+                  <div className="font-semibold">Software a medida</div>
+                </div>
               </div>
-            ))}
-          </div>
-          <div className="mt-8 space-y-2 text-sm text-muted-foreground">
-            <p>Para más información sobre nuestros servicios de digitalización, puedes contactar con nosotros directamente:</p>
-            <div className="flex items-center gap-2">
-              <Phone className="h-4 w-4 text-brand" />
-              <span>Teléfono 1: <span className="text-foreground">[número pendiente]</span></span>
             </div>
-            <div className="flex items-center gap-2">
-              <Phone className="h-4 w-4 text-brand" />
-              <span>Teléfono 2: <span className="text-foreground">[número pendiente]</span></span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Mail className="h-4 w-4 text-brand" />
-              <span>Email: <span className="text-foreground">[correo pendiente]</span></span>
+
+            <div className="order-1 md:order-2">
+              <span className="text-sm font-semibold text-brand uppercase tracking-[0.2em]">
+                Transformación digital
+              </span>
+              <h2 className="mt-3 text-3xl md:text-5xl font-bold text-primary leading-tight">
+                Digitalización<br />para empresas
+              </h2>
+              <p className="mt-5 text-muted-foreground text-lg leading-relaxed">
+                Acompañamos a nuestros clientes en el proceso de modernización tecnológica de su negocio.
+                Diseñamos y desarrollamos soluciones a medida orientadas a resultados: más eficiencia, mejor
+                control y crecimiento sostenible.
+              </p>
+
+              <div className="mt-8 grid gap-5 sm:grid-cols-2">
+                {[
+                  { i: Globe, t: "Presencia digital corporativa", d: "Sitios web profesionales orientados a conversión, posicionamiento y reputación de marca." },
+                  { i: Database, t: "ERP, CRM y software de gestión", d: "Implantación y desarrollo de sistemas adaptados a tus procesos reales de negocio." },
+                  { i: Workflow, t: "Automatización de procesos", d: "Eliminamos tareas repetitivas y conectamos tus herramientas para que el equipo se centre en lo importante." },
+                  { i: LineChart, t: "Análisis y reporting", d: "Cuadros de mando y métricas para tomar decisiones basadas en datos, no en intuiciones." },
+                ].map(({ i: Icon, t, d }) => (
+                  <div key={t} className="rounded-xl bg-card border border-border p-5">
+                    <Icon className="h-5 w-5 text-brand" />
+                    <h3 className="mt-3 font-semibold text-primary text-sm">{t}</h3>
+                    <p className="mt-1.5 text-xs text-muted-foreground leading-relaxed">{d}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 rounded-xl border border-border bg-card p-5 space-y-2 text-sm text-muted-foreground">
+                <p className="text-foreground font-medium flex items-center gap-2">
+                  <ShieldCheck className="h-4 w-4 text-brand" /> Contacto para proyectos de digitalización
+                </p>
+                <div className="flex items-center gap-2">
+                  <Phone className="h-4 w-4 text-brand" />
+                  <span>Teléfono: <span className="text-foreground">[número pendiente]</span></span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Mail className="h-4 w-4 text-brand" />
+                  <span>Email: <span className="text-foreground">[correo pendiente]</span></span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -172,7 +205,7 @@ function Servicios() {
       {/* Proceso */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
         <div className="text-center max-w-2xl mx-auto">
-          <span className="text-sm font-semibold text-brand uppercase tracking-wider">Cómo trabajamos</span>
+          <span className="text-sm font-semibold text-brand uppercase tracking-[0.2em]">Cómo trabajamos</span>
           <h2 className="mt-2 text-3xl md:text-4xl font-bold text-primary">Sencillo, transparente, contigo</h2>
         </div>
         <div className="mt-14 grid gap-6 md:grid-cols-4">
