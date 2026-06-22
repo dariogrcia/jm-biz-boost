@@ -114,7 +114,7 @@ function Contacto() {
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <WhatsAppIcon className="h-5 w-5 text-[#25D366] mt-0.5 shrink-0" />
+                <WhatsAppIconOutline className="h-5 w-5 text-brand mt-0.5 shrink-0" />
                 <div>
                   <div className="text-primary-foreground/60 text-xs">WhatsApp</div>
                   <a href="https://wa.me/34696387037" target="_blank" rel="noopener noreferrer" className="font-medium hover:text-brand">
@@ -140,7 +140,7 @@ function Contacto() {
 
             <Button asChild className="mt-8 w-full bg-[#25D366] hover:bg-[#1ebe5a] text-white">
               <a href="https://wa.me/34696387037" target="_blank" rel="noopener noreferrer">
-                <WhatsAppIcon className="mr-2 h-4 w-4" /> Chatear por WhatsApp
+                <WhatsAppIconOutline className="mr-2 h-4 w-4" /> Chatear por WhatsApp
               </a>
             </Button>
           </div>
