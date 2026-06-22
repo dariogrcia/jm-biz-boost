@@ -154,8 +154,8 @@ function PostDetail() {
                 </Button>
               </div>
               <div className="mt-6 flex flex-wrap gap-6 text-sm text-primary-foreground/70">
-                <span className="flex items-center gap-2"><Phone className="h-4 w-4 text-brand" /> 952 00 00 00</span>
-                <span className="flex items-center gap-2"><Mail className="h-4 w-4 text-brand" /> hola@jmasesores.com</span>
+                <span className="flex items-center gap-2"><Phone className="h-4 w-4 text-brand" /> 952 70 22 14</span>
+                <span className="flex items-center gap-2"><Mail className="h-4 w-4 text-brand" /> jm_asesores@hotmail.com</span>
               </div>
             </div>
           </article>
