@@ -104,7 +104,7 @@ function PostDetail() {
             </div>
 
             <div className="prose-content space-y-5 text-foreground leading-relaxed">
-              {post.contenido.map((b, i) => {
+              {post.contenido.map((b: typeof post.contenido[number], i: number) => {
                 if (b.tipo === "p") {
                   return (
                     <p key={i} className="text-base md:text-lg text-muted-foreground leading-relaxed">
@@ -121,7 +121,7 @@ function PostDetail() {
                 }
                 return (
                   <ul key={i} className="space-y-2 pl-1">
-                    {b.items?.map((it) => (
+                    {b.items?.map((it: string) => (
                       <li key={it} className="flex items-start gap-3 text-muted-foreground">
                         <span className="mt-2 h-1.5 w-1.5 rounded-full bg-brand shrink-0" />
                         <span>{it}</span>
