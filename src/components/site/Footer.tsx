@@ -49,7 +49,7 @@ export function Footer() {
             </li>
             <li className="flex items-start gap-2">
               <Smartphone className="h-4 w-4 text-brand mt-0.5 shrink-0" />
-              <a href="tel:+34698387037" className="hover:text-brand">Móvil: 698 38 70 37</a>
+              <a href="tel:+34696387037" className="hover:text-brand">Móvil: 696 387 037</a>
             </li>
             <li className="flex items-start gap-2">
               <MessageCircle className="h-4 w-4 text-brand mt-0.5 shrink-0" />

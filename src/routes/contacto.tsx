@@ -109,7 +109,7 @@ function Contacto() {
                 <Smartphone className="h-5 w-5 text-brand mt-0.5 shrink-0" />
                 <div>
                   <div className="text-primary-foreground/60 text-xs">Móvil</div>
-                  <a href="tel:+34698387037" className="font-medium hover:text-brand">698 38 70 37</a>
+                  <a href="tel:+34696387037" className="font-medium hover:text-brand">696 387 037</a>
                 </div>
               </li>
               <li className="flex items-start gap-3">

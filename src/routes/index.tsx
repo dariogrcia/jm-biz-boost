@@ -242,7 +242,7 @@ function Home() {
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-brand" />
-                <a href="tel:+34698387037" className="hover:text-brand">698 38 70 37 (Móvil)</a>
+                <a href="tel:+34696387037" className="hover:text-brand">696 387 037 (Móvil)</a>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-brand" />
@@ -322,7 +322,7 @@ function Home() {
                 <div>
                   <div className="text-xs uppercase tracking-widest text-brand">Teléfono</div>
                   <div className="mt-1 font-semibold">952 70 22 14</div>
-                  <div className="text-white/70 text-xs">Móvil 698 38 70 37</div>
+                  <div className="text-white/70 text-xs">Móvil 696 387 037</div>
                 </div>
                 <div>
                   <div className="text-xs uppercase tracking-widest text-brand">Horario</div>
