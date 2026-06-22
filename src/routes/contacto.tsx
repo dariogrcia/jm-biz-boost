@@ -144,16 +144,13 @@ function Contacto() {
             </Button>
           </div>
 
-          {/* Map placeholder */}
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border bg-secondary">
-            <div className="absolute inset-0 grid place-items-center">
-              <div className="text-center">
-                <MapPin className="h-10 w-10 text-brand mx-auto" />
-                <div className="mt-3 font-semibold text-primary">Antequera, Málaga</div>
-                <div className="text-xs text-muted-foreground mt-1">Urb. Parquesol, bloque 9, bajo</div>
-              </div>
-            </div>
-            <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "linear-gradient(oklch(0.26 0.04 50 / 0.06) 1px, transparent 1px), linear-gradient(90deg, oklch(0.26 0.04 50 / 0.06) 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+            <iframe
+              src="https://www.google.com/maps?q=Urb.%20Parquesol%2C%20bloque%209%2C%20bajo%2C%2029200%20Antequera%2C%20M%C3%A1laga&output=embed"
+              title="Ubicación de JM Asesores en Antequera"
+              loading="lazy"
+              className="absolute inset-0 w-full h-full border-0"
+            />
           </div>
         </div>
       </section>
