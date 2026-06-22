@@ -246,7 +246,7 @@ function Home() {
                 <a href="tel:+34696387037" className="hover:text-brand">696 387 037 (Móvil)</a>
               </div>
               <div className="flex items-center gap-3">
-                <Mail className="h-4 w-4 text-brand" />
+                <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
                 <a href="https://wa.me/34696387037" target="_blank" rel="noopener noreferrer" className="hover:text-brand">
                   WhatsApp: +34 696 387 037
                 </a>
