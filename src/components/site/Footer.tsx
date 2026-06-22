@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Phone, Smartphone, MapPin, MessageCircle } from "lucide-react";
-import logoFooter from "@/assets/logo-footer.png.asset.json";
+import logoFooter from "@/assets/logo-footer.png";
 
 export function Footer() {
   return (
@@ -9,7 +9,7 @@ export function Footer() {
         <div className="md:col-span-1">
           <div className="inline-block rounded-lg bg-white p-4 shadow-soft">
             <img
-              src={logoFooter.url}
+              src={logoFooter}
               alt="JM Asesores — Antequera (Málaga)"
               className="h-auto w-full max-w-[220px]"
             />
@@ -69,7 +69,7 @@ export function Footer() {
           <p>© {new Date().getFullYear()} JM Asesores. Todos los derechos reservados.</p>
           <p>Hecho con dedicación en Antequera.</p>
         </div>
-        <p className="text-xs text-primary-foreground/40 text-center mt-2 pb-6">Desarrollado por Devhaus</p>
+        
       </div>
     </footer>
   );
