@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logoPrincipal from "@/assets/logo-principal.png.asset.json";
+import logoPrincipal from "@/assets/logo-principal.png";
 
 const links = [
   { to: "/", label: "Inicio" },
@@ -23,7 +23,7 @@ export function Navbar() {
         <div className="flex h-16 items-center justify-between gap-4">
           <Link to="/" className="flex items-center group shrink-0" aria-label="JM Asesores — Inicio">
             <img
-              src={logoPrincipal.url}
+              src={logoPrincipal}
               alt="JM Asesores — Gestión de Empresas"
               className="h-9 md:h-10 w-auto"
             />
