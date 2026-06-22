@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Phone, Smartphone, MapPin, Clock, Send, Mail } from "lucide-react";
-import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
+import { WhatsAppIconOutline } from "@/components/site/WhatsAppIconOutline";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
