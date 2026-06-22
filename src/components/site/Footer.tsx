@@ -1,19 +1,21 @@
 import { Link } from "@tanstack/react-router";
-import { Linkedin, Twitter, Facebook, Instagram, Sparkles, Mail, Phone, MapPin } from "lucide-react";
+import { Phone, Smartphone, MapPin, MessageCircle } from "lucide-react";
+import logoFooter from "@/assets/logo-footer.png.asset.json";
 
 export function Footer() {
   return (
     <footer className="bg-primary text-primary-foreground mt-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 grid gap-10 md:grid-cols-4">
         <div className="md:col-span-1">
-          <div className="flex items-center gap-2">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand-gradient text-brand-foreground">
-              <Sparkles className="h-5 w-5" strokeWidth={2.5} />
-            </span>
-            <span className="font-display text-lg font-semibold">JM Asesores</span>
+          <div className="inline-block rounded-lg bg-white p-4 shadow-soft">
+            <img
+              src={logoFooter.url}
+              alt="JM Asesores — Antequera (Málaga)"
+              className="h-auto w-full max-w-[220px]"
+            />
           </div>
           <p className="mt-4 text-sm text-primary-foreground/70 leading-relaxed">
-            Asesoría fiscal, contable, laboral y jurídica en Antequera (Málaga). Cerca de ti, contigo todo el año.
+            Asesoría fiscal, contable y laboral en Antequera (Málaga). Cerca de ti, contigo todo el año.
           </p>
         </div>
 
@@ -23,6 +25,7 @@ export function Footer() {
             <li><Link to="/" className="hover:text-brand">Inicio</Link></li>
             <li><Link to="/servicios" className="hover:text-brand">Servicios</Link></li>
             <li><Link to="/sobre-nosotros" className="hover:text-brand">Sobre nosotros</Link></li>
+            <li><Link to="/blog" className="hover:text-brand">Blog</Link></li>
             <li><Link to="/contacto" className="hover:text-brand">Contacto</Link></li>
           </ul>
         </div>
@@ -40,23 +43,31 @@ export function Footer() {
         <div>
           <h4 className="text-sm font-semibold mb-4">Contacto</h4>
           <ul className="space-y-3 text-sm text-primary-foreground/70">
-            <li className="flex items-center gap-2"><Mail className="h-4 w-4 text-brand" /> hola@jmasesores.es</li>
-            <li className="flex items-center gap-2"><Phone className="h-4 w-4 text-brand" /> +34 952 84 00 00</li>
-            <li className="flex items-start gap-2"><MapPin className="h-4 w-4 text-brand mt-0.5" /> C/ Infante Don Fernando, 25<br />29200 Antequera, Málaga</li>
-          </ul>
-          <div className="flex gap-3 mt-5">
-            {[Linkedin, Twitter, Facebook, Instagram].map((Icon, i) => (
-              <a key={i} href="#" className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5 hover:bg-brand hover:text-brand-foreground transition-colors">
-                <Icon className="h-4 w-4" />
+            <li className="flex items-start gap-2">
+              <Phone className="h-4 w-4 text-brand mt-0.5 shrink-0" />
+              <a href="tel:+34952702214" className="hover:text-brand">Telf. y Fax: 952 70 22 14</a>
+            </li>
+            <li className="flex items-start gap-2">
+              <Smartphone className="h-4 w-4 text-brand mt-0.5 shrink-0" />
+              <a href="tel:+34698387037" className="hover:text-brand">Móvil: 698 38 70 37</a>
+            </li>
+            <li className="flex items-start gap-2">
+              <MessageCircle className="h-4 w-4 text-brand mt-0.5 shrink-0" />
+              <a href="https://wa.me/34696387037" target="_blank" rel="noopener noreferrer" className="hover:text-brand">
+                WhatsApp: +34 696 387 037
               </a>
-            ))}
-          </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <MapPin className="h-4 w-4 text-brand mt-0.5 shrink-0" />
+              <span>Urb. Parquesol, bloque 9, bajo<br />29200 Antequera (Málaga)</span>
+            </li>
+          </ul>
         </div>
       </div>
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 text-xs text-primary-foreground/60 flex flex-col md:flex-row gap-2 justify-between">
           <p>© {new Date().getFullYear()} JM Asesores. Todos los derechos reservados.</p>
-          <p>Hecho con dedicación en España.</p>
+          <p>Hecho con dedicación en Antequera.</p>
         </div>
         <p className="text-xs text-primary-foreground/40 text-center mt-2 pb-6">Desarrollado por Devhaus</p>
       </div>
