@@ -48,7 +48,7 @@ export function Navbar() {
           <div className="hidden md:block">
             <Button asChild size="sm" className="bg-[#25D366] hover:bg-[#1ebe5a] text-white">
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="mr-1.5 h-4 w-4" /> Hablemos
+                <WhatsAppIcon className="mr-1.5 h-4 w-4" /> Hablemos
               </a>
             </Button>
           </div>
@@ -79,7 +79,7 @@ export function Navbar() {
             ))}
             <Button asChild className="mt-2 bg-[#25D366] hover:bg-[#1ebe5a] text-white">
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
-                <MessageCircle className="mr-1.5 h-4 w-4" /> Hablemos por WhatsApp
+                <WhatsAppIcon className="mr-1.5 h-4 w-4" /> Hablemos por WhatsApp
               </a>
             </Button>
           </div>

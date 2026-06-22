@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Phone, Smartphone, MapPin, MessageCircle, Mail } from "lucide-react";
+import { Phone, Smartphone, MapPin, Mail } from "lucide-react";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 import logoFooter from "@/assets/logo-footer.png";
 
 export function Footer() {
