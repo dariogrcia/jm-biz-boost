@@ -75,8 +75,57 @@ while (queue.length) {
 // URL desconocida no es una ruta pendiente de resolver en cliente: es un 404.
 // Cloudflare la sirve con estado 404 (not_found_handling: "404-page"), en vez de
 // devolver la home con un 200 y dejar que el router de cliente lo arregle.
-const notFoundRes = await server.fetch(new Request(`${ORIGIN}${BASE}__404__`));
-await writeFile(join(OUT_DIR, "404.html"), await notFoundRes.text());
+// robots.txt y sitemap.xml, generados a partir de las rutas realmente
+// renderizadas: si una página deja de existir, desaparece sola del sitemap.
+const { SITIO_URL, INDEXABLE } = await import("../src/lib/sitio.ts").catch(() => ({}));
+const BASE_URL = process.env.SITE_URL || SITIO_URL || "";
+const INDEXAR = process.env.SITE_INDEXABLE
+  ? process.env.SITE_INDEXABLE === "true"
+  : Boolean(INDEXABLE);
 
-console.log(`✓ Prerendered ${rendered.length} pages (base "${BASE}"):`);
+const hoy = new Date().toISOString().slice(0, 10);
+const urls = rendered
+  .map(
+    (r) => `  <url>
+    <loc>${BASE_URL}${r === "/" ? "" : r}</loc>
+    <lastmod>${hoy}</lastmod>
+  </url>`,
+  )
+  .join("\n");
+await writeFile(
+  join(OUT_DIR, "sitemap.xml"),
+  `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>
+`,
+);
+
+// Con INDEXABLE en false el sitio es provisional (subdominio workers.dev) y no
+// debe indexarse: ver el porqué en src/lib/sitio.ts.
+await writeFile(
+  join(OUT_DIR, "robots.txt"),
+  INDEXAR
+    ? `User-agent: *
+Allow: /
+
+Sitemap: ${BASE_URL}/sitemap.xml
+`
+    : `# Sitio en una URL provisional: no indexar todavía.
+# Al estrenar el dominio definitivo, poner INDEXABLE = true en src/lib/sitio.ts.
+User-agent: *
+Disallow: /
+`,
+);
+
+const notFoundRes = await server.fetch(new Request(`${ORIGIN}${BASE}__404__`));
+const notFoundHtml = (await notFoundRes.text()).replace(
+  "</head>",
+  '<meta name="robots" content="noindex, follow"/></head>',
+);
+await writeFile(join(OUT_DIR, "404.html"), notFoundHtml);
+
+console.log(
+  `✓ Prerendered ${rendered.length} pages (base "${BASE}") · robots.txt: ${INDEXAR ? "indexable" : "NOINDEX"} · sitemap.xml`,
+);
 for (const p of rendered.sort()) console.log(`    ${p}`);

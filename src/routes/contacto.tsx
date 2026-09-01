@@ -9,23 +9,16 @@ import { SiteLayout } from "@/components/site/Layout";
 import mapaAntequera from "@/assets/mapa-antequera.png";
 import { enviarConsultaPorWhatsApp } from "@/lib/consulta";
 import heroAntequera from "@/assets/hero-contacto-antequera.jpg";
+import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/contacto")({
-  head: () => ({
-    meta: [
-      { title: "Contacto — JM Asesores Antequera" },
-      {
-        name: "description",
-        content:
-          "Visítanos en Antequera (Málaga) o escríbenos. Asesoría fiscal, contable y laboral.",
-      },
-      { property: "og:title", content: "Contacto — JM Asesores Antequera" },
-      {
-        property: "og:description",
-        content: "Estamos en Antequera. Te respondemos en menos de 24 horas.",
-      },
-    ],
-  }),
+  head: () =>
+    seo({
+      ruta: "/contacto",
+      titulo: "Contacto — JM Asesores Antequera",
+      descripcion:
+        "Visítanos en Antequera (Málaga) o escríbenos. Asesoría fiscal, contable y laboral. Te respondemos en menos de 24 horas.",
+    }),
   component: Contacto,
 });
 

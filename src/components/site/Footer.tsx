@@ -22,7 +22,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold mb-4">Navegación</h4>
+          <h2 className="mb-4 text-sm font-semibold">Navegación</h2>
           <ul className="space-y-2 text-sm text-primary-foreground/70">
             <li>
               <Link to="/" className="hover:text-brand-on-dark">
@@ -53,7 +53,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="mb-4 text-sm font-semibold">Legal</h4>
+          <h2 className="mb-4 text-sm font-semibold">Legal</h2>
           <ul className="space-y-2 text-sm text-primary-foreground/70">
             <li>
               <Link to="/aviso-legal" className="hover:text-brand-on-dark">
@@ -74,7 +74,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold mb-4">Contacto</h4>
+          <h2 className="mb-4 text-sm font-semibold">Contacto</h2>
           <ul className="space-y-3 text-sm text-primary-foreground/70">
             <li className="flex items-start gap-2">
               <Phone className="h-4 w-4 text-primary-foreground/50 mt-0.5 shrink-0" />

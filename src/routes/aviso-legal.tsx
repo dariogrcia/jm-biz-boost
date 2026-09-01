@@ -1,19 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { LegalLayout, FichaTitular } from "@/components/site/LegalLayout";
 import { DATOS_LEGALES } from "@/lib/datos-legales";
+import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/aviso-legal")({
-  head: () => ({
-    meta: [
-      { title: "Aviso legal — JM Asesores" },
-      {
-        name: "description",
-        content:
-          "Datos identificativos del titular de jmasesores, condiciones de uso del sitio y régimen de responsabilidad.",
-      },
-      { name: "robots", content: "index, follow" },
-    ],
-  }),
+  head: () =>
+    seo({
+      ruta: "/aviso-legal",
+      titulo: "Aviso legal — JM Asesores",
+      descripcion:
+        "Datos identificativos del titular, condiciones de uso del sitio y régimen de responsabilidad.",
+    }),
   component: AvisoLegal,
 });
 

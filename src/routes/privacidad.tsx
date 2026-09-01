@@ -1,19 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { LegalLayout, FichaTitular } from "@/components/site/LegalLayout";
 import { DATOS_LEGALES } from "@/lib/datos-legales";
+import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/privacidad")({
-  head: () => ({
-    meta: [
-      { title: "Política de privacidad — JM Asesores" },
-      {
-        name: "description",
-        content:
-          "Qué datos personales trata JM Asesores cuando contactas a través de esta web, con qué finalidad y cómo ejercer tus derechos.",
-      },
-      { name: "robots", content: "index, follow" },
-    ],
-  }),
+  head: () =>
+    seo({
+      ruta: "/privacidad",
+      titulo: "Política de privacidad — JM Asesores",
+      descripcion:
+        "Qué datos personales trata JM Asesores cuando contactas a través de esta web, con qué finalidad y cómo ejercer tus derechos.",
+    }),
   component: Privacidad,
 });
 

@@ -1,18 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { LegalLayout } from "@/components/site/LegalLayout";
+import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/cookies")({
-  head: () => ({
-    meta: [
-      { title: "Política de cookies — JM Asesores" },
-      {
-        name: "description",
-        content:
-          "Esta web no utiliza cookies ni ningún otro sistema de seguimiento. Aquí se explica por qué y qué implica.",
-      },
-      { name: "robots", content: "index, follow" },
-    ],
-  }),
+  head: () =>
+    seo({
+      ruta: "/cookies",
+      titulo: "Política de cookies — JM Asesores",
+      descripcion:
+        "Esta web no utiliza cookies ni ningún otro sistema de seguimiento. Aquí se explica por qué y qué implica.",
+    }),
   component: Cookies,
 });
 

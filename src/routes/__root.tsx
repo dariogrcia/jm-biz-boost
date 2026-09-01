@@ -10,6 +10,8 @@ import {
 import type { ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { jsonLd } from "@/lib/seo";
+import { negocioJsonLd, sitioWebJsonLd } from "@/lib/estructurados";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -92,6 +94,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    scripts: [jsonLd(negocioJsonLd()), jsonLd(sitioWebJsonLd())],
     links: [
       { rel: "stylesheet", href: appCss },
       {

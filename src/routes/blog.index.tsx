@@ -4,23 +4,20 @@ import { SiteLayout } from "@/components/site/Layout";
 import heroBlog from "@/assets/hero-blog.jpg";
 import { BlogSidebar } from "@/components/site/BlogSidebar";
 import { posts } from "@/lib/blog-posts";
+import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/blog/")({
-  head: () => ({
-    meta: [
-      { title: "Blog — JM Asesores Antequera" },
-      {
-        name: "description",
-        content:
-          "Artículos sobre fiscalidad, contabilidad, laboral y finanzas para autónomos y empresas en Antequera y Málaga.",
-      },
-      { property: "og:title", content: "Blog — JM Asesores" },
-      {
-        property: "og:description",
-        content: "Asesoramiento contable, fiscal, laboral y financiero al día.",
-      },
-    ],
-  }),
+  head: () =>
+    seo({
+      ruta: "/blog",
+      titulo: "Blog — JM Asesores Antequera",
+      descripcion:
+        "Artículos sobre fiscalidad, contabilidad, laboral y finanzas para autónomos y empresas en Antequera y Málaga.",
+      migas: [
+        { nombre: "Inicio", ruta: "/" },
+        { nombre: "Blog", ruta: "/blog" },
+      ],
+    }),
   component: BlogIndex,
 });
 

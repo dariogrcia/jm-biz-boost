@@ -23,23 +23,16 @@ import { enviarConsultaPorWhatsApp } from "@/lib/consulta";
 import antequeraImg from "@/assets/antequera.jpg";
 import heroHome from "@/assets/hero-home.jpg";
 import officeImg from "@/assets/office-warm.jpg";
+import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "JM Asesores — Asesoría Fiscal, Contable y Laboral en Antequera" },
-      {
-        name: "description",
-        content:
-          "Asesoría de confianza en Antequera (Málaga). Servicios fiscales, contables y laborales para autónomos y empresas.",
-      },
-      { property: "og:title", content: "JM Asesores — Asesoría en Antequera" },
-      {
-        property: "og:description",
-        content: "Asesoría fiscal, contable y laboral en Antequera (Málaga).",
-      },
-    ],
-  }),
+  head: () =>
+    seo({
+      ruta: "/",
+      titulo: "JM Asesores — Asesoría Fiscal, Contable y Laboral en Antequera",
+      descripcion:
+        "Asesoría de confianza en Antequera (Málaga). Servicios fiscales, contables y laborales para autónomos y empresas. Primera consulta gratuita.",
+    }),
   component: Home,
 });
 
@@ -141,7 +134,15 @@ function Home() {
       </section>
 
       {/* SERVICE CARDS — overlap hero */}
-      <section className="relative -mt-20 z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section
+        aria-labelledby="titulo-servicios"
+        className="relative -mt-20 z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+      >
+        {/* La sección no lleva titular visible por diseño (las tarjetas se montan
+            sobre el hero), pero sin él se saltaba de h1 a h3. */}
+        <h2 id="titulo-servicios" className="sr-only">
+          Nuestros servicios
+        </h2>
         <div className="grid gap-6 md:grid-cols-3">
           {servicios.map(({ i: Icon, t, d }) => (
             <div
@@ -434,7 +435,7 @@ function Home() {
                 </div>
                 <div>
                   <div className="text-xs uppercase tracking-widest text-white/60">Horario</div>
-                  <div className="mt-1 font-semibold text-sm">L–V · 9:00–18:00</div>
+                  <div className="mt-1 font-semibold text-sm">L–V · 9–14 y 16–19</div>
                 </div>
               </div>
               <Button

@@ -2,23 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Heart, Lightbulb, Handshake, Target, MapPin } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
 import heroSobre from "@/assets/hero-sobre-nosotros.jpg";
+import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/sobre-nosotros")({
-  head: () => ({
-    meta: [
-      { title: "Sobre nosotros — JM Asesores Antequera" },
-      {
-        name: "description",
-        content:
-          "JM Asesores: más de 20 años como asesoría fiscal, contable y laboral de referencia en Antequera (Málaga).",
-      },
-      { property: "og:title", content: "Sobre nosotros — JM Asesores" },
-      {
-        property: "og:description",
-        content: "Asesoría de confianza para empresas y autónomos en la comarca de Antequera.",
-      },
-    ],
-  }),
+  head: () =>
+    seo({
+      ruta: "/sobre-nosotros",
+      titulo: "Sobre nosotros — JM Asesores Antequera",
+      descripcion:
+        "JM Asesores: más de 20 años como asesoría fiscal, contable y laboral de referencia en Antequera (Málaga).",
+    }),
   component: SobreNosotros,
 });
 

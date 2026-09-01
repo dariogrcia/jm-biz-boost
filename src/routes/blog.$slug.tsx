@@ -4,6 +4,8 @@ import { SiteLayout } from "@/components/site/Layout";
 import { BlogSidebar } from "@/components/site/BlogSidebar";
 import { Button } from "@/components/ui/button";
 import { getPost } from "@/lib/blog-posts";
+import { seo, jsonLd } from "@/lib/seo";
+import { articuloJsonLd } from "@/lib/estructurados";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -13,19 +15,23 @@ export const Route = createFileRoute("/blog/$slug")({
   },
   head: ({ loaderData }) => {
     const post = loaderData?.post;
-    if (!post) {
-      return { meta: [{ title: "Artículo — JM Asesores" }] };
-    }
-    return {
-      meta: [
-        { title: `${post.titulo} — JM Asesores` },
-        { name: "description", content: post.extracto },
-        { property: "og:title", content: post.titulo },
-        { property: "og:description", content: post.extracto },
-        { property: "og:image", content: post.imagen },
-        { property: "twitter:image", content: post.imagen },
+    if (!post) return { meta: [{ title: "Artículo — JM Asesores" }] };
+
+    const base = seo({
+      ruta: `/blog/${post.slug}`,
+      titulo: `${post.titulo} — JM Asesores`,
+      descripcion: post.extracto,
+      imagen: post.imagen,
+      tipo: "article",
+      publicado: post.fechaISO,
+      migas: [
+        { nombre: "Inicio", ruta: "/" },
+        { nombre: "Blog", ruta: "/blog" },
+        { nombre: post.titulo, ruta: `/blog/${post.slug}` },
       ],
-    };
+    });
+
+    return { ...base, scripts: [...(base.scripts ?? []), jsonLd(articuloJsonLd(post))] };
   },
   notFoundComponent: () => (
     <SiteLayout>

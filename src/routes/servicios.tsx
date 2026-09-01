@@ -19,23 +19,16 @@ import { SiteLayout } from "@/components/site/Layout";
 import heroServicios from "@/assets/hero-servicios.jpg";
 import type { LucideIcon } from "lucide-react";
 import digitalizacionImg from "@/assets/digitalizacion.jpg";
+import { seo } from "@/lib/seo";
 
 export const Route = createFileRoute("/servicios")({
-  head: () => ({
-    meta: [
-      { title: "Servicios — JM Asesores Antequera" },
-      {
-        name: "description",
-        content:
-          "Asesoría fiscal, contable y laboral en Antequera. Además, transformación digital para empresas.",
-      },
-      { property: "og:title", content: "Servicios — JM Asesores" },
-      {
-        property: "og:description",
-        content: "Tres áreas de asesoría más servicios de transformación digital.",
-      },
-    ],
-  }),
+  head: () =>
+    seo({
+      ruta: "/servicios",
+      titulo: "Servicios — JM Asesores Antequera",
+      descripcion:
+        "Asesoría fiscal, contable y laboral en Antequera. Además, transformación digital para empresas.",
+    }),
   component: Servicios,
 });
 
