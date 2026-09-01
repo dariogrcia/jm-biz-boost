@@ -30,6 +30,8 @@ export function Navbar() {
             <img
               src={logoPrincipal}
               alt="JM Asesores — Gestión de Empresas"
+              width={419}
+              height={84}
               className="h-9 md:h-10 w-auto"
             />
           </Link>

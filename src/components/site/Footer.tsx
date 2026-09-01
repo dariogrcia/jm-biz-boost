@@ -11,8 +11,8 @@ export function Footer() {
           <img
             src={logoBlanco}
             alt="JM Asesores — Antequera (Málaga)"
-            width={278}
-            height={64}
+            width={419}
+            height={84}
             className="h-10 w-auto"
           />
           <p className="mt-5 max-w-sm text-sm text-primary-foreground/70 leading-relaxed">
