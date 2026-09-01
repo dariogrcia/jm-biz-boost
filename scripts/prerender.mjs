@@ -7,7 +7,7 @@
 // internal links starting from the base path. Output is written into
 // dist/client so it can be published as-is to GitHub Pages.
 
-import { writeFile, cp, mkdir } from "node:fs/promises";
+import { writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -17,7 +17,8 @@ const OUT_DIR = join(ROOT, "dist", "client");
 const SERVER_ENTRY = join(ROOT, "dist", "server", "server.js");
 const ORIGIN = "http://localhost";
 
-// Base path the site is served from. CI sets BASE_PATH=/jm-biz-boost/.
+// Base path desde el que se sirve el sitio. En Cloudflare es la raíz, así que
+// BASE_PATH ya no se define; la variable se queda por si vuelve a hacer falta.
 // Normalize to always start and end with a single slash.
 const BASE = `/${(process.env.BASE_PATH || "/").replace(/^\/+|\/+$/g, "")}/`.replace("//", "/");
 
@@ -70,12 +71,12 @@ while (queue.length) {
   }
 }
 
-// SPA fallback: GitHub Pages serves 404.html for unknown paths; the home shell
-// boots the client router, which then renders the requested route.
-await cp(join(OUT_DIR, "index.html"), join(OUT_DIR, "404.html"));
-
-// Disable Jekyll so files/folders starting with "_" are published verbatim.
-await writeFile(join(OUT_DIR, ".nojekyll"), "");
+// Página 404 real. Todas las rutas del sitio quedan prerenderizadas, así que una
+// URL desconocida no es una ruta pendiente de resolver en cliente: es un 404.
+// Cloudflare la sirve con estado 404 (not_found_handling: "404-page"), en vez de
+// devolver la home con un 200 y dejar que el router de cliente lo arregle.
+const notFoundRes = await server.fetch(new Request(`${ORIGIN}${BASE}__404__`));
+await writeFile(join(OUT_DIR, "404.html"), await notFoundRes.text());
 
 console.log(`✓ Prerendered ${rendered.length} pages (base "${BASE}"):`);
 for (const p of rendered.sort()) console.log(`    ${p}`);

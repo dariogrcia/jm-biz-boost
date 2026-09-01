@@ -10,7 +10,9 @@
     "prerender": "node scripts/prerender.mjs",
     "preview": "vite preview",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "deploy": "npm run build && npm run prerender && wrangler deploy",
+    "cf:preview": "npm run build && npm run prerender && wrangler dev"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -82,6 +84,7 @@
     "prettier": "^3.7.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.56.1",
-    "vite": "^8.0.16"
+    "vite": "^8.0.16",
+    "wrangler": "^4.128.0"
   }
 }

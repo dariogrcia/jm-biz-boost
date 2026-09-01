@@ -17,13 +17,16 @@ npm run format
 
 ## Cosas que conviene saber
 
-- **El sitio se despliega como HTML estático.** `vite build` genera el cliente y un
-  handler SSR; `scripts/prerender.mjs` lo ejecuta en proceso, rastrea los enlaces
-  internos y vuelca el HTML en `dist/client/`. Cualquier página nueva se descubre
-  sola si hay un enlace interno que llegue a ella — si no, no se prerenderiza.
-- **Base path.** En GitHub Pages el sitio cuelga de `/jm-biz-boost/`. El workflow
-  define `BASE_PATH`, que alimenta tanto el `base` de Vite como el `basepath` del
-  router (`src/router.tsx`).
+- **El sitio se despliega como HTML estático en Cloudflare Workers.** `npm run
+deploy` encadena build + prerender + `wrangler deploy`. `scripts/prerender.mjs`
+  ejecuta el handler SSR en proceso, rastrea los enlaces internos y vuelca el HTML
+  en `dist/client/`. Una página nueva se descubre sola si hay un enlace interno
+  que llegue a ella — si no, no se prerenderiza.
+- **El Worker no tiene código**: `wrangler.jsonc` solo declara `assets`. No añadas
+  un `main` salvo que el sitio necesite de verdad lógica en el servidor.
+- **Base path.** El sitio se sirve desde la raíz. El mecanismo de `BASE_PATH`
+  sigue en `vite.config.ts` y `src/router.tsx` por si vuelve a hacer falta, pero
+  no se define en ningún sitio.
 - **El idioma del sitio es el español.** Textos de UI, errores y páginas 404
   incluidas.
 - **Color de marca.** `--brand` (naranja) es para fondos, iconos y CTA. Para texto

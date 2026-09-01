@@ -4,7 +4,7 @@ Web corporativa de **JM Asesores**, asesoría fiscal, contable y laboral en
 Antequera (Málaga). Incluye páginas de servicios, sobre nosotros, contacto y un
 blog con artículos sobre fiscalidad, contabilidad y finanzas.
 
-🔗 **En producción:** https://dariogrcia.github.io/jm-biz-boost/
+🔗 **En producción:** https://jm-asesores.dariojesusgarcia6.workers.dev
 
 ---
 
@@ -65,71 +65,69 @@ src/
 
 ---
 
-## Despliegue — GitHub Pages
+## Despliegue — Cloudflare Workers
 
-El sitio se publica automáticamente en **GitHub Pages** en cada push a `main`,
-mediante el workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+El sitio se publica con un solo comando:
+
+```bash
+npm run deploy      # build + prerender + wrangler deploy
+```
+
+Requiere estar autenticado en Cloudflare una vez (`npx wrangler login`).
 
 ### Por qué hay un paso de "prerender"
 
-TanStack Start es **SSR (renderizado en servidor)**: `vite build` produce los
-assets de cliente (`dist/client`) **más** un handler de servidor
-(`dist/server/server.js`), pero **no genera HTML estático**. GitHub Pages, en
-cambio, solo sirve ficheros estáticos.
+TanStack Start es **SSR**: `vite build` produce los assets de cliente
+(`dist/client`) **más** un handler de servidor (`dist/server/server.js`), pero
+**no genera HTML estático**.
 
 Como todo el contenido del sitio es estático y no hay funciones de servidor,
-convertimos la app a HTML estático (**SSG**) con
-[`scripts/prerender.mjs`](scripts/prerender.mjs): ejecuta el handler de servidor
-ya compilado en proceso, **rastrea los enlaces internos** empezando por la home
-(descubriendo automáticamente las páginas y cada artículo del blog) y vuelca el
-HTML resultante en `dist/client/<ruta>/index.html`. Además genera:
+[`scripts/prerender.mjs`](scripts/prerender.mjs) convierte la app a HTML: ejecuta
+el handler ya compilado en proceso, **rastrea los enlaces internos** empezando
+por la home (descubriendo solo las páginas y cada artículo del blog) y vuelca el
+resultado en `dist/client/<ruta>/index.html`. Genera además un **`404.html`**
+real, renderizando una ruta inexistente, no una copia de la home.
 
-- **`404.html`** — copia de la home; sirve de _fallback_ SPA: GitHub Pages lo
-  devuelve para rutas desconocidas y el router de cliente renderiza la ruta
-  correcta.
-- **`.nojekyll`** — desactiva Jekyll para que se publiquen tal cual los ficheros.
+> Una página nueva se prerenderiza sola si hay algún enlace interno que llegue a
+> ella. Si no lo hay, no se genera.
+
+### Qué se despliega
+
+[`wrangler.jsonc`](wrangler.jsonc) define un Worker **sin código**: no hay
+`main`, solo `assets`. Cloudflare sirve `dist/client` directamente desde el edge,
+así que no hay cold starts y las peticiones a ficheros estáticos no cuentan como
+invocaciones del Worker.
+
+Dos ajustes que importan:
+
+- `not_found_handling: "404-page"` — una URL que no existe devuelve `404.html`
+  con **estado 404**. (En GitHub Pages había que servir la home con un 200 y
+  dejar que el router de cliente lo resolviera, lo que confunde a los
+  buscadores.)
+- `html_handling: "drop-trailing-slash"` — el router genera los enlaces sin barra
+  final, así que `/servicios` es la URL canónica y se sirve directamente;
+  `/servicios/` redirige a ella.
 
 ### Base path
 
-Al ser un _project site_, la web se sirve desde un subdirectorio
-(`/jm-biz-boost/`). El workflow define `BASE_PATH=/<nombre-del-repo>/`, que:
+El sitio se sirve desde la raíz `/`, así que no hace falta configurar nada. El
+mecanismo de `BASE_PATH` sigue en [`vite.config.ts`](vite.config.ts) y
+[`src/router.tsx`](src/router.tsx) por si algún día vuelve a servirse desde un
+subdirectorio, pero no se define.
 
-- Vite usa como `base` (prefijo de todos los assets) — ver `vite.config.ts`.
-- El router usa como `basepath` — ver `src/router.tsx` (lee `import.meta.env.BASE_URL`).
+### Dominio propio
 
-En desarrollo local `BASE_PATH` no está definido, así que el `base` es `/`.
-
-### Reproducir el build de Pages en local
-
-```bash
-BASE_PATH=/jm-biz-boost/ npm run build
-BASE_PATH=/jm-biz-boost/ npm run prerender
-# salida estática lista para servir en: dist/client/
-```
-
-### Configuración del repositorio (una sola vez)
-
-En **Settings → Pages**, _Source_ debe estar en **GitHub Actions** (no en una
-rama). El workflow se encarga del resto.
-
-### Dominio propio (opcional)
-
-Para usar un dominio propio (p. ej. `www.jmasesores.es`) en lugar del subpath:
-
-1. En **Settings → Pages → Custom domain**, añade el dominio y configura el DNS.
-2. Como el sitio pasaría a servirse desde la raíz `/`, ajusta el workflow para
-   usar `BASE_PATH=/` (o elimina la variable `BASE_PATH`).
+Para usar un dominio propio (p. ej. `www.jmasesores.es`), añade el dominio a la
+zona en Cloudflare y una ruta al Worker `jm-asesores` desde el panel, o declara
+`routes` en `wrangler.jsonc`.
 
 ---
 
 ## Flujo de despliegue (resumen)
 
 ```
-push a main
-   └─► GitHub Actions (.github/workflows/deploy.yml)
-        ├─ npm ci
-        ├─ vite build            → dist/client (assets) + dist/server (SSR)
-        ├─ node scripts/prerender.mjs  → HTML estático + 404.html + .nojekyll
-        ├─ upload-pages-artifact (dist/client)
-        └─ deploy-pages          → https://dariogrcia.github.io/jm-biz-boost/
+npm run deploy
+   ├─ vite build                   → dist/client (assets) + dist/server (SSR)
+   ├─ node scripts/prerender.mjs   → HTML estático + 404.html
+   └─ wrangler deploy              → https://jm-asesores.dariojesusgarcia6.workers.dev
 ```
