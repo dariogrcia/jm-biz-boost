@@ -16,7 +16,7 @@ blog con artículos sobre fiscalidad, contabilidad y finanzas.
 | Build              | [Vite 8](https://vitejs.dev/)                                                                                                 |
 | Estilos            | [Tailwind CSS 4](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/) (Radix UI)                                   |
 | Datos              | [TanStack Query](https://tanstack.com/query)                                                                                  |
-| Gestor de paquetes | [Bun](https://bun.sh/) (lockfile `bun.lock`)                                                                                  |
+| Gestor de paquetes | npm (lockfile `package-lock.json`)                                                                                            |
 
 El contenido (servicios, textos, artículos del blog) es **estático** y vive en
 el propio código — no hay backend ni base de datos.
@@ -28,17 +28,16 @@ a ninguna plataforma de generación externa.
 
 ## Desarrollo local
 
-Requisitos: **Node 22+** (algunas dependencias lo exigen) y **Bun** (o npm).
+Requisitos: **Node 22+** (algunas dependencias lo exigen).
 
 ```bash
-bun install        # instalar dependencias
-bun run dev        # servidor de desarrollo (http://localhost:3000)
-bun run build      # build de producción
-bun run lint       # eslint
-bun run format     # prettier
+npm install        # instalar dependencias
+npm run dev        # servidor de desarrollo (http://localhost:8080)
+npm run build      # build de producción
+npm run prerender  # HTML estático (requiere build antes)
+npm run lint       # eslint
+npm run format     # prettier
 ```
-
-> Con npm: `npm install && npm run dev`.
 
 ### Estructura
 
@@ -103,8 +102,8 @@ En desarrollo local `BASE_PATH` no está definido, así que el `base` es `/`.
 ### Reproducir el build de Pages en local
 
 ```bash
-BASE_PATH=/jm-biz-boost/ bun run build
-BASE_PATH=/jm-biz-boost/ bun run prerender
+BASE_PATH=/jm-biz-boost/ npm run build
+BASE_PATH=/jm-biz-boost/ npm run prerender
 # salida estática lista para servir en: dist/client/
 ```
 
@@ -128,7 +127,7 @@ Para usar un dominio propio (p. ej. `www.jmasesores.es`) en lugar del subpath:
 ```
 push a main
    └─► GitHub Actions (.github/workflows/deploy.yml)
-        ├─ bun install
+        ├─ npm ci
         ├─ vite build            → dist/client (assets) + dist/server (SSR)
         ├─ node scripts/prerender.mjs  → HTML estático + 404.html + .nojekyll
         ├─ upload-pages-artifact (dist/client)

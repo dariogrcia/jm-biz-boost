@@ -7,12 +7,12 @@ estático y vive en el código: no hay backend ni base de datos.
 ## Comandos
 
 ```sh
-bun install        # o npm install
-bun run dev        # http://localhost:8080
-bun run build      # build de producción
-bun run prerender  # HTML estático a partir del build (necesita build antes)
-bun run lint
-bun run format
+npm install
+npm run dev        # http://localhost:8080
+npm run build      # build de producción
+npm run prerender  # HTML estático a partir del build (necesita build antes)
+npm run lint
+npm run format
 ```
 
 ## Cosas que conviene saber
