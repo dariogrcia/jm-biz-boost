@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { SiteLayout } from "@/components/site/Layout";
+import mapaAntequera from "@/assets/mapa-antequera.png";
 import { enviarConsultaPorWhatsApp } from "@/lib/consulta";
 import heroAntequera from "@/assets/hero-contacto-antequera.jpg";
 
@@ -187,14 +188,27 @@ function Contacto() {
             </Button>
           </div>
 
-          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border bg-secondary">
-            <iframe
-              src="https://www.google.com/maps?q=Urb.%20Parquesol%2C%20bloque%209%2C%20bajo%2C%2029200%20Antequera%2C%20M%C3%A1laga&output=embed"
-              title="Ubicación de JM Asesores en Antequera"
+          {/* Mapa estático propio en lugar del iframe de Google Maps, que ponía
+              cookies de terceros en cada visita a esta página. Cartografía de
+              OpenStreetMap (ODbL); la atribución va impresa en la imagen. */}
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Urb.+Parquesol,+bloque+9,+bajo,+29200+Antequera,+M%C3%A1laga"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative block aspect-[4/3] overflow-hidden rounded-2xl border border-border bg-secondary"
+          >
+            <img
+              src={mapaAntequera}
+              alt="Plano de situación de JM Asesores en la Urbanización Parquesol, Antequera"
               loading="lazy"
-              className="absolute inset-0 w-full h-full border-0"
+              width={720}
+              height={540}
+              className="absolute inset-0 h-full w-full object-cover"
             />
-          </div>
+            <span className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-2 bg-primary/85 px-4 py-3 text-sm font-medium text-primary-foreground transition-colors group-hover:bg-primary">
+              <MapPin className="h-4 w-4" /> Cómo llegar
+            </span>
+          </a>
         </div>
       </section>
     </SiteLayout>

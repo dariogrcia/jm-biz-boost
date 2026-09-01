@@ -21,6 +21,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { SiteLayout } from "@/components/site/Layout";
 import { enviarConsultaPorWhatsApp } from "@/lib/consulta";
 import antequeraImg from "@/assets/antequera.jpg";
+import heroHome from "@/assets/hero-home.jpg";
 import officeImg from "@/assets/office-warm.jpg";
 
 export const Route = createFileRoute("/")({
@@ -96,8 +97,7 @@ function Home() {
       <section
         className="relative flex min-h-[640px] items-center justify-center overflow-hidden text-white"
         style={{
-          backgroundImage:
-            "linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1920&q=80')",
+          backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.65)), url(${heroHome})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}

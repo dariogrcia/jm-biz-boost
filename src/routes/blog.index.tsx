@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Calendar, Folder, ArrowRight, ChevronRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
+import heroBlog from "@/assets/hero-blog.jpg";
 import { BlogSidebar } from "@/components/site/BlogSidebar";
 import { posts } from "@/lib/blog-posts";
 
@@ -30,8 +31,7 @@ function BlogIndex() {
       <section
         className="relative text-white"
         style={{
-          backgroundImage:
-            "linear-gradient(to bottom right, rgba(38,25,15,0.86), rgba(20,12,6,0.66)), url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1920&q=80')",
+          backgroundImage: `linear-gradient(to bottom right, rgba(38,25,15,0.86), rgba(20,12,6,0.66)), url(${heroBlog})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}

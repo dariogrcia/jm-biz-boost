@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiteLayout } from "@/components/site/Layout";
+import heroServicios from "@/assets/hero-servicios.jpg";
 import type { LucideIcon } from "lucide-react";
 import digitalizacionImg from "@/assets/digitalizacion.jpg";
 
@@ -92,8 +93,7 @@ function Servicios() {
       <section
         className="text-primary-foreground"
         style={{
-          backgroundImage:
-            "linear-gradient(to bottom right, rgba(38,25,15,0.86), rgba(20,12,6,0.66)), url('https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1920&q=80')",
+          backgroundImage: `linear-gradient(to bottom right, rgba(38,25,15,0.86), rgba(20,12,6,0.66)), url(${heroServicios})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
