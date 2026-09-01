@@ -365,7 +365,11 @@ function Home() {
             </Button>
             <p className="text-xs text-muted-foreground text-center">
               Al enviar se abre WhatsApp con tu mensaje para que lo revises antes de mandarlo. Esta
-              web no almacena ningún dato.
+              web no almacena ningún dato: ver la{" "}
+              <Link to="/privacidad" className="underline underline-offset-2 hover:text-brand-ink">
+                política de privacidad
+              </Link>
+              .
             </p>
           </form>
         </div>

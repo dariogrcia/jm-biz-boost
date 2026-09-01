@@ -6,7 +6,7 @@ import logoBlanco from "@/assets/logo-blanco.png";
 export function Footer() {
   return (
     <footer className="bg-primary text-primary-foreground">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 grid gap-10 md:grid-cols-4">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 grid gap-10 md:grid-cols-5">
         <div className="md:col-span-2">
           <img
             src={logoBlanco}
@@ -47,6 +47,27 @@ export function Footer() {
             <li>
               <Link to="/contacto" className="hover:text-brand-on-dark">
                 Contacto
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="mb-4 text-sm font-semibold">Legal</h4>
+          <ul className="space-y-2 text-sm text-primary-foreground/70">
+            <li>
+              <Link to="/aviso-legal" className="hover:text-brand-on-dark">
+                Aviso legal
+              </Link>
+            </li>
+            <li>
+              <Link to="/privacidad" className="hover:text-brand-on-dark">
+                Política de privacidad
+              </Link>
+            </li>
+            <li>
+              <Link to="/cookies" className="hover:text-brand-on-dark">
+                Cookies
               </Link>
             </li>
           </ul>

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Phone, Smartphone, MapPin, Clock, Send, Mail } from "lucide-react";
 import { WhatsAppIconOutline } from "@/components/site/WhatsAppIconOutline";
 import { Button } from "@/components/ui/button";
@@ -102,7 +102,14 @@ function Contacto() {
               </Button>
               <p className="text-xs text-muted-foreground">
                 Al enviar se abre WhatsApp con tu mensaje para que lo revises antes de mandarlo.
-                Esta web no almacena ningún dato.
+                Esta web no almacena ningún dato: ver la{" "}
+                <Link
+                  to="/privacidad"
+                  className="underline underline-offset-2 hover:text-brand-ink"
+                >
+                  política de privacidad
+                </Link>
+                .
               </p>
             </form>
           </div>

@@ -10,7 +10,7 @@ export const Route = createFileRoute("/sobre-nosotros")({
       {
         name: "description",
         content:
-          "JM Asesores: más de 20 años como asesoría fiscal, contable, laboral y jurídica de referencia en Antequera (Málaga).",
+          "JM Asesores: más de 20 años como asesoría fiscal, contable y laboral de referencia en Antequera (Málaga).",
       },
       { property: "og:title", content: "Sobre nosotros — JM Asesores" },
       {
