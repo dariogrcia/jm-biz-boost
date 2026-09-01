@@ -31,7 +31,9 @@ export const Route = createFileRoute("/blog/$slug")({
     <SiteLayout>
       <section className="mx-auto max-w-3xl px-4 py-32 text-center">
         <h1 className="text-3xl font-bold text-primary">Artículo no encontrado</h1>
-        <p className="mt-4 text-muted-foreground">El artículo que buscas no existe o ha sido movido.</p>
+        <p className="mt-4 text-muted-foreground">
+          El artículo que buscas no existe o ha sido movido.
+        </p>
         <Button asChild className="mt-8 bg-primary text-primary-foreground">
           <Link to="/blog">Volver al blog</Link>
         </Button>
@@ -67,9 +69,13 @@ function PostDetail() {
       >
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
           <nav className="flex items-center gap-2 text-sm text-white/80">
-            <Link to="/" className="hover:text-white">Inicio</Link>
+            <Link to="/" className="hover:text-white">
+              Inicio
+            </Link>
             <ChevronRight className="h-4 w-4 text-white/40" />
-            <Link to="/blog" className="hover:text-white">Blog</Link>
+            <Link to="/blog" className="hover:text-white">
+              Blog
+            </Link>
             <ChevronRight className="h-4 w-4 text-white/40" />
             <span className="text-white/75 truncate">{post.categoria}</span>
           </nav>
@@ -104,10 +110,13 @@ function PostDetail() {
             </div>
 
             <div className="prose-content space-y-5 text-foreground leading-relaxed">
-              {post.contenido.map((b: typeof post.contenido[number], i: number) => {
+              {post.contenido.map((b: (typeof post.contenido)[number], i: number) => {
                 if (b.tipo === "p") {
                   return (
-                    <p key={i} className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                    <p
+                      key={i}
+                      className="text-base md:text-lg text-muted-foreground leading-relaxed"
+                    >
                       {b.texto}
                     </p>
                   );
@@ -141,21 +150,33 @@ function PostDetail() {
                 Hablemos sobre tu caso concreto
               </h3>
               <p className="mt-3 text-primary-foreground/80">
-                Primera consulta sin compromiso. En JM Asesores te ayudamos a tomar la mejor decisión.
+                Primera consulta sin compromiso. En JM Asesores te ayudamos a tomar la mejor
+                decisión.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Button asChild className="bg-brand-ink text-brand-foreground hover:bg-brand-ink/90">
+                <Button
+                  asChild
+                  className="bg-brand-ink text-brand-foreground hover:bg-brand-ink/90"
+                >
                   <Link to="/contacto">
                     Pedir consulta <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
-                <Button asChild variant="outline" className="border-white/30 bg-white/5 text-white hover:bg-white/10">
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-white/30 bg-white/5 text-white hover:bg-white/10"
+                >
                   <Link to="/blog">Ver más artículos</Link>
                 </Button>
               </div>
               <div className="mt-6 flex flex-wrap gap-6 text-sm text-primary-foreground/70">
-                <span className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary-foreground/50" /> 952 70 22 14</span>
-                <span className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary-foreground/50" /> jm_asesores@hotmail.com</span>
+                <span className="flex items-center gap-2">
+                  <Phone className="h-4 w-4 text-primary-foreground/50" /> 952 70 22 14
+                </span>
+                <span className="flex items-center gap-2">
+                  <Mail className="h-4 w-4 text-primary-foreground/50" /> jm_asesores@hotmail.com
+                </span>
               </div>
             </div>
           </article>

@@ -75,12 +75,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "JM Asesores — Asesoría en Antequera (Málaga)" },
-      { name: "description", content: "Asesoría fiscal, contable y laboral para autónomos y empresas de Antequera y toda la provincia de Málaga. Primera consulta gratuita." },
+      {
+        name: "description",
+        content:
+          "Asesoría fiscal, contable y laboral para autónomos y empresas de Antequera y toda la provincia de Málaga. Primera consulta gratuita.",
+      },
       { name: "author", content: "JM Asesores" },
       { property: "og:site_name", content: "JM Asesores" },
       { property: "og:locale", content: "es_ES" },
       { property: "og:title", content: "JM Asesores — Asesoría en Antequera (Málaga)" },
-      { property: "og:description", content: "Asesoría fiscal, contable y laboral para autónomos y empresas de Antequera y toda la provincia de Málaga." },
+      {
+        property: "og:description",
+        content:
+          "Asesoría fiscal, contable y laboral para autónomos y empresas de Antequera y toda la provincia de Málaga.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -88,7 +96,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,

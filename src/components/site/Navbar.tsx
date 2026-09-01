@@ -22,7 +22,11 @@ export function Navbar() {
     <header className="fixed top-0 inset-x-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between gap-4">
-          <Link to="/" className="flex items-center group shrink-0" aria-label="JM Asesores — Inicio">
+          <Link
+            to="/"
+            className="flex items-center group shrink-0"
+            aria-label="JM Asesores — Inicio"
+          >
             <img
               src={logoPrincipal}
               alt="JM Asesores — Gestión de Empresas"
@@ -46,7 +50,11 @@ export function Navbar() {
           </nav>
 
           <div className="hidden md:block">
-            <Button asChild size="sm" className="bg-brand-ink text-brand-foreground hover:bg-brand-ink/90">
+            <Button
+              asChild
+              size="sm"
+              className="bg-brand-ink text-brand-foreground hover:bg-brand-ink/90"
+            >
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
                 <WhatsAppIconOutline className="mr-1.5 h-4 w-4" /> Hablemos
               </a>
@@ -77,8 +85,16 @@ export function Navbar() {
                 {l.label}
               </Link>
             ))}
-            <Button asChild className="mt-2 bg-brand-ink text-brand-foreground hover:bg-brand-ink/90">
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
+            <Button
+              asChild
+              className="mt-2 bg-brand-ink text-brand-foreground hover:bg-brand-ink/90"
+            >
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+              >
                 <WhatsAppIconOutline className="mr-1.5 h-4 w-4" /> Hablemos por WhatsApp
               </a>
             </Button>

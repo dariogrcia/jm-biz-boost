@@ -26,39 +26,62 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "JM Asesores — Asesoría Fiscal, Contable y Laboral en Antequera" },
-      { name: "description", content: "Asesoría de confianza en Antequera (Málaga). Servicios fiscales, contables y laborales para autónomos y empresas." },
+      {
+        name: "description",
+        content:
+          "Asesoría de confianza en Antequera (Málaga). Servicios fiscales, contables y laborales para autónomos y empresas.",
+      },
       { property: "og:title", content: "JM Asesores — Asesoría en Antequera" },
-      { property: "og:description", content: "Asesoría fiscal, contable y laboral en Antequera (Málaga)." },
+      {
+        property: "og:description",
+        content: "Asesoría fiscal, contable y laboral en Antequera (Málaga).",
+      },
     ],
   }),
   component: Home,
 });
 
 const servicios = [
-  { i: Calculator, t: "Asesoría Fiscal", d: "Renta, IVA, Sociedades y planificación fiscal para autónomos y empresas." },
-  { i: BookOpen, t: "Asesoría Contable", d: "Contabilidad, cuentas anuales, balances y gestión financiera." },
-  { i: Users, t: "Asesoría Laboral", d: "Nóminas, contratos, Seguridad Social, ERTEs y gestión de RRHH." },
+  {
+    i: Calculator,
+    t: "Asesoría Fiscal",
+    d: "Renta, IVA, Sociedades y planificación fiscal para autónomos y empresas.",
+  },
+  {
+    i: BookOpen,
+    t: "Asesoría Contable",
+    d: "Contabilidad, cuentas anuales, balances y gestión financiera.",
+  },
+  {
+    i: Users,
+    t: "Asesoría Laboral",
+    d: "Nóminas, contratos, Seguridad Social, ERTEs y gestión de RRHH.",
+  },
 ];
 
 const resenas = [
   {
     nombre: "Laura Jiménez",
-    texto: "Llevan mi negocio desde hace años. Profesionales, cercanos y siempre disponibles cuando los necesito.",
+    texto:
+      "Llevan mi negocio desde hace años. Profesionales, cercanos y siempre disponibles cuando los necesito.",
     rol: "Autónoma · Antequera",
   },
   {
     nombre: "Carlos Romero",
-    texto: "Pasamos a JM Asesores y notamos el cambio desde el primer mes. Por fin tengo la contabilidad clara.",
+    texto:
+      "Pasamos a JM Asesores y notamos el cambio desde el primer mes. Por fin tengo la contabilidad clara.",
     rol: "Pyme · Málaga",
   },
   {
     nombre: "Ana Molina",
-    texto: "Maribel y su equipo me han ayudado con la renta y el alta como autónoma. Todo fácil y sin estrés.",
+    texto:
+      "Maribel y su equipo me han ayudado con la renta y el alta como autónoma. Todo fácil y sin estrés.",
     rol: "Cliente desde 2022",
   },
   {
     nombre: "David Pérez",
-    texto: "Trato excelente y respuesta rapidísima. Recomendados al 100% para cualquier empresa de la zona.",
+    texto:
+      "Trato excelente y respuesta rapidísima. Recomendados al 100% para cualquier empresa de la zona.",
     rol: "Comercio local",
   },
 ];
@@ -82,21 +105,34 @@ function Home() {
           <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur px-4 py-1.5 text-xs font-medium text-white/90">
             <MapPin className="h-3 w-3" /> Antequera · Málaga
           </span>
-          <p className="mt-6 text-xl font-bold tracking-[0.3em] uppercase text-white/90">JM Asesores</p>
+          <p className="mt-6 text-xl font-bold tracking-[0.3em] uppercase text-white/90">
+            JM Asesores
+          </p>
           <h1 className="mt-4 text-4xl sm:text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight">
-            Tu negocio,<br />
+            Tu negocio,
+            <br />
             en <span className="text-brand italic">buenas manos.</span>
           </h1>
           <p className="mt-6 text-lg md:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-            Asesoría fiscal, contable y laboral para autónomos y empresas de Antequera y toda Málaga.
+            Asesoría fiscal, contable y laboral para autónomos y empresas de Antequera y toda
+            Málaga.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <Button asChild size="lg" className="bg-brand-ink text-brand-foreground hover:bg-brand-ink/90 shadow-elegant">
+            <Button
+              asChild
+              size="lg"
+              className="bg-brand-ink text-brand-foreground hover:bg-brand-ink/90 shadow-elegant"
+            >
               <Link to="/contacto">
                 Consulta gratuita <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white/30 bg-white/5 text-white hover:bg-white/10">
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-white/30 bg-white/5 text-white hover:bg-white/10"
+            >
               <Link to="/servicios">Ver servicios</Link>
             </Button>
           </div>
@@ -116,7 +152,10 @@ function Home() {
               </div>
               <h3 className="mt-6 text-xl font-bold text-primary">{t}</h3>
               <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{d}</p>
-              <Link to="/servicios" className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-brand-ink">
+              <Link
+                to="/servicios"
+                className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-brand-ink"
+              >
                 Más información <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
@@ -142,17 +181,22 @@ function Home() {
             </div>
           </div>
           <div>
-            <span className="text-sm font-semibold text-muted-foreground uppercase tracking-[0.2em]">Sobre nosotros</span>
+            <span className="text-sm font-semibold text-muted-foreground uppercase tracking-[0.2em]">
+              Sobre nosotros
+            </span>
             <h2 className="mt-3 text-3xl md:text-5xl font-bold text-primary leading-tight">
-              Una asesoría<br />con nombre propio.
+              Una asesoría
+              <br />
+              con nombre propio.
             </h2>
             <p className="mt-6 text-muted-foreground text-lg leading-relaxed">
-              Somos JM Asesores, una asesoría familiar en el corazón de Antequera. Acompañamos a autónomos
-              y pymes en su día a día con un servicio cercano, riguroso y de verdad personal.
+              Somos JM Asesores, una asesoría familiar en el corazón de Antequera. Acompañamos a
+              autónomos y pymes en su día a día con un servicio cercano, riguroso y de verdad
+              personal.
             </p>
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              Detrás de cada cliente hay una historia, y por eso trabajamos con calma, claridad y total
-              transparencia. Sin sorpresas, sin tecnicismos innecesarios.
+              Detrás de cada cliente hay una historia, y por eso trabajamos con calma, claridad y
+              total transparencia. Sin sorpresas, sin tecnicismos innecesarios.
             </p>
             <p className="mt-8 flex items-center gap-3 text-sm">
               <span className="h-px w-8 shrink-0 bg-border" />
@@ -174,13 +218,19 @@ function Home() {
       <section className="bg-secondary/40 py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto">
-            <span className="text-sm font-semibold text-muted-foreground uppercase tracking-[0.2em]">Reseñas Google</span>
-            <h2 className="mt-3 text-3xl md:text-5xl font-bold text-primary">Lo que dicen nuestros clientes</h2>
+            <span className="text-sm font-semibold text-muted-foreground uppercase tracking-[0.2em]">
+              Reseñas Google
+            </span>
+            <h2 className="mt-3 text-3xl md:text-5xl font-bold text-primary">
+              Lo que dicen nuestros clientes
+            </h2>
             <div className="mt-4 flex items-center justify-center gap-1 text-brand">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-5 w-5 fill-current" />
               ))}
-              <span className="ml-2 text-sm text-muted-foreground">4.9 / 5 · valoraciones reales</span>
+              <span className="ml-2 text-sm text-muted-foreground">
+                4.9 / 5 · valoraciones reales
+              </span>
             </div>
           </div>
 
@@ -210,14 +260,30 @@ function Home() {
       {/* WHY US */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
         <div className="text-center max-w-2xl mx-auto">
-          <span className="text-sm font-semibold text-muted-foreground uppercase tracking-[0.2em]">Por qué JM Asesores</span>
-          <h2 className="mt-3 text-3xl md:text-5xl font-bold text-primary">Cercanía local, rigor profesional</h2>
+          <span className="text-sm font-semibold text-muted-foreground uppercase tracking-[0.2em]">
+            Por qué JM Asesores
+          </span>
+          <h2 className="mt-3 text-3xl md:text-5xl font-bold text-primary">
+            Cercanía local, rigor profesional
+          </h2>
         </div>
         <div className="mt-14 grid gap-8 md:grid-cols-3">
           {[
-            { i: ShieldCheck, t: "Confianza", d: "Más de dos décadas asesorando a empresas y autónomos de Antequera." },
-            { i: Award, t: "Experiencia", d: "Equipo titulado y en formación continua en normativa fiscal y laboral." },
-            { i: Clock, t: "Atención directa", d: "Respuesta ágil, sin intermediarios. Una persona responsable de tu cuenta." },
+            {
+              i: ShieldCheck,
+              t: "Confianza",
+              d: "Más de dos décadas asesorando a empresas y autónomos de Antequera.",
+            },
+            {
+              i: Award,
+              t: "Experiencia",
+              d: "Equipo titulado y en formación continua en normativa fiscal y laboral.",
+            },
+            {
+              i: Clock,
+              t: "Atención directa",
+              d: "Respuesta ágil, sin intermediarios. Una persona responsable de tu cuenta.",
+            },
           ].map(({ i: Icon, t, d }) => (
             <div key={t} className="rounded-2xl bg-card p-8 border border-border">
               <Icon className="h-7 w-7 text-brand" />
@@ -232,24 +298,37 @@ function Home() {
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-24">
         <div className="rounded-3xl bg-primary text-primary-foreground p-8 md:p-14 shadow-elegant grid md:grid-cols-2 gap-10 md:items-center">
           <div>
-            <span className="text-sm font-semibold text-primary-foreground/70 uppercase tracking-[0.2em]">Primera consulta</span>
-            <h2 className="mt-3 text-3xl md:text-4xl font-bold">Consulta gratuita y sin compromiso</h2>
+            <span className="text-sm font-semibold text-primary-foreground/70 uppercase tracking-[0.2em]">
+              Primera consulta
+            </span>
+            <h2 className="mt-3 text-3xl md:text-4xl font-bold">
+              Consulta gratuita y sin compromiso
+            </h2>
             <p className="mt-4 text-primary-foreground/80 leading-relaxed">
-              Cuéntanos brevemente qué necesitas y te llamamos para una primera valoración sin coste.
-              Te respondemos en menos de 24 horas laborables.
+              Cuéntanos brevemente qué necesitas y te llamamos para una primera valoración sin
+              coste. Te respondemos en menos de 24 horas laborables.
             </p>
             <div className="mt-8 space-y-3 text-sm">
               <div className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-primary-foreground/50" />
-                <a href="tel:+34952702214" className="hover:text-brand-ink">952 70 22 14 (Telf. y Fax)</a>
+                <a href="tel:+34952702214" className="hover:text-brand-ink">
+                  952 70 22 14 (Telf. y Fax)
+                </a>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-primary-foreground/50" />
-                <a href="tel:+34696387037" className="hover:text-brand-ink">696 387 037 (Móvil)</a>
+                <a href="tel:+34696387037" className="hover:text-brand-ink">
+                  696 387 037 (Móvil)
+                </a>
               </div>
               <div className="flex items-center gap-3">
                 <WhatsAppIconOutline className="h-4 w-4 text-primary-foreground/50" />
-                <a href="https://wa.me/34696387037" target="_blank" rel="noopener noreferrer" className="hover:text-brand-ink">
+                <a
+                  href="https://wa.me/34696387037"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brand-ink"
+                >
                   WhatsApp: +34 696 387 037
                 </a>
               </div>
@@ -262,7 +341,10 @@ function Home() {
             </div>
             <Input placeholder="Email" type="email" required />
             <Textarea placeholder="¿En qué podemos ayudarte?" rows={4} />
-            <Button type="submit" className="w-full bg-brand-ink text-brand-foreground hover:bg-brand-ink/90">
+            <Button
+              type="submit"
+              className="w-full bg-brand-ink text-brand-foreground hover:bg-brand-ink/90"
+            >
               Enviar consulta <Send className="ml-2 h-4 w-4" />
             </Button>
             <p className="text-xs text-muted-foreground text-center">
@@ -307,11 +389,13 @@ function Home() {
                 <MapPin className="h-4 w-4" /> Visítanos
               </span>
               <h2 className="mt-3 text-3xl md:text-5xl font-bold leading-tight">
-                Estamos en Antequera.<br />Hablamos.
+                Estamos en Antequera.
+                <br />
+                Hablamos.
               </h2>
               <p className="mt-5 text-white/80 text-lg max-w-md leading-relaxed">
-                Nuestro despacho está en pleno centro de Antequera. Pasa a vernos, tómate un café con nosotros
-                y descubre por qué somos la asesoría de referencia de la comarca.
+                Nuestro despacho está en pleno centro de Antequera. Pasa a vernos, tómate un café
+                con nosotros y descubre por qué somos la asesoría de referencia de la comarca.
               </p>
             </div>
             <div className="rounded-2xl bg-white/10 backdrop-blur border border-white/20 p-8 space-y-4">
@@ -332,7 +416,10 @@ function Home() {
                   <div className="mt-1 font-semibold text-sm">L–V · 9:00–18:00</div>
                 </div>
               </div>
-              <Button asChild className="w-full bg-brand-ink text-brand-foreground hover:bg-brand-ink/90 mt-2">
+              <Button
+                asChild
+                className="w-full bg-brand-ink text-brand-foreground hover:bg-brand-ink/90 mt-2"
+              >
                 <Link to="/contacto">
                   Cómo llegar <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>

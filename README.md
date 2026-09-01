@@ -10,13 +10,13 @@ blog con artículos sobre fiscalidad, contabilidad y finanzas.
 
 ## Stack
 
-| Capa | Tecnología |
-| --- | --- |
-| Framework | [TanStack Start](https://tanstack.com/start) (React 19) + [TanStack Router](https://tanstack.com/router) (file-based routing) |
-| Build | [Vite 8](https://vitejs.dev/) |
-| Estilos | [Tailwind CSS 4](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/) (Radix UI) |
-| Datos | [TanStack Query](https://tanstack.com/query) |
-| Gestor de paquetes | [Bun](https://bun.sh/) (lockfile `bun.lock`) |
+| Capa               | Tecnología                                                                                                                    |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
+| Framework          | [TanStack Start](https://tanstack.com/start) (React 19) + [TanStack Router](https://tanstack.com/router) (file-based routing) |
+| Build              | [Vite 8](https://vitejs.dev/)                                                                                                 |
+| Estilos            | [Tailwind CSS 4](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/) (Radix UI)                                   |
+| Datos              | [TanStack Query](https://tanstack.com/query)                                                                                  |
+| Gestor de paquetes | [Bun](https://bun.sh/) (lockfile `bun.lock`)                                                                                  |
 
 El contenido (servicios, textos, artículos del blog) es **estático** y vive en
 el propio código — no hay backend ni base de datos.
@@ -85,14 +85,14 @@ ya compilado en proceso, **rastrea los enlaces internos** empezando por la home
 (descubriendo automáticamente las páginas y cada artículo del blog) y vuelca el
 HTML resultante en `dist/client/<ruta>/index.html`. Además genera:
 
-- **`404.html`** — copia de la home; sirve de *fallback* SPA: GitHub Pages lo
+- **`404.html`** — copia de la home; sirve de _fallback_ SPA: GitHub Pages lo
   devuelve para rutas desconocidas y el router de cliente renderiza la ruta
   correcta.
 - **`.nojekyll`** — desactiva Jekyll para que se publiquen tal cual los ficheros.
 
 ### Base path
 
-Al ser un *project site*, la web se sirve desde un subdirectorio
+Al ser un _project site_, la web se sirve desde un subdirectorio
 (`/jm-biz-boost/`). El workflow define `BASE_PATH=/<nombre-del-repo>/`, que:
 
 - Vite usa como `base` (prefijo de todos los assets) — ver `vite.config.ts`.
@@ -110,7 +110,7 @@ BASE_PATH=/jm-biz-boost/ bun run prerender
 
 ### Configuración del repositorio (una sola vez)
 
-En **Settings → Pages**, *Source* debe estar en **GitHub Actions** (no en una
+En **Settings → Pages**, _Source_ debe estar en **GitHub Actions** (no en una
 rama). El workflow se encarga del resto.
 
 ### Dominio propio (opcional)

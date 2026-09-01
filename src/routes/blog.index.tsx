@@ -8,9 +8,16 @@ export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
       { title: "Blog — JM Asesores Antequera" },
-      { name: "description", content: "Artículos sobre fiscalidad, contabilidad, laboral y finanzas para autónomos y empresas en Antequera y Málaga." },
+      {
+        name: "description",
+        content:
+          "Artículos sobre fiscalidad, contabilidad, laboral y finanzas para autónomos y empresas en Antequera y Málaga.",
+      },
       { property: "og:title", content: "Blog — JM Asesores" },
-      { property: "og:description", content: "Asesoramiento contable, fiscal, laboral y financiero al día." },
+      {
+        property: "og:description",
+        content: "Asesoramiento contable, fiscal, laboral y financiero al día.",
+      },
     ],
   }),
   component: BlogIndex,
@@ -31,7 +38,9 @@ function BlogIndex() {
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
           <nav className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-white/85">
-            <Link to="/" className="transition-colors hover:text-white">Inicio</Link>
+            <Link to="/" className="transition-colors hover:text-white">
+              Inicio
+            </Link>
             <ChevronRight className="h-4 w-4 text-white/40" />
             <span>Blog</span>
           </nav>

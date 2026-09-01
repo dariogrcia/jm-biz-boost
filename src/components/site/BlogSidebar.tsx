@@ -9,9 +9,7 @@ export function BlogSidebar() {
       <div className="rounded-2xl border border-border bg-card p-6">
         <div className="flex items-center gap-2 pb-3 mb-4 border-b border-border">
           <Folder className="h-4 w-4 text-muted-foreground" />
-          <h3 className="text-sm font-bold uppercase tracking-[0.15em] text-primary">
-            Categorías
-          </h3>
+          <h3 className="text-sm font-bold uppercase tracking-[0.15em] text-primary">Categorías</h3>
         </div>
         <ul className="space-y-2">
           {CATEGORIAS.map((c) => (
@@ -38,11 +36,7 @@ export function BlogSidebar() {
         <ul className="space-y-4">
           {recent.map((p) => (
             <li key={p.slug}>
-              <Link
-                to="/blog/$slug"
-                params={{ slug: p.slug }}
-                className="block group"
-              >
+              <Link to="/blog/$slug" params={{ slug: p.slug }} className="block group">
                 <p className="text-sm font-medium text-primary group-hover:text-brand-ink transition-colors leading-snug">
                   {p.titulo}
                 </p>
