@@ -119,7 +119,17 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 text-xs text-primary-foreground/60 flex flex-col md:flex-row gap-2 justify-between">
           <p>© {new Date().getFullYear()} JM Asesores. Todos los derechos reservados.</p>
-          <p>Hecho con dedicación en Antequera.</p>
+          <p>
+            Web diseñada y desarrollada por{" "}
+            <a
+              href="https://vertexstudiolab.es"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-primary-foreground/80 underline underline-offset-2 hover:text-brand-on-dark"
+            >
+              Vertex Studio
+            </a>
+          </p>
         </div>
       </div>
     </footer>

@@ -5,6 +5,10 @@ import {
   BookOpen,
   Users,
   ShieldCheck,
+  Globe,
+  Database,
+  Workflow,
+  ArrowUpRight,
   MapPin,
   Clock,
   Award,
@@ -184,6 +188,67 @@ function Home() {
               </Link>
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* VERTEX STUDIO — socio tecnológico */}
+      <section className="border-y border-border bg-secondary/40 py-20 md:py-24">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 md:grid-cols-[1.1fr_1fr] md:items-center lg:px-8">
+          <div>
+            <span className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              Socio tecnológico
+            </span>
+            <h2 className="mt-3 text-3xl font-bold leading-tight text-primary md:text-4xl">
+              La parte digital la lleva Vertex Studio
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+              Cuando un cliente necesita algo más que contabilidad —una web que traiga clientes, un
+              programa de gestión a medida o automatizar tareas que hoy se hacen a mano— lo
+              derivamos a{" "}
+              <a
+                href="https://vertexstudiolab.es"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-brand-ink underline underline-offset-2"
+              >
+                Vertex Studio
+              </a>
+              , un estudio de desarrollo con el que trabajamos habitualmente.
+            </p>
+            <p className="mt-4 leading-relaxed text-muted-foreground">
+              Así cada uno hace lo que sabe hacer: nosotros tus cuentas, ellos la tecnología. Y tú
+              tratas con gente que ya conoce tu negocio.
+            </p>
+            <Button asChild className="mt-8 bg-primary text-primary-foreground hover:bg-primary/90">
+              <a href="https://vertexstudiolab.es" target="_blank" rel="noopener noreferrer">
+                Ver Vertex Studio <ArrowUpRight className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+          </div>
+
+          <ul className="grid gap-3 sm:grid-cols-2 md:grid-cols-1">
+            {[
+              {
+                i: Globe,
+                t: "Páginas web",
+                d: "Diseño y desarrollo orientados a conseguir clientes.",
+              },
+              {
+                i: Database,
+                t: "Software de gestión",
+                d: "ERP y CRM adaptados a cómo trabajas de verdad.",
+              },
+              { i: Workflow, t: "Automatización", d: "Menos tareas repetitivas, menos errores." },
+            ].map(({ i: Icon, t, d }) => (
+              <li key={t} className="flex gap-4 rounded-xl border border-border bg-card p-5">
+                <Icon className="mt-0.5 h-5 w-5 shrink-0 text-brand" />
+                <div>
+                  <h3 className="text-sm font-semibold text-primary">{t}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{d}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
