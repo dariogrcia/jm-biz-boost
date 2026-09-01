@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { SiteLayout } from "@/components/site/Layout";
+import { enviarConsultaPorWhatsApp } from "@/lib/consulta";
 import heroAntequera from "@/assets/hero-contacto-antequera.jpg";
 
 export const Route = createFileRoute("/contacto")({
@@ -28,20 +29,6 @@ export const Route = createFileRoute("/contacto")({
 });
 
 function Contacto() {
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const fd = new FormData(form);
-    const nombre = String(fd.get("nombre") ?? "").trim();
-    const email = String(fd.get("email") ?? "").trim();
-    const telefono = String(fd.get("telefono") ?? "").trim();
-    const mensaje = String(fd.get("mensaje") ?? "").trim();
-    if (!nombre || !telefono || !mensaje) return;
-    const text = `Hola, soy ${nombre}. Teléfono: ${telefono}. Email: ${email}. Mensaje: ${mensaje}`;
-    const url = `https://wa.me/34696387037?text=${encodeURIComponent(text)}`;
-    window.open(url, "_blank");
-  }
-
   return (
     <SiteLayout>
       <section
@@ -74,7 +61,7 @@ function Contacto() {
             <p className="mt-2 text-sm text-muted-foreground">
               Te respondemos en menos de 24 horas laborables.
             </p>
-            <form onSubmit={onSubmit} className="mt-8 grid gap-5">
+            <form onSubmit={enviarConsultaPorWhatsApp} className="mt-8 grid gap-5">
               <div className="grid gap-5 sm:grid-cols-2">
                 <div className="grid gap-2">
                   <Label htmlFor="nombre">Nombre *</Label>
@@ -113,7 +100,8 @@ function Contacto() {
                 Enviar mensaje <Send className="ml-2 h-4 w-4" />
               </Button>
               <p className="text-xs text-muted-foreground">
-                Al enviar aceptas nuestra política de privacidad.
+                Al enviar se abre WhatsApp con tu mensaje para que lo revises antes de mandarlo.
+                Esta web no almacena ningún dato.
               </p>
             </form>
           </div>
@@ -139,7 +127,7 @@ function Contacto() {
                 <Phone className="h-5 w-5 text-primary-foreground/50 mt-0.5 shrink-0" />
                 <div>
                   <div className="text-primary-foreground/60 text-xs">Teléfono y Fax</div>
-                  <a href="tel:+34952702214" className="font-medium hover:text-brand-ink">
+                  <a href="tel:+34952702214" className="font-medium hover:text-brand-on-dark">
                     952 70 22 14
                   </a>
                 </div>
@@ -148,7 +136,7 @@ function Contacto() {
                 <Smartphone className="h-5 w-5 text-primary-foreground/50 mt-0.5 shrink-0" />
                 <div>
                   <div className="text-primary-foreground/60 text-xs">Móvil</div>
-                  <a href="tel:+34696387037" className="font-medium hover:text-brand-ink">
+                  <a href="tel:+34696387037" className="font-medium hover:text-brand-on-dark">
                     696 387 037
                   </a>
                 </div>
@@ -161,7 +149,7 @@ function Contacto() {
                     href="https://wa.me/34696387037"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium hover:text-brand-ink"
+                    className="font-medium hover:text-brand-on-dark"
                   >
                     +34 696 387 037
                   </a>
@@ -173,7 +161,7 @@ function Contacto() {
                   <div className="text-primary-foreground/60 text-xs">Email</div>
                   <a
                     href="mailto:jm_asesores@hotmail.com"
-                    className="font-medium hover:text-brand-ink"
+                    className="font-medium hover:text-brand-on-dark"
                   >
                     jm_asesores@hotmail.com
                   </a>

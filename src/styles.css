@@ -51,10 +51,14 @@
   /* brand accent = warm orange #D16022 — para fondos, iconos y CTA */
   --brand: oklch(0.62 0.16 45);
   --brand-foreground: oklch(0.99 0.01 80);
-  /* El naranja de marca solo llega a 3.88:1 sobre blanco, por debajo del 4.5:1
-     que pide WCAG AA para texto. Estas dos variantes son EXCLUSIVAMENTE para
-     texto: brand-ink sobre fondo claro (#A8481A, 5.48:1), brand-on-dark sobre
-     el marrón de --primary (#E8834A, 5.80:1). Los fondos siguen usando --brand. */
+  /* El naranja de marca solo llega a 3.88:1 sobre blanco y 3.71:1 con texto
+     blanco encima, por debajo del 4.5:1 que pide WCAG AA. Estas dos variantes
+     son las que sí cumplen:
+       --brand-ink      texto naranja sobre fondo claro (5.48:1) y fondo de los
+                        botones sólidos, con texto blanco encima (5.48:1)
+       --brand-on-dark  texto naranja sobre el marrón de --primary (5.80:1)
+     --brand se queda para lo decorativo: iconos, checks, estrellas y el
+     degradado de las tarjetas de servicios, donde no carga texto. */
   --brand-ink: oklch(0.521 0.139 43);
   --brand-on-dark: oklch(0.71 0.143 48);
   --secondary: oklch(0.97 0.015 70);

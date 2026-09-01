@@ -1,3 +1,5 @@
+import { fileURLToPath } from "node:url";
+
 import { defineConfig } from "vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
@@ -34,7 +36,7 @@ export default defineConfig({
   css: { transformer: "lightningcss" },
 
   resolve: {
-    alias: { "@": new URL("./src", import.meta.url).pathname },
+    alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) },
     // A second copy of React or the Query client breaks hydration and context.
     dedupe: [
       "react",

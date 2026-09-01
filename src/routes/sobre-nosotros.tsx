@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Heart, Lightbulb, Handshake, Target, MapPin } from "lucide-react";
 import { SiteLayout } from "@/components/site/Layout";
-import officeImg from "@/assets/office-warm.jpg";
 import heroSobre from "@/assets/hero-sobre-nosotros.jpg";
 
 export const Route = createFileRoute("/sobre-nosotros")({
@@ -68,19 +67,7 @@ function SobreNosotros() {
       </section>
 
       {/* Maribel — protagonista */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 grid gap-12 lg:grid-cols-2 lg:items-center">
-        <div className="flex flex-col items-center lg:items-start">
-          <div className="aspect-[3/4] w-full max-w-sm overflow-hidden rounded-2xl border border-border shadow-elegant">
-            <img
-              src={officeImg}
-              alt="Despacho de JM Asesores en Antequera"
-              loading="lazy"
-              width={1024}
-              height={1024}
-              className="h-full w-full object-cover"
-            />
-          </div>
-        </div>
+      <section className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-24">
         <div>
           <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
             Nuestra historia

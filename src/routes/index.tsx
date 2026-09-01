@@ -9,7 +9,7 @@ import {
   Clock,
   Award,
   Phone,
-  Mail,
+  Smartphone,
   Star,
   Quote,
   Send,
@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { SiteLayout } from "@/components/site/Layout";
+import { enviarConsultaPorWhatsApp } from "@/lib/consulta";
 import antequeraImg from "@/assets/antequera.jpg";
 import officeImg from "@/assets/office-warm.jpg";
 
@@ -311,13 +312,13 @@ function Home() {
             <div className="mt-8 space-y-3 text-sm">
               <div className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-primary-foreground/50" />
-                <a href="tel:+34952702214" className="hover:text-brand-ink">
+                <a href="tel:+34952702214" className="hover:text-brand-on-dark">
                   952 70 22 14 (Telf. y Fax)
                 </a>
               </div>
               <div className="flex items-center gap-3">
-                <Mail className="h-4 w-4 text-primary-foreground/50" />
-                <a href="tel:+34696387037" className="hover:text-brand-ink">
+                <Smartphone className="h-4 w-4 text-primary-foreground/50" />
+                <a href="tel:+34696387037" className="hover:text-brand-on-dark">
                   696 387 037 (Móvil)
                 </a>
               </div>
@@ -327,20 +328,35 @@ function Home() {
                   href="https://wa.me/34696387037"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-brand-ink"
+                  className="hover:text-brand-on-dark"
                 >
                   WhatsApp: +34 696 387 037
                 </a>
               </div>
             </div>
           </div>
-          <form className="rounded-2xl bg-background text-foreground p-6 md:p-8 shadow-elegant space-y-4">
+          <form
+            onSubmit={enviarConsultaPorWhatsApp}
+            className="rounded-2xl bg-background text-foreground p-6 md:p-8 shadow-elegant space-y-4"
+          >
             <div className="grid gap-4 sm:grid-cols-2">
-              <Input placeholder="Nombre" required />
-              <Input placeholder="Teléfono" type="tel" required />
+              <Input name="nombre" placeholder="Nombre" required aria-label="Nombre" />
+              <Input
+                name="telefono"
+                placeholder="Teléfono"
+                type="tel"
+                required
+                aria-label="Teléfono"
+              />
             </div>
-            <Input placeholder="Email" type="email" required />
-            <Textarea placeholder="¿En qué podemos ayudarte?" rows={4} />
+            <Input name="email" placeholder="Email" type="email" aria-label="Email" />
+            <Textarea
+              name="mensaje"
+              placeholder="¿En qué podemos ayudarte?"
+              rows={4}
+              required
+              aria-label="Mensaje"
+            />
             <Button
               type="submit"
               className="w-full bg-brand-ink text-brand-foreground hover:bg-brand-ink/90"
@@ -348,7 +364,8 @@ function Home() {
               Enviar consulta <Send className="ml-2 h-4 w-4" />
             </Button>
             <p className="text-xs text-muted-foreground text-center">
-              Al enviar aceptas nuestra política de privacidad.
+              Al enviar se abre WhatsApp con tu mensaje para que lo revises antes de mandarlo. Esta
+              web no almacena ningún dato.
             </p>
           </form>
         </div>
