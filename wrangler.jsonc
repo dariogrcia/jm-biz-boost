@@ -3,6 +3,15 @@
   "name": "jm-asesores",
   "compatibility_date": "2026-09-01",
 
+  // El sitio se sirve solo desde el dominio propio. Sin esto seguiría accesible
+  // también en jm-asesores.<subdominio>.workers.dev, y serían dos URLs públicas
+  // con el mismo contenido.
+  "workers_dev": false,
+  "routes": [
+    { "pattern": "jmasesoresantequera.es", "custom_domain": true },
+    { "pattern": "www.jmasesoresantequera.es", "custom_domain": true },
+  ],
+
   // Worker sin código: todo el contenido del sitio es estático y lo genera
   // `npm run prerender`, así que Cloudflare sirve los ficheros directamente.
   // No hay `main`: no se ejecuta nada en el edge, no hay cold starts y las

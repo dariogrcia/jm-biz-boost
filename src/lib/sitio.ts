@@ -5,19 +5,13 @@
  * URL pública, sin barra final. Alimenta las canonical, las og:url y el sitemap.
  * Al comprar el dominio propio, cambiar SOLO esta línea (y poner INDEXABLE a true).
  */
-export const SITIO_URL = "https://jm-asesores.dariojesusgarcia6.workers.dev";
+export const SITIO_URL = "https://jmasesoresantequera.es";
 
 /**
- * ⚠️ MIENTRAS ESTÉ EN false, EL SITIO NO SE INDEXA EN GOOGLE.
- *
- * Está así a propósito: la URL actual es provisional (un subdominio
- * workers.dev). Si Google indexa estas direcciones, al estrenar el dominio
- * definitivo habría que migrar URLs ya indexadas y arrastrar duplicados, a
- * cambio de una visibilidad hoy prácticamente nula.
- *
- * AL COMPRAR EL DOMINIO: cambiar SITIO_URL arriba y poner esto en true.
+ * Con el dominio propio en marcha, el sitio ya es indexable. Poner esto en false
+ * solo tendría sentido para sacar el sitio de Google a propósito.
  */
-export const INDEXABLE = false;
+export const INDEXABLE = true;
 
 export const NEGOCIO = {
   nombre: "JM Asesores",
