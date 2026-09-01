@@ -17,10 +17,12 @@ blog con artículos sobre fiscalidad, contabilidad y finanzas.
 | Estilos | [Tailwind CSS 4](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/) (Radix UI) |
 | Datos | [TanStack Query](https://tanstack.com/query) |
 | Gestor de paquetes | [Bun](https://bun.sh/) (lockfile `bun.lock`) |
-| Origen | Generado y editable en [Lovable](https://lovable.dev/) |
 
 El contenido (servicios, textos, artículos del blog) es **estático** y vive en
 el propio código — no hay backend ni base de datos.
+
+El desarrollo se hace en local con Claude Code; el proyecto ya no está conectado
+a ninguna plataforma de generación externa.
 
 ---
 
