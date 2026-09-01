@@ -47,14 +47,14 @@ const bloques: Bloque[] = [
       "Declaración de la Renta (IRPF) y patrimonio",
       "IVA trimestral y modelos informativos",
       "Impuesto de Sociedades",
-      "Planificación fiscal y optimización tributaria",
+      "Planificación y optimización tributaria",
       "Atención a requerimientos e inspecciones",
     ],
   },
   {
     icon: BookOpen,
     titulo: "Asesoría Contable",
-    intro: "Contabilidad rigurosa y al día para tomar decisiones con datos reales.",
+    intro: "Contabilidad rigurosa y al día para tomar decisiones con datos reales, no con impresiones.",
     items: [
       "Contabilidad oficial de empresas",
       "Cuentas anuales y depósito en Registro",
@@ -84,13 +84,13 @@ function Servicios() {
         className="text-primary-foreground"
         style={{
           backgroundImage:
-            "linear-gradient(to bottom right, rgba(0,0,0,0.6), rgba(0,0,0,0.45)), url('https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1920&q=80')",
+            "linear-gradient(to bottom right, rgba(38,25,15,0.86), rgba(20,12,6,0.66)), url('https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1920&q=80')",
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-          <span className="text-sm font-semibold text-brand uppercase tracking-[0.2em]">Servicios</span>
+          <span className="text-sm font-semibold text-white/85 uppercase tracking-[0.2em]">Servicios</span>
           <h1 className="mt-3 text-4xl md:text-6xl font-bold tracking-tight">Asesoría integral para tu negocio</h1>
           <p className="mt-5 max-w-2xl text-lg text-primary-foreground/80">
             Tres áreas de especialización para acompañarte en todo lo que tu actividad necesita, desde Antequera para toda Málaga.
@@ -148,16 +148,16 @@ function Servicios() {
                 className="rounded-2xl shadow-elegant w-full h-auto object-cover"
               />
               <div className="absolute -bottom-6 -left-6 hidden md:flex items-center gap-3 rounded-2xl bg-primary text-primary-foreground px-6 py-4 shadow-elegant">
-                <Cpu className="h-6 w-6 text-brand" />
+                <Cpu className="h-6 w-6 text-brand-on-dark" />
                 <div>
-                  <div className="text-xs uppercase tracking-widest text-brand">Tecnología</div>
+                  <div className="text-xs uppercase tracking-widest text-brand-on-dark">Tecnología</div>
                   <div className="font-semibold">Software a medida</div>
                 </div>
               </div>
             </div>
 
             <div className="order-1 md:order-2">
-              <span className="text-sm font-semibold text-brand uppercase tracking-[0.2em]">
+              <span className="text-sm font-semibold text-muted-foreground uppercase tracking-[0.2em]">
                 Transformación digital
               </span>
               <h2 className="mt-3 text-3xl md:text-5xl font-bold text-primary leading-tight">
@@ -189,12 +189,14 @@ function Servicios() {
                   <ShieldCheck className="h-4 w-4 text-brand" /> Contacto para proyectos de digitalización
                 </p>
                 <div className="flex items-center gap-2">
-                  <Phone className="h-4 w-4 text-brand" />
-                  <span>Teléfono: <span className="text-foreground">[número pendiente]</span></span>
+                  <Phone className="h-4 w-4 text-muted-foreground" />
+                  <a href="tel:+34696387037" className="text-foreground hover:text-brand-ink">696 387 037</a>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Mail className="h-4 w-4 text-brand" />
-                  <span>Email: <span className="text-foreground">[correo pendiente]</span></span>
+                  <Mail className="h-4 w-4 text-muted-foreground" />
+                  <a href="mailto:jm_asesores@hotmail.com" className="text-foreground hover:text-brand-ink">
+                    jm_asesores@hotmail.com
+                  </a>
                 </div>
               </div>
             </div>
@@ -205,7 +207,7 @@ function Servicios() {
       {/* Proceso */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
         <div className="text-center max-w-2xl mx-auto">
-          <span className="text-sm font-semibold text-brand uppercase tracking-[0.2em]">Cómo trabajamos</span>
+          <span className="text-sm font-semibold text-muted-foreground uppercase tracking-[0.2em]">Cómo trabajamos</span>
           <h2 className="mt-2 text-3xl md:text-4xl font-bold text-primary">Sencillo, transparente, contigo</h2>
         </div>
         <div className="mt-14 grid gap-6 md:grid-cols-4">

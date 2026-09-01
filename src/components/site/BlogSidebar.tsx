@@ -8,7 +8,7 @@ export function BlogSidebar() {
     <aside className="space-y-8 lg:sticky lg:top-24 self-start">
       <div className="rounded-2xl border border-border bg-card p-6">
         <div className="flex items-center gap-2 pb-3 mb-4 border-b border-border">
-          <Folder className="h-4 w-4 text-brand" />
+          <Folder className="h-4 w-4 text-muted-foreground" />
           <h3 className="text-sm font-bold uppercase tracking-[0.15em] text-primary">
             Categorías
           </h3>
@@ -18,10 +18,10 @@ export function BlogSidebar() {
             <li key={c}>
               <Link
                 to="/blog"
-                className="group flex items-center justify-between gap-2 text-sm text-muted-foreground hover:text-brand transition-colors py-1"
+                className="group flex items-center justify-between gap-2 text-sm text-muted-foreground hover:text-brand-ink transition-colors py-1"
               >
                 <span>{c}</span>
-                <span className="text-brand opacity-0 group-hover:opacity-100">›</span>
+                <span className="text-brand-ink opacity-0 group-hover:opacity-100">›</span>
               </Link>
             </li>
           ))}
@@ -30,7 +30,7 @@ export function BlogSidebar() {
 
       <div className="rounded-2xl border border-border bg-card p-6">
         <div className="flex items-center gap-2 pb-3 mb-4 border-b border-border">
-          <FileText className="h-4 w-4 text-brand" />
+          <FileText className="h-4 w-4 text-muted-foreground" />
           <h3 className="text-sm font-bold uppercase tracking-[0.15em] text-primary">
             Entradas recientes
           </h3>
@@ -43,7 +43,7 @@ export function BlogSidebar() {
                 params={{ slug: p.slug }}
                 className="block group"
               >
-                <p className="text-sm font-medium text-primary group-hover:text-brand transition-colors leading-snug">
+                <p className="text-sm font-medium text-primary group-hover:text-brand-ink transition-colors leading-snug">
                   {p.titulo}
                 </p>
                 <p className="mt-1 text-xs text-muted-foreground">{p.fecha}</p>

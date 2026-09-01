@@ -67,24 +67,24 @@ function PostDetail() {
       >
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
           <nav className="flex items-center gap-2 text-sm text-white/80">
-            <Link to="/" className="hover:text-brand">Portada</Link>
-            <ChevronRight className="h-4 w-4 text-brand" />
-            <Link to="/blog" className="hover:text-brand">Blog</Link>
-            <ChevronRight className="h-4 w-4 text-brand" />
-            <span className="text-brand truncate">{post.categoria}</span>
+            <Link to="/" className="hover:text-white">Inicio</Link>
+            <ChevronRight className="h-4 w-4 text-white/40" />
+            <Link to="/blog" className="hover:text-white">Blog</Link>
+            <ChevronRight className="h-4 w-4 text-white/40" />
+            <span className="text-white/75 truncate">{post.categoria}</span>
           </nav>
           <h1 className="mt-6 text-3xl md:text-5xl font-bold tracking-tight leading-tight">
             {post.titulo}
           </h1>
           <div className="mt-6 flex flex-wrap items-center gap-5 text-sm text-white/85">
             <span className="flex items-center gap-1.5">
-              <Calendar className="h-4 w-4 text-brand" /> {post.fecha}
+              <Calendar className="h-4 w-4 text-white/60" /> {post.fecha}
             </span>
             <span className="flex items-center gap-1.5">
-              <Folder className="h-4 w-4 text-brand" /> {post.categoria}
+              <Folder className="h-4 w-4 text-white/60" /> {post.categoria}
             </span>
             <span className="flex items-center gap-1.5">
-              <User className="h-4 w-4 text-brand" /> {post.autor}
+              <User className="h-4 w-4 text-white/60" /> {post.autor}
             </span>
           </div>
         </div>
@@ -134,7 +134,7 @@ function PostDetail() {
 
             {/* CTA */}
             <div className="mt-14 rounded-2xl bg-primary text-primary-foreground p-8 md:p-10 shadow-elegant">
-              <span className="text-xs font-semibold text-brand uppercase tracking-[0.2em]">
+              <span className="text-xs font-semibold text-primary-foreground/70 uppercase tracking-[0.2em]">
                 ¿Tienes dudas?
               </span>
               <h3 className="mt-2 text-2xl md:text-3xl font-bold">
@@ -144,7 +144,7 @@ function PostDetail() {
                 Primera consulta sin compromiso. En JM Asesores te ayudamos a tomar la mejor decisión.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Button asChild className="bg-brand text-brand-foreground hover:bg-brand/90">
+                <Button asChild className="bg-brand-ink text-brand-foreground hover:bg-brand-ink/90">
                   <Link to="/contacto">
                     Pedir consulta <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
@@ -154,8 +154,8 @@ function PostDetail() {
                 </Button>
               </div>
               <div className="mt-6 flex flex-wrap gap-6 text-sm text-primary-foreground/70">
-                <span className="flex items-center gap-2"><Phone className="h-4 w-4 text-brand" /> 952 70 22 14</span>
-                <span className="flex items-center gap-2"><Mail className="h-4 w-4 text-brand" /> jm_asesores@hotmail.com</span>
+                <span className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary-foreground/50" /> 952 70 22 14</span>
+                <span className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary-foreground/50" /> jm_asesores@hotmail.com</span>
               </div>
             </div>
           </article>

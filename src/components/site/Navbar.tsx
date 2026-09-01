@@ -46,7 +46,7 @@ export function Navbar() {
           </nav>
 
           <div className="hidden md:block">
-            <Button asChild size="sm" className="bg-[#25D366] hover:bg-[#1ebe5a] text-white">
+            <Button asChild size="sm" className="bg-brand-ink text-brand-foreground hover:bg-brand-ink/90">
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
                 <WhatsAppIconOutline className="mr-1.5 h-4 w-4" /> Hablemos
               </a>
@@ -63,7 +63,7 @@ export function Navbar() {
         </div>
 
         {open && (
-          <div className="md:hidden pb-4 flex flex-col gap-1">
+          <div className="md:hidden -mx-4 sm:-mx-6 border-t border-border bg-background px-4 sm:px-6 pb-4 pt-2 flex flex-col gap-1">
             {links.map((l) => (
               <Link
                 key={l.to}
@@ -77,7 +77,7 @@ export function Navbar() {
                 {l.label}
               </Link>
             ))}
-            <Button asChild className="mt-2 bg-[#25D366] hover:bg-[#1ebe5a] text-white">
+            <Button asChild className="mt-2 bg-brand-ink text-brand-foreground hover:bg-brand-ink/90">
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
                 <WhatsAppIconOutline className="mr-1.5 h-4 w-4" /> Hablemos por WhatsApp
               </a>

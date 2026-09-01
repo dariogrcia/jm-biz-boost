@@ -79,7 +79,7 @@ function Home() {
         }}
       >
         <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur px-4 py-1.5 text-xs font-medium text-brand">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur px-4 py-1.5 text-xs font-medium text-white/90">
             <MapPin className="h-3 w-3" /> Antequera · Málaga
           </span>
           <p className="mt-6 text-xl font-bold tracking-[0.3em] uppercase text-white/90">JM Asesores</p>
@@ -91,7 +91,7 @@ function Home() {
             Asesoría fiscal, contable y laboral para autónomos y empresas de Antequera y toda Málaga.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <Button asChild size="lg" className="bg-brand text-brand-foreground hover:bg-brand/90 shadow-elegant">
+            <Button asChild size="lg" className="bg-brand-ink text-brand-foreground hover:bg-brand-ink/90 shadow-elegant">
               <Link to="/contacto">
                 Consulta gratuita <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -99,11 +99,6 @@ function Home() {
             <Button asChild size="lg" variant="outline" className="border-white/30 bg-white/5 text-white hover:bg-white/10">
               <Link to="/servicios">Ver servicios</Link>
             </Button>
-          </div>
-          <div className="mt-12">
-            <p className="text-white font-semibold">Maribel Aguilera Orellana</p>
-            <div className="mx-auto my-2 h-px w-16 bg-white/30" />
-            <p className="text-xs text-brand uppercase tracking-widest">Fundadora & CEO</p>
           </div>
         </div>
       </section>
@@ -121,7 +116,7 @@ function Home() {
               </div>
               <h3 className="mt-6 text-xl font-bold text-primary">{t}</h3>
               <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{d}</p>
-              <Link to="/servicios" className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-brand">
+              <Link to="/servicios" className="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-brand-ink">
                 Más información <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
@@ -141,13 +136,13 @@ function Home() {
               height={1024}
               className="rounded-2xl shadow-elegant w-full h-auto object-cover"
             />
-            <div className="absolute -bottom-6 -right-6 hidden md:block rounded-2xl bg-brand text-brand-foreground p-6 shadow-elegant max-w-[200px]">
+            <div className="absolute -bottom-6 -right-6 hidden md:block rounded-2xl bg-brand-ink text-brand-foreground p-6 shadow-elegant max-w-[200px]">
               <div className="text-4xl font-bold">+20</div>
               <div className="text-xs uppercase tracking-wider mt-1">años de experiencia</div>
             </div>
           </div>
           <div>
-            <span className="text-sm font-semibold text-brand uppercase tracking-[0.2em]">Sobre nosotros</span>
+            <span className="text-sm font-semibold text-muted-foreground uppercase tracking-[0.2em]">Sobre nosotros</span>
             <h2 className="mt-3 text-3xl md:text-5xl font-bold text-primary leading-tight">
               Una asesoría<br />con nombre propio.
             </h2>
@@ -158,6 +153,13 @@ function Home() {
             <p className="mt-4 text-muted-foreground leading-relaxed">
               Detrás de cada cliente hay una historia, y por eso trabajamos con calma, claridad y total
               transparencia. Sin sorpresas, sin tecnicismos innecesarios.
+            </p>
+            <p className="mt-8 flex items-center gap-3 text-sm">
+              <span className="h-px w-8 shrink-0 bg-border" />
+              <span>
+                <span className="font-semibold text-primary">Maribel Aguilera Orellana</span>
+                <span className="text-muted-foreground"> · Fundadora</span>
+              </span>
             </p>
             <Button asChild className="mt-8 bg-primary text-primary-foreground hover:bg-primary/90">
               <Link to="/sobre-nosotros">
@@ -172,7 +174,7 @@ function Home() {
       <section className="bg-secondary/40 py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto">
-            <span className="text-sm font-semibold text-brand uppercase tracking-[0.2em]">Reseñas Google</span>
+            <span className="text-sm font-semibold text-muted-foreground uppercase tracking-[0.2em]">Reseñas Google</span>
             <h2 className="mt-3 text-3xl md:text-5xl font-bold text-primary">Lo que dicen nuestros clientes</h2>
             <div className="mt-4 flex items-center justify-center gap-1 text-brand">
               {[...Array(5)].map((_, i) => (
@@ -208,7 +210,7 @@ function Home() {
       {/* WHY US */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
         <div className="text-center max-w-2xl mx-auto">
-          <span className="text-sm font-semibold text-brand uppercase tracking-[0.2em]">Por qué JM Asesores</span>
+          <span className="text-sm font-semibold text-muted-foreground uppercase tracking-[0.2em]">Por qué JM Asesores</span>
           <h2 className="mt-3 text-3xl md:text-5xl font-bold text-primary">Cercanía local, rigor profesional</h2>
         </div>
         <div className="mt-14 grid gap-8 md:grid-cols-3">
@@ -230,7 +232,7 @@ function Home() {
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-24">
         <div className="rounded-3xl bg-primary text-primary-foreground p-8 md:p-14 shadow-elegant grid md:grid-cols-2 gap-10 md:items-center">
           <div>
-            <span className="text-sm font-semibold text-brand uppercase tracking-[0.2em]">Primera consulta</span>
+            <span className="text-sm font-semibold text-primary-foreground/70 uppercase tracking-[0.2em]">Primera consulta</span>
             <h2 className="mt-3 text-3xl md:text-4xl font-bold">Consulta gratuita y sin compromiso</h2>
             <p className="mt-4 text-primary-foreground/80 leading-relaxed">
               Cuéntanos brevemente qué necesitas y te llamamos para una primera valoración sin coste.
@@ -238,16 +240,16 @@ function Home() {
             </p>
             <div className="mt-8 space-y-3 text-sm">
               <div className="flex items-center gap-3">
-                <Phone className="h-4 w-4 text-brand" />
-                <a href="tel:+34952702214" className="hover:text-brand">952 70 22 14 (Telf. y Fax)</a>
+                <Phone className="h-4 w-4 text-primary-foreground/50" />
+                <a href="tel:+34952702214" className="hover:text-brand-ink">952 70 22 14 (Telf. y Fax)</a>
               </div>
               <div className="flex items-center gap-3">
-                <Mail className="h-4 w-4 text-brand" />
-                <a href="tel:+34696387037" className="hover:text-brand">696 387 037 (Móvil)</a>
+                <Mail className="h-4 w-4 text-primary-foreground/50" />
+                <a href="tel:+34696387037" className="hover:text-brand-ink">696 387 037 (Móvil)</a>
               </div>
               <div className="flex items-center gap-3">
-                <WhatsAppIconOutline className="h-4 w-4 text-brand" />
-                <a href="https://wa.me/34696387037" target="_blank" rel="noopener noreferrer" className="hover:text-brand">
+                <WhatsAppIconOutline className="h-4 w-4 text-primary-foreground/50" />
+                <a href="https://wa.me/34696387037" target="_blank" rel="noopener noreferrer" className="hover:text-brand-ink">
                   WhatsApp: +34 696 387 037
                 </a>
               </div>
@@ -260,7 +262,7 @@ function Home() {
             </div>
             <Input placeholder="Email" type="email" required />
             <Textarea placeholder="¿En qué podemos ayudarte?" rows={4} />
-            <Button type="submit" className="w-full bg-brand text-brand-foreground hover:bg-brand/90">
+            <Button type="submit" className="w-full bg-brand-ink text-brand-foreground hover:bg-brand-ink/90">
               Enviar consulta <Send className="ml-2 h-4 w-4" />
             </Button>
             <p className="text-xs text-muted-foreground text-center">
@@ -280,7 +282,7 @@ function Home() {
             {logos.map((l) => (
               <div
                 key={l}
-                className="text-center text-primary/60 font-bold text-sm md:text-base tracking-wider hover:text-brand transition-colors"
+                className="text-center text-primary/60 font-bold text-sm md:text-base tracking-wider hover:text-brand-ink transition-colors"
               >
                 {l}
               </div>
@@ -293,7 +295,7 @@ function Home() {
       <section
         className="relative overflow-hidden text-white"
         style={{
-          backgroundImage: `linear-gradient(to bottom right, rgba(38,25,15,0.78), rgba(20,12,6,0.65)), url(${antequeraImg})`,
+          backgroundImage: `linear-gradient(to bottom right, rgba(38,25,15,0.86), rgba(20,12,6,0.66)), url(${antequeraImg})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -301,7 +303,7 @@ function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 md:py-32">
           <div className="grid md:grid-cols-2 gap-12 md:items-end">
             <div>
-              <span className="inline-flex items-center gap-2 text-sm font-semibold text-brand uppercase tracking-[0.2em]">
+              <span className="inline-flex items-center gap-2 text-sm font-semibold text-white/75 uppercase tracking-[0.2em]">
                 <MapPin className="h-4 w-4" /> Visítanos
               </span>
               <h2 className="mt-3 text-3xl md:text-5xl font-bold leading-tight">
@@ -314,23 +316,23 @@ function Home() {
             </div>
             <div className="rounded-2xl bg-white/10 backdrop-blur border border-white/20 p-8 space-y-4">
               <div>
-                <div className="text-xs uppercase tracking-widest text-brand">Dirección</div>
+                <div className="text-xs uppercase tracking-widest text-white/60">Dirección</div>
                 <div className="mt-1 font-semibold">Urb. Parquesol, bloque 9, bajo</div>
                 <div className="text-white/70 text-sm">29200 Antequera (Málaga)</div>
               </div>
               <div className="h-px bg-white/15" />
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                  <div className="text-xs uppercase tracking-widest text-brand">Teléfono</div>
+                  <div className="text-xs uppercase tracking-widest text-white/60">Teléfono</div>
                   <div className="mt-1 font-semibold">952 70 22 14</div>
                   <div className="text-white/70 text-xs">Móvil 696 387 037</div>
                 </div>
                 <div>
-                  <div className="text-xs uppercase tracking-widest text-brand">Horario</div>
+                  <div className="text-xs uppercase tracking-widest text-white/60">Horario</div>
                   <div className="mt-1 font-semibold text-sm">L–V · 9:00–18:00</div>
                 </div>
               </div>
-              <Button asChild className="w-full bg-brand text-brand-foreground hover:bg-brand/90 mt-2">
+              <Button asChild className="w-full bg-brand-ink text-brand-foreground hover:bg-brand-ink/90 mt-2">
                 <Link to="/contacto">
                   Cómo llegar <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>

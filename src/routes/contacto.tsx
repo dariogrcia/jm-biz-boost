@@ -40,13 +40,13 @@ function Contacto() {
       <section
         className="relative text-primary-foreground"
         style={{
-          backgroundImage: `linear-gradient(to bottom right, rgba(38,25,15,0.78), rgba(20,12,6,0.6)), url(${heroAntequera})`,
+          backgroundImage: `linear-gradient(to bottom right, rgba(38,25,15,0.86), rgba(20,12,6,0.66)), url(${heroAntequera})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-          <span className="text-sm font-semibold text-brand uppercase tracking-wider">Contacto</span>
+          <span className="text-sm font-semibold text-white/85 uppercase tracking-wider">Contacto</span>
           <h1 className="mt-3 text-4xl md:text-6xl font-bold tracking-tight">Estamos en Antequera</h1>
           <p className="mt-5 max-w-2xl text-lg text-white/85">
             Atendemos a empresas y autónomos de la comarca de Antequera y toda la provincia de Málaga. Primera consulta gratuita.
@@ -93,44 +93,44 @@ function Contacto() {
             <h3 className="font-semibold text-lg">Información de contacto</h3>
             <ul className="mt-6 space-y-5 text-sm">
               <li className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-brand mt-0.5 shrink-0" />
+                <MapPin className="h-5 w-5 text-primary-foreground/50 mt-0.5 shrink-0" />
                 <div>
                   <div className="text-primary-foreground/60 text-xs">Dirección</div>
                   <div className="font-medium">Urb. Parquesol, bloque 9, bajo<br />29200 Antequera (Málaga)</div>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <Phone className="h-5 w-5 text-brand mt-0.5 shrink-0" />
+                <Phone className="h-5 w-5 text-primary-foreground/50 mt-0.5 shrink-0" />
                 <div>
                   <div className="text-primary-foreground/60 text-xs">Teléfono y Fax</div>
-                  <a href="tel:+34952702214" className="font-medium hover:text-brand">952 70 22 14</a>
+                  <a href="tel:+34952702214" className="font-medium hover:text-brand-ink">952 70 22 14</a>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <Smartphone className="h-5 w-5 text-brand mt-0.5 shrink-0" />
+                <Smartphone className="h-5 w-5 text-primary-foreground/50 mt-0.5 shrink-0" />
                 <div>
                   <div className="text-primary-foreground/60 text-xs">Móvil</div>
-                  <a href="tel:+34696387037" className="font-medium hover:text-brand">696 387 037</a>
+                  <a href="tel:+34696387037" className="font-medium hover:text-brand-ink">696 387 037</a>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <WhatsAppIconOutline className="h-5 w-5 text-brand mt-0.5 shrink-0" />
+                <WhatsAppIconOutline className="h-5 w-5 text-primary-foreground/50 mt-0.5 shrink-0" />
                 <div>
                   <div className="text-primary-foreground/60 text-xs">WhatsApp</div>
-                  <a href="https://wa.me/34696387037" target="_blank" rel="noopener noreferrer" className="font-medium hover:text-brand">
+                  <a href="https://wa.me/34696387037" target="_blank" rel="noopener noreferrer" className="font-medium hover:text-brand-ink">
                     +34 696 387 037
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <Mail className="h-5 w-5 text-brand mt-0.5 shrink-0" />
+                <Mail className="h-5 w-5 text-primary-foreground/50 mt-0.5 shrink-0" />
                 <div>
                   <div className="text-primary-foreground/60 text-xs">Email</div>
-                  <a href="mailto:jm_asesores@hotmail.com" className="font-medium hover:text-brand">jm_asesores@hotmail.com</a>
+                  <a href="mailto:jm_asesores@hotmail.com" className="font-medium hover:text-brand-ink">jm_asesores@hotmail.com</a>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <Clock className="h-5 w-5 text-brand mt-0.5 shrink-0" />
+                <Clock className="h-5 w-5 text-primary-foreground/50 mt-0.5 shrink-0" />
                 <div>
                   <div className="text-primary-foreground/60 text-xs">Horario</div>
                   <div className="font-medium">Lun – Vie · 9:00 – 14:00 y 16:00 – 19:00</div>
@@ -138,7 +138,7 @@ function Contacto() {
               </li>
             </ul>
 
-            <Button asChild className="mt-8 w-full bg-[#25D366] hover:bg-[#1ebe5a] text-white">
+            <Button asChild variant="outline" className="mt-8 w-full border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground">
               <a href="https://wa.me/34696387037" target="_blank" rel="noopener noreferrer">
                 <WhatsAppIconOutline className="mr-2 h-4 w-4" /> Chatear por WhatsApp
               </a>
