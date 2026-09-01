@@ -10,8 +10,6 @@ import {
   Award,
   Phone,
   Smartphone,
-  Star,
-  Quote,
   Send,
 } from "lucide-react";
 import { WhatsAppIconOutline } from "@/components/site/WhatsAppIconOutline";
@@ -51,33 +49,6 @@ const servicios = [
     i: Users,
     t: "Asesoría Laboral",
     d: "Nóminas, contratos, Seguridad Social, ERTEs y gestión de RRHH.",
-  },
-];
-
-const resenas = [
-  {
-    nombre: "Laura Jiménez",
-    texto:
-      "Llevan mi negocio desde hace años. Profesionales, cercanos y siempre disponibles cuando los necesito.",
-    rol: "Autónoma · Antequera",
-  },
-  {
-    nombre: "Carlos Romero",
-    texto:
-      "Pasamos a JM Asesores y notamos el cambio desde el primer mes. Por fin tengo la contabilidad clara.",
-    rol: "Pyme · Málaga",
-  },
-  {
-    nombre: "Ana Molina",
-    texto:
-      "Maribel y su equipo me han ayudado con la renta y el alta como autónoma. Todo fácil y sin estrés.",
-    rol: "Cliente desde 2022",
-  },
-  {
-    nombre: "David Pérez",
-    texto:
-      "Trato excelente y respuesta rapidísima. Recomendados al 100% para cualquier empresa de la zona.",
-    rol: "Comercio local",
   },
 ];
 
@@ -212,49 +183,6 @@ function Home() {
                 Conoce al equipo <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* RESEÑAS */}
-      <section className="bg-secondary/40 py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto">
-            <span className="text-sm font-semibold text-muted-foreground uppercase tracking-[0.2em]">
-              Reseñas Google
-            </span>
-            <h2 className="mt-3 text-3xl md:text-5xl font-bold text-primary">
-              Lo que dicen nuestros clientes
-            </h2>
-            <div className="mt-4 flex items-center justify-center gap-1 text-brand">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-5 w-5 fill-current" />
-              ))}
-              <span className="ml-2 text-sm text-muted-foreground">
-                4.9 / 5 · valoraciones reales
-              </span>
-            </div>
-          </div>
-
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {resenas.map((r) => (
-              <article
-                key={r.nombre}
-                className="rounded-2xl bg-card p-6 border border-border shadow-soft flex flex-col"
-              >
-                <Quote className="h-7 w-7 text-brand/40" />
-                <p className="mt-4 text-sm text-foreground leading-relaxed flex-1">"{r.texto}"</p>
-                <div className="mt-5 pt-5 border-t border-border">
-                  <div className="font-semibold text-primary text-sm">{r.nombre}</div>
-                  <div className="text-xs text-muted-foreground">{r.rol}</div>
-                  <div className="mt-1 flex text-brand">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-3 w-3 fill-current" />
-                    ))}
-                  </div>
-                </div>
-              </article>
-            ))}
           </div>
         </div>
       </section>

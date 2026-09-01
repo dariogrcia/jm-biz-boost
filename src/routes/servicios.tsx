@@ -180,7 +180,16 @@ function Servicios() {
               </h2>
               <p className="mt-5 text-muted-foreground text-lg leading-relaxed">
                 Acompañamos a nuestros clientes en el proceso de modernización tecnológica de su
-                negocio. Diseñamos y desarrollamos soluciones a medida orientadas a resultados: más
+                negocio. De esta parte se encarga{" "}
+                <a
+                  href="https://vertexstudiolab.es"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-brand-ink underline underline-offset-2"
+                >
+                  Vertex Studio
+                </a>
+                , que diseña y desarrolla soluciones a medida orientadas a resultados: más
                 eficiencia, mejor control y crecimiento sostenible.
               </p>
 
@@ -220,19 +229,31 @@ function Servicios() {
                   <ShieldCheck className="h-4 w-4 text-brand" /> Contacto para proyectos de
                   digitalización
                 </p>
+                <p className="text-xs">
+                  Estos proyectos los lleva{" "}
+                  <a
+                    href="https://vertexstudiolab.es"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-brand-ink underline underline-offset-2"
+                  >
+                    Vertex Studio
+                  </a>
+                  , y se atienden por su propia vía.
+                </p>
                 <div className="flex items-center gap-2">
                   <Phone className="h-4 w-4 text-muted-foreground" />
-                  <a href="tel:+34696387037" className="text-foreground hover:text-brand-ink">
-                    696 387 037
+                  <a href="tel:+34675172371" className="text-foreground hover:text-brand-ink">
+                    675 17 23 71
                   </a>
                 </div>
                 <div className="flex items-center gap-2">
                   <Mail className="h-4 w-4 text-muted-foreground" />
                   <a
-                    href="mailto:jm_asesores@hotmail.com"
+                    href="mailto:dariojesusgarcia6@gmail.com"
                     className="text-foreground hover:text-brand-ink"
                   >
-                    jm_asesores@hotmail.com
+                    dariojesusgarcia6@gmail.com
                   </a>
                 </div>
               </div>
