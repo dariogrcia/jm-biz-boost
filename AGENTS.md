@@ -15,6 +15,9 @@ npm run lint
 npm run format
 ```
 
+> Historial de decisiones, por qué se hizo cada cosa y qué queda pendiente:
+> [`BITACORA.md`](BITACORA.md). Léela antes de tocar dominio, SEO o colores.
+
 ## Cosas que conviene saber
 
 - **El sitio se despliega como HTML estático en Cloudflare Workers.** `npm run
