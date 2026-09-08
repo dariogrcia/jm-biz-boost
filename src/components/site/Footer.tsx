@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Phone, Smartphone, MapPin, Mail } from "lucide-react";
+import { Phone, MapPin, Mail } from "lucide-react";
 import { WhatsAppIconOutline } from "./WhatsAppIconOutline";
 import logoBlanco from "@/assets/logo-blanco.png";
 
@@ -78,14 +78,8 @@ export function Footer() {
           <ul className="space-y-3 text-sm text-primary-foreground/70">
             <li className="flex items-start gap-2">
               <Phone className="h-4 w-4 text-primary-foreground/50 mt-0.5 shrink-0" />
-              <a href="tel:+34952702214" className="hover:text-brand-on-dark">
-                Telf. y Fax: 952 70 22 14
-              </a>
-            </li>
-            <li className="flex items-start gap-2">
-              <Smartphone className="h-4 w-4 text-primary-foreground/50 mt-0.5 shrink-0" />
               <a href="tel:+34696387037" className="hover:text-brand-on-dark">
-                Móvil: 696 387 037
+                696 387 037
               </a>
             </li>
             <li className="flex items-start gap-2">

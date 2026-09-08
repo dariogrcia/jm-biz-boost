@@ -97,7 +97,7 @@ function Privacidad() {
           conversación pasa por los sistemas de <strong>WhatsApp Ireland Limited</strong> (grupo
           Meta) y se rige por sus propias condiciones y política de privacidad, que no controlamos.
           Si prefieres evitarlo, escríbenos a <a href={`mailto:${d.email}`}>{d.email}</a> o llámanos
-          al <a href="tel:+34952702214">{d.telefono}</a>.
+          al <a href="tel:+34696387037">{d.telefono}</a>.
         </p>
       </div>
 

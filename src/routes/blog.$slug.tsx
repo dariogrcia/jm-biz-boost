@@ -178,7 +178,7 @@ function PostDetail() {
               </div>
               <div className="mt-6 flex flex-wrap gap-6 text-sm text-primary-foreground/70">
                 <span className="flex items-center gap-2">
-                  <Phone className="h-4 w-4 text-primary-foreground/50" /> 952 70 22 14
+                  <Phone className="h-4 w-4 text-primary-foreground/50" /> 696 387 037
                 </span>
                 <span className="flex items-center gap-2">
                   <Mail className="h-4 w-4 text-primary-foreground/50" /> jm_asesores@hotmail.com

@@ -13,7 +13,6 @@ import {
   Clock,
   Award,
   Phone,
-  Smartphone,
   Send,
 } from "lucide-react";
 import { WhatsAppIconOutline } from "@/components/site/WhatsAppIconOutline";
@@ -306,14 +305,8 @@ function Home() {
             <div className="mt-8 space-y-3 text-sm">
               <div className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-primary-foreground/50" />
-                <a href="tel:+34952702214" className="hover:text-brand-on-dark">
-                  952 70 22 14 (Telf. y Fax)
-                </a>
-              </div>
-              <div className="flex items-center gap-3">
-                <Smartphone className="h-4 w-4 text-primary-foreground/50" />
                 <a href="tel:+34696387037" className="hover:text-brand-on-dark">
-                  696 387 037 (Móvil)
+                  696 387 037
                 </a>
               </div>
               <div className="flex items-center gap-3">
@@ -423,8 +416,7 @@ function Home() {
               <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
                   <div className="text-xs uppercase tracking-widest text-white/60">Teléfono</div>
-                  <div className="mt-1 font-semibold">952 70 22 14</div>
-                  <div className="text-white/70 text-xs">Móvil 696 387 037</div>
+                  <div className="mt-1 font-semibold">696 387 037</div>
                 </div>
                 <div>
                   <div className="text-xs uppercase tracking-widest text-white/60">Horario</div>

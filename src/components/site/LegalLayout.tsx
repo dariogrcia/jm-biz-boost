@@ -74,7 +74,7 @@ export function FichaTitular() {
           {d.email}
         </a>
         {" · "}
-        <a href="tel:+34952702214" className="text-brand-ink underline underline-offset-2">
+        <a href="tel:+34696387037" className="text-brand-ink underline underline-offset-2">
           {d.telefono}
         </a>
       </dd>

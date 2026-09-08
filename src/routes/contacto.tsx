@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Phone, Smartphone, MapPin, Clock, Send, Mail } from "lucide-react";
+import { Phone, MapPin, Clock, Send, Mail } from "lucide-react";
 import { WhatsAppIconOutline } from "@/components/site/WhatsAppIconOutline";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -127,16 +127,7 @@ function Contacto() {
               <li className="flex items-start gap-3">
                 <Phone className="h-5 w-5 text-primary-foreground/50 mt-0.5 shrink-0" />
                 <div>
-                  <div className="text-primary-foreground/60 text-xs">Teléfono y Fax</div>
-                  <a href="tel:+34952702214" className="font-medium hover:text-brand-on-dark">
-                    952 70 22 14
-                  </a>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <Smartphone className="h-5 w-5 text-primary-foreground/50 mt-0.5 shrink-0" />
-                <div>
-                  <div className="text-primary-foreground/60 text-xs">Móvil</div>
+                  <div className="text-primary-foreground/60 text-xs">Teléfono</div>
                   <a href="tel:+34696387037" className="font-medium hover:text-brand-on-dark">
                     696 387 037
                   </a>

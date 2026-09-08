@@ -25,8 +25,7 @@ export const NEGOCIO = {
   // Coordenadas de la oficina (Urb. Parquesol), vía Nominatim/OpenStreetMap.
   latitud: 37.0225572,
   longitud: -4.5705576,
-  telefono: "+34952702214",
-  movil: "+34696387037",
+  telefono: "+34696387037",
   email: "jm_asesores@hotmail.com",
   // Horario de la oficina, confirmado por el propietario el 8-sep-2026.
   // Si cambia, cambiarlo también en /contacto, en la home y en el Perfil de

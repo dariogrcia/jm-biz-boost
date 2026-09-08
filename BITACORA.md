@@ -363,6 +363,23 @@ que ya está en pantalla al cargar es el error clásico de estos efectos.
 > **invisible para siempre**. Verificado sobre el CSS compilado: 2 reglas
 > `.reveal` dentro de la guarda, 0 fuera.
 
+### 14. Teléfono único: fuera el fijo (8-sep-2026)
+
+Se retira el fijo **952 70 22 14** y queda solo el móvil **696 387 037**, que ya
+era el de WhatsApp. Con él desaparece también el **fax**, que compartía número.
+
+Cambiado en los nueve sitios donde vivía: `sitio.ts` (que alimenta el JSON-LD),
+`datos-legales.ts` (aviso legal y privacidad), footer, home —bloque de contacto
+y tarjeta «Visítanos»—, `/contacto`, los artículos del blog y `LegalLayout`.
+El campo `movil` de ambos ficheros se elimina: era código muerto, no lo leía
+nadie, y mantener dos campos para un solo número invita a que se desincronicen.
+
+Las etiquetas pasan de «Teléfono y Fax» / «Móvil» a simplemente **«Teléfono»**:
+con un único número, distinguirlo del fijo ya no significa nada.
+
+> El **NAP debe seguir coincidiendo** en web, JSON-LD y Perfil de Empresa de
+> Google. El teléfono se actualizó también en la ficha de Google el mismo día.
+
 ---
 
 ## Pendiente
