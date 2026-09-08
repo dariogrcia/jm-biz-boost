@@ -428,7 +428,7 @@ function Home() {
                 </div>
                 <div>
                   <div className="text-xs uppercase tracking-widest text-white/60">Horario</div>
-                  <div className="mt-1 font-semibold text-sm">L–V · 9–14 y 16–19</div>
+                  <div className="mt-1 font-semibold text-sm">L–V · 9:00 – 14:00</div>
                 </div>
               </div>
               <Button

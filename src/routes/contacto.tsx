@@ -172,7 +172,7 @@ function Contacto() {
                 <Clock className="h-5 w-5 text-primary-foreground/50 mt-0.5 shrink-0" />
                 <div>
                   <div className="text-primary-foreground/60 text-xs">Horario</div>
-                  <div className="font-medium">Lun – Vie · 9:00 – 14:00 y 16:00 – 19:00</div>
+                  <div className="font-medium">Lun – Vie · 9:00 – 14:00</div>
                 </div>
               </li>
             </ul>

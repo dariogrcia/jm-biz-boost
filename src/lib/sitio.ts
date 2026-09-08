@@ -28,17 +28,14 @@ export const NEGOCIO = {
   telefono: "+34952702214",
   movil: "+34696387037",
   email: "jm_asesores@hotmail.com",
-  // Horario de la oficina. Si cambia, cambiarlo también en /contacto y en la home.
+  // Horario de la oficina, confirmado por el propietario el 8-sep-2026.
+  // Si cambia, cambiarlo también en /contacto, en la home y en el Perfil de
+  // Empresa de Google, que publica este mismo dato.
   horario: [
     {
       dias: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
       abre: "09:00",
       cierra: "14:00",
-    },
-    {
-      dias: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      abre: "16:00",
-      cierra: "19:00",
     },
   ],
   fundadora: "María Isabel Aguilera Orellana",

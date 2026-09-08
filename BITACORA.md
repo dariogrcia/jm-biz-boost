@@ -283,11 +283,53 @@ par de semanas en rastrear y mostrar las páginas. En _Indexación → Páginas_
 el progreso. Si urge una URL concreta, «Inspección de URLs» permite solicitar
 indexación individual.
 
+### 12. Perfil de Empresa de Google y corrección del horario (8-sep-2026)
+
+Para búsquedas locales tipo «asesoría en Antequera», lo que aparece arriba es el
+_local pack_ (el mapa con tres negocios), y eso lo controla el Perfil de Empresa,
+no la web. Por eso era la acción de mayor impacto pendiente.
+
+Antes de crearlo se comprobó que **no existía ficha previa** que reclamar (hay
+«JM Asesores» en Alcorcón, Almendralejo, Murcia y Burgos, ninguno en Antequera).
+Crear un duplicado sobre una ficha existente perjudica el posicionamiento.
+
+Configuración aplicada:
+
+- Nombre **«JM Asesores»** exacto, sin añadir la ciudad: meter la localidad en el
+  nombre va contra las directrices de Google y puede acarrear suspensión.
+- Categoría principal _Asesor fiscal_.
+- Dirección de la **oficina** (Urb. Parquesol), no el domicilio fiscal, con el
+  NAP idéntico al de la web y del JSON-LD.
+- Zona de servicio: Antequera. Se dejó solo la localidad; añadir provincias
+  enteras diluye la relevancia local.
+- Cinco servicios, todos respaldados por lo que la web dice que hace.
+- Descripción de 555 caracteres basada en los textos de la web.
+
+Se **saltaron** a propósito: las fotos (piden imágenes reales del local y todas
+las del repositorio son de stock o generadas, y una foto falsa impide reconocer
+el sitio al llegar), el crédito de 400 € de Google Ads (implica compromiso de
+gasto) y la prueba de Google Workspace (de pago al terminar).
+
+> **Estado: «Google está procesando tu verificación», hasta 5 días.** Durante el
+> onboarding apareció un mensaje de «ficha verificada» que resultó ser
+> prematuro: el panel muestra «NO ES VISIBLE PÚBLICAMENTE». Hasta que termine,
+> la ficha no sale en Maps ni en el local pack.
+
+**Corrección del horario.** Al pedir confirmación para el perfil, el propietario
+aclaró que el horario real es **L–V 9:00–14:00**, solo mañanas. La web publicaba
+«9:00–14:00 y 16:00–19:00», que era el dato que quedó marcado como pendiente de
+confirmar en §8. Corregido en los tres sitios donde vivía: `/contacto`, la home y
+`openingHoursSpecification` de los datos estructurados.
+
 ---
 
 ## Pendiente
 
 ### Necesita material del propietario
+
+0. **Fotos reales del despacho** para el Perfil de Empresa de Google: fachada
+   (para que los clientes reconozcan el sitio) e interior. Hechas con el móvil
+   valen. Es de lo que más pesa en el _local pack_.
 
 1. **Fotos del blog.** Siguen siendo stock en inglés y alemán («Payroll»,
    «TAXI-10») en artículos sobre IRPF y Seguridad Social española. Chirría.
@@ -299,7 +341,7 @@ indexación individual.
 
 ### Decisiones abiertas
 
-4. **Confirmar el horario** (ver §8). Va en los datos estructurados.
+4. ~~Confirmar el horario~~ — **hecho**: es L–V 9:00–14:00, ver §12.
 5. **Reembolso del SSL wildcard de IONOS.** No hace falta: Cloudflare emite
    Universal SSL gratis para el apex y los subdominios, ya verificado en
    producción. El certificado de IONOS además no serviría, porque el sitio no está
