@@ -310,10 +310,24 @@ las del repositorio son de stock o generadas, y una foto falsa impide reconocer
 el sitio al llegar), el crédito de 400 € de Google Ads (implica compromiso de
 gasto) y la prueba de Google Workspace (de pago al terminar).
 
-> **Estado: «Google está procesando tu verificación», hasta 5 días.** Durante el
-> onboarding apareció un mensaje de «ficha verificada» que resultó ser
-> prematuro: el panel muestra «NO ES VISIBLE PÚBLICAMENTE». Hasta que termine,
-> la ficha no sale en Maps ni en el local pack.
+> **Estado: verificada y visible en Google Maps** (confirmado el 8-sep-2026, con
+> URL de lugar propia). Durante el onboarding apareció un «ficha verificada» que
+> era prematuro — el panel estuvo un tiempo en «NO ES VISIBLE PÚBLICAMENTE»
+> mientras Google procesaba la verificación.
+
+> ⚠️ **La dirección sale recortada en la ficha.** Se introdujo «Urb. Parquesol,
+> bloque 9, bajo», pero Google la normalizó a **«bloque 9, bajo, 29200
+> Antequera, Málaga»**, sin la urbanización — probablemente porque no la
+> reconoce como vía del callejero. Así no se puede localizar el sitio, y rompe
+> la coherencia NAP con la web y el JSON-LD, que sí dicen «Urb. Parquesol».
+>
+> El marcador está además a ~107 m de donde Nominatim sitúa la urbanización
+> (ficha: 37.0225954, -4.5717641 · web: 37.0225572, -4.5705576).
+>
+> **No se corrigió al detectarlo**: editar la dirección de una ficha recién
+> verificada puede disparar una nueva verificación y volver a ocultarla varios
+> días. Conviene dejar que se asiente y ajustar después, moviendo primero el
+> marcador al punto exacto.
 
 **Corrección del horario.** Al pedir confirmación para el perfil, el propietario
 aclaró que el horario real es **L–V 9:00–14:00**, solo mañanas. La web publicaba
@@ -341,12 +355,16 @@ confirmar en §8. Corregido en los tres sitios donde vivía: `/contacto`, la hom
 
 ### Decisiones abiertas
 
-4. ~~Confirmar el horario~~ — **hecho**: es L–V 9:00–14:00, ver §12.
-5. **Reembolso del SSL wildcard de IONOS.** No hace falta: Cloudflare emite
+0. **Ajustar la dirección de la ficha de Google** cuando se haya asentado (ver
+   §12): falta «Urb. Parquesol» y el marcador está a ~107 m. Hacerlo con
+   cuidado: puede disparar una nueva verificación.
+
+1. ~~Confirmar el horario~~ — **hecho**: es L–V 9:00–14:00, ver §12.
+2. **Reembolso del SSL wildcard de IONOS.** No hace falta: Cloudflare emite
    Universal SSL gratis para el apex y los subdominios, ya verificado en
    producción. El certificado de IONOS además no serviría, porque el sitio no está
    alojado allí.
-6. **Revisión legal de los textos** de `/aviso-legal`, `/privacidad` y `/cookies`.
+3. **Revisión legal de los textos** de `/aviso-legal`, `/privacidad` y `/cookies`.
 
 ### Mejoras propuestas y no hechas
 
