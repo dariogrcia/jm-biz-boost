@@ -257,6 +257,32 @@ El proceso, por si hay que repetirlo:
   (675 17 23 71 · dariojesusgarcia6@gmail.com), no el de la asesoría. El de la
   asesoría sigue intacto en el footer, `/contacto`, el formulario y el JSON-LD.
 
+### 11. Google Search Console (8-sep-2026)
+
+Propiedad de **tipo Dominio** (`sc-domain:jmasesoresantequera.es`), no de prefijo
+de URL: cubre el apex, `www`, cualquier subdominio futuro y ambos protocolos con
+una sola propiedad.
+
+Verificada por **registro TXT en la raíz**, no con el flujo automático que ofrece
+Google. Ese flujo pide autorización OAuth para que Google acceda a la cuenta de
+Cloudflare entera; el TXT consigue lo mismo sin conceder ningún acceso.
+
+Sitemap `https://jmasesoresantequera.es/sitemap.xml` enviado y leído el mismo
+día: estado **Correcto**, 14 páginas descubiertas.
+
+> ⚠️ **No borrar el registro TXT de la zona.** Es lo que sostiene la
+> verificación: si desaparece, Google acaba revocando la propiedad y se pierden
+> los datos históricos. Es el registro `TXT @` con contenido
+> `google-site-verification=…`, en «Solo DNS» (sin proxear, como debe estar).
+>
+> Para mayor seguridad, Search Console recomienda añadir un segundo método de
+> verificación en _Ajustes → Verificación de la propiedad_. No se hizo.
+
+**Qué esperar:** la indexación no es inmediata. Google suele tardar de días a un
+par de semanas en rastrear y mostrar las páginas. En _Indexación → Páginas_ se ve
+el progreso. Si urge una URL concreta, «Inspección de URLs» permite solicitar
+indexación individual.
+
 ---
 
 ## Pendiente
@@ -282,8 +308,7 @@ El proceso, por si hay que repetirlo:
 
 ### Mejoras propuestas y no hechas
 
-7. **Google Search Console**: dar de alta el sitio y enviar el sitemap para
-   acelerar la indexación. Se puede verificar con un registro TXT en Cloudflare.
+7. ~~Google Search Console~~ — **hecho** el 8-sep-2026, ver §11.
 8. **Actions del workflow desactualizadas** — ya no aplica, el workflow se
    eliminó al dejar GitHub Pages. Mencionado por si se reintroduce CI.
 9. Los 6 warnings de `react-refresh` que quedan en `npm run lint` son de
@@ -308,3 +333,5 @@ El proceso, por si hay que repetirlo:
   `encoding="utf-8"`.
 - El remote de git tenía un **token de GitHub en texto plano**; se limpió y ahora
   autentica por el keychain vía `gh`.
+- **El registro `TXT @` con `google-site-verification=`** sostiene la propiedad de
+  Search Console. Borrarlo revoca la verificación (ver §11).
