@@ -118,7 +118,7 @@ function Home() {
         <h2 id="titulo-servicios" className="sr-only">
           Nuestros servicios
         </h2>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="reveal-hijos grid gap-6 md:grid-cols-3">
           {servicios.map(({ i: Icon, t, d }) => (
             <div
               key={t}
@@ -141,7 +141,7 @@ function Home() {
       </section>
 
       {/* SOBRE NOSOTROS — image + text */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+      <section className="reveal mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 md:py-32">
         <div className="grid gap-12 md:grid-cols-2 md:items-center">
           <div className="relative">
             <img
@@ -192,7 +192,7 @@ function Home() {
       </section>
 
       {/* VERTEX STUDIO — socio tecnológico */}
-      <section className="border-y border-border bg-secondary/40 py-20 md:py-24">
+      <section className="reveal border-y border-border bg-secondary/40 py-20 md:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 md:grid-cols-[1.1fr_1fr] md:items-center lg:px-8">
           <div>
             <span className="text-sm font-semibold uppercase tracking-[0.2em] text-muted-foreground">
@@ -253,7 +253,7 @@ function Home() {
       </section>
 
       {/* WHY US */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
+      <section className="reveal mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24">
         <div className="text-center max-w-2xl mx-auto">
           <span className="text-sm font-semibold text-muted-foreground uppercase tracking-[0.2em]">
             Por qué JM Asesores
@@ -262,7 +262,7 @@ function Home() {
             Cercanía local, rigor profesional
           </h2>
         </div>
-        <div className="mt-14 grid gap-8 md:grid-cols-3">
+        <div className="reveal-hijos mt-14 grid gap-8 md:grid-cols-3">
           {[
             {
               i: ShieldCheck,
@@ -290,7 +290,7 @@ function Home() {
       </section>
 
       {/* CONSULTA GRATUITA — form */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-24">
+      <section className="reveal mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-24">
         <div className="rounded-3xl bg-primary text-primary-foreground p-8 md:p-14 shadow-elegant grid md:grid-cols-2 gap-10 md:items-center">
           <div>
             <span className="text-sm font-semibold text-primary-foreground/70 uppercase tracking-[0.2em]">
@@ -370,7 +370,7 @@ function Home() {
       </section>
 
       {/* LOGOS / ORGANISMOS */}
-      <section className="border-y border-border bg-secondary/30 py-12">
+      <section className="reveal border-y border-border bg-secondary/30 py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <p className="text-center text-xs font-semibold text-muted-foreground uppercase tracking-[0.3em]">
             Tramitamos con organismos oficiales

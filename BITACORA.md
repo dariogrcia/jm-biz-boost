@@ -335,6 +335,34 @@ aclaró que el horario real es **L–V 9:00–14:00**, solo mañanas. La web pub
 confirmar en §8. Corregido en los tres sitios donde vivía: `/contacto`, la home y
 `openingHoursSpecification` de los datos estructurados.
 
+### 13. Animación de entrada al hacer scroll (8-sep-2026)
+
+Petición inicial: usar **HyperFrames** (github.com/heygen-com/hyperframes) para
+«hacer la web más atractiva al navegar». HyperFrames renderiza **vídeos MP4** a
+partir de HTML, con Chrome headless y ffmpeg — no es una librería de interfaz y
+no puede ejecutarse en Cloudflare Workers. Un MP4 no responde al scroll ni al
+hover, pesa megas y habría hundido el rendimiento. **No se instaló**; el
+objetivo real se resolvió con CSS.
+
+Implementado con **animaciones dirigidas por scroll de CSS**
+(`animation-timeline: view()`): cero JavaScript, cero dependencias, cero peso.
+Dos utilidades en `src/styles.css`:
+
+- `.reveal` — la sección entra con un desvanecido y una subida de 1,25 rem.
+- `.reveal-hijos` — escalona los hijos de una rejilla para que las tarjetas no
+  aparezcan todas a la vez.
+
+Aplicado a 7 bloques de la home, las tarjetas de `/servicios` y el listado del
+blog. **El hero no se anima a propósito**: es lo primero que se ve y animar lo
+que ya está en pantalla al cargar es el error clásico de estos efectos.
+
+> ⚠️ **El orden de las guardas importa.** La `opacity: 0` vive únicamente dentro
+> de `@supports (animation-timeline: view())`, anidado a su vez en
+> `@media (prefers-reduced-motion: no-preference)`. Si esa opacidad estuviera
+> fuera, un navegador sin soporte (Firefox, a día de hoy) dejaría el contenido
+> **invisible para siempre**. Verificado sobre el CSS compilado: 2 reglas
+> `.reveal` dentro de la guarda, 0 fuera.
+
 ---
 
 ## Pendiente

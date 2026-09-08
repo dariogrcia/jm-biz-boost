@@ -52,7 +52,7 @@ function BlogIndex() {
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="grid gap-12 lg:grid-cols-[1fr_320px]">
           {/* LISTADO */}
-          <div className="space-y-12">
+          <div className="reveal-hijos space-y-12">
             {posts.map((p) => (
               <article
                 key={p.slug}
