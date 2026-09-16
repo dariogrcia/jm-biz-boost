@@ -23,6 +23,8 @@ Para el funcionamiento del día a día (comandos, estructura, despliegue), ver
 Verificado en producción: las 14 páginas responden 200, `/no-existe` da 404 real,
 `www` redirige con 301 al dominio sin www, certificado TLS emitido para el apex y
 `www`, y `workers.dev` ya no sirve (404) para no tener dos URLs públicas.
+Desde el 16-sep-2026, **HTTP redirige a HTTPS** («Usar siempre HTTPS» de Cloudflare,
+§15); antes el sitio respondía 200 en los dos esquemas.
 
 ---
 
@@ -382,6 +384,69 @@ con un único número, distinguirlo del fijo ya no significa nada.
 
 ---
 
+### 15. HTTPS forzado y diagnóstico de indexación (16-sep-2026)
+
+Search Console avisó por correo de un motivo nuevo: «Página alternativa con etiqueta
+canónica adecuada». Es **benigno** —afecta solo a `http://jmasesoresantequera.es/`, y
+significa que Google no la indexa porque su canónica apunta a la versión HTTPS, que es
+justo lo que debe pasar—. Pero al abrir el informe apareció el dato que el correo no
+contaba: **2 páginas indexadas frente a 14 sin indexar**.
+
+| Motivo                                            | Páginas                  |
+| ------------------------------------------------- | ------------------------ |
+| Página alternativa con etiqueta canónica adecuada | 1 (la home por HTTP)     |
+| Descubierta: actualmente sin indexar              | 12                       |
+| Rastreada: actualmente sin indexar                | 1 (`/blog`)              |
+
+Las 12 «Descubierta» tenían **último rastreo N/D**: Google nunca las había visitado.
+Incluyen `/servicios`, `/sobre-nosotros`, `/contacto` y los 6 artículos del blog.
+
+#### Lo que se verificó que está bien
+
+Comprobado con la prueba en vivo de Search Console (el dominio no carga en el Chrome
+local, ver «Cosas que pueden morder»):
+
+- canonical autorreferencial correcto en `/`, `/servicios` y `/blog`;
+- `<meta name="robots" content="index, follow, max-image-preview:large">`;
+- la navegación interna viene **en el HTML servido**, no inyectada por JS: el
+  prerender hace su trabajo;
+- sitemap leído el 15-sep, 14 URLs, todas en `https://`;
+- **cero** enlaces `http://` en el HTML ni en el sitemap;
+- `/blog` fue rastreada el 14-sep a las 16:33 por Googlebot para smartphones, con
+  obtención de página «Correcto».
+
+#### La causa raíz
+
+En Cloudflare, _SSL/TLS → Certificados de perímetro_, la opción **«Usar siempre
+HTTPS» estaba desactivada**. El sitio respondía **200 OK por HTTP**, sirviendo el
+contenido duplicado en los dos esquemas. De ahí que Google clasificara la home HTTP
+como «página alternativa con canónica» y no como «página con redirección»: nunca hubo
+un 301.
+
+Y aquí está el efecto secundario que importa: los enlaces internos son **relativos**
+(`/servicios`, `/blog/...`), que es lo correcto, pero **heredan el esquema de la
+página que los contiene**. Una sola entrada por HTTP propagaba HTTP por todo el sitio.
+Se ve en la página de referencia que Search Console registró para `/blog`:
+`http://jmasesoresantequera.es/blog`.
+
+Se activó «Usar siempre HTTPS». Verificado: navegando a `http://jmasesoresantequera.es/`
+el navegador acaba en `https://`. El modo de cifrado ya estaba en **«Completo»**, así
+que no había riesgo de bucle de redirecciones, y la prueba en vivo de Google sobre la
+URL HTTP sigue respondiendo sin error.
+
+Se solicitó además indexación manual de `/servicios`, `/sobre-nosotros`, `/contacto` y
+`/blog`. Las cuatro confirmadas por Google en «cola de rastreo prioritaria».
+
+#### Conclusión
+
+**No hay ningún fallo técnico que explique las 12 páginas sin rastrear.** El cuello de
+botella es la **autoridad del dominio**: el sitemap se envió el 8-sep, ocho días antes.
+«Descubierta: actualmente sin indexar» en un dominio nuevo sin enlaces entrantes es la
+cola de rastreo de Google, no un error de configuración. Lo que mueve la aguja son
+enlaces entrantes, no más ajustes técnicos.
+
+---
+
 ## Pendiente
 
 ### Necesita material del propietario
@@ -400,16 +465,23 @@ con un único número, distinguirlo del fijo ya no significa nada.
 
 ### Decisiones abiertas
 
-0. **Ajustar la dirección de la ficha de Google** cuando se haya asentado (ver
+0. **Activar HSTS en Cloudflare** (_SSL/TLS → Certificados de perímetro_), una vez
+   confirmado que la redirección va fina. Comprobar antes en Search Console que la
+   página de referencia de `/blog` ya aparece con `https://` y no con `http://`.
+   Acordado: **max-age 6 meses, sin `includeSubDomains`, sin preload**. Se dejó para
+   más adelante a propósito: HSTS **no se puede desactivar**, vive en el navegador de
+   cada visitante durante todo el max-age (ver §15 y «Cosas que pueden morder»).
+
+1. **Ajustar la dirección de la ficha de Google** cuando se haya asentado (ver
    §12): falta «Urb. Parquesol» y el marcador está a ~107 m. Hacerlo con
    cuidado: puede disparar una nueva verificación.
 
-1. ~~Confirmar el horario~~ — **hecho**: es L–V 9:00–14:00, ver §12.
-2. **Reembolso del SSL wildcard de IONOS.** No hace falta: Cloudflare emite
+2. ~~Confirmar el horario~~ — **hecho**: es L–V 9:00–14:00, ver §12.
+3. **Reembolso del SSL wildcard de IONOS.** No hace falta: Cloudflare emite
    Universal SSL gratis para el apex y los subdominios, ya verificado en
    producción. El certificado de IONOS además no serviría, porque el sitio no está
    alojado allí.
-3. **Revisión legal de los textos** de `/aviso-legal`, `/privacidad` y `/cookies`.
+4. **Revisión legal de los textos** de `/aviso-legal`, `/privacidad` y `/cookies`.
 
 ### Mejoras propuestas y no hechas
 
@@ -440,3 +512,15 @@ con un único número, distinguirlo del fijo ya no significa nada.
   autentica por el keychain vía `gh`.
 - **El registro `TXT @` con `google-site-verification=`** sostiene la propiedad de
   Search Console. Borrarlo revoca la verificación (ver §11).
+- **HSTS es irreversible durante su `max-age`.** Una vez que un navegador recibe la
+  cabecera, fuerza HTTPS aunque se desactive en Cloudflare: la instrucción vive en el
+  cliente, no en el servidor. `includeSubDomains` deja inaccesible cualquier
+  subdominio sin HTTPS válido, y `preload` mete el dominio en una lista compilada
+  dentro de Chrome, Firefox y Safari de la que salir tarda meses.
+- **«Usar siempre HTTPS» en Cloudflare debe seguir activado** (§15). Si se desactiva,
+  el sitio vuelve a responder 200 por HTTP y, al ser relativos los enlaces internos,
+  la versión insegura se propaga sola por todo el sitio.
+- **El dominio no carga en el Chrome del propietario**: Chrome revierte la navegación
+  o muestra página de error, mientras Googlebot accede sin problema y otros sitios
+  cargan bien en el mismo navegador. Sin diagnosticar; no afecta al SEO, pero obliga a
+  verificar el HTML servido a través de la prueba en vivo de Search Console.
