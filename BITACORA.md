@@ -10,15 +10,18 @@ Para el funcionamiento del día a día (comandos, estructura, despliegue), ver
 
 ## Estado actual
 
-|                         |                                                          |
-| ----------------------- | -------------------------------------------------------- |
-| **Producción**          | https://jmasesoresantequera.es                           |
-| Hosting                 | Cloudflare Workers (assets estáticos, Worker sin código) |
-| Registrador del dominio | IONOS · DNS delegado a Cloudflare                        |
-| Repositorio             | `github.com/dariogrcia/jm-biz-boost`, rama `main`        |
-| Último commit           | `37e2022`                                                |
-| Toolchain               | Node + **npm** (ya no Bun)                               |
-| Indexable en Google     | **Sí** (`INDEXABLE = true`)                              |
+|                         |                                                                         |
+| ----------------------- | ----------------------------------------------------------------------- |
+| **Producción**          | https://jmasesoresantequera.es                                          |
+| Hosting                 | Cloudflare Workers (assets estáticos, Worker sin código)                |
+| Registrador del dominio | IONOS · DNS delegado a Cloudflare                                       |
+| Repositorio             | `github.com/dariogrcia/jm-biz-boost`, rama `main`                       |
+| Último despliegue       | 17-sep-2026 · commit `ef809d5` · versión `c6e49af3` (§17)               |
+| Toolchain               | Node + **npm** (ya no Bun) · instalar con `npm ci`                      |
+| Indexable en Google     | **Sí** (`INDEXABLE = true`)                                             |
+| HTTPS                   | Forzado desde el 16-sep (§15) · HSTS **pendiente**                      |
+| Cabeceras de seguridad  | CSP con hashes, XFO, nosniff, Referrer/Permissions-Policy, COOP (§17)   |
+| Auditoría de seguridad  | 16-sep-2026, sin vulnerabilidades (§16)                                 |
 
 Verificado en producción: las 14 páginas responden 200, `/no-existe` da 404 real,
 `www` redirige con 301 al dominio sin www, certificado TLS emitido para el apex y
@@ -587,9 +590,9 @@ Dos trampas al depurarlo, por si vuelve a hacer falta:
 5. **Confirmar que el token de GitHub que estuvo en claro en el remoto está revocado**
    en GitHub (_Settings → Developer settings_), no solo quitado de `.git/config`
    (ver «Cosas que pueden morder» y §16).
-6. **¿Gmail personal publicado a propósito?** `src/routes/servicios.tsx:253` enlaza a
-   un correo personal de Gmail. No es un secreto, pero conviene confirmar que debe
-   ser público o cambiarlo por un correo del despacho (§16).
+6. ~~¿Gmail personal publicado a propósito?~~ — **resuelto** el 17-sep-2026: sí.
+   Es el contacto de Vertex Studio para proyectos de digitalización en `/servicios`
+   (ver §10), que se atienden por su propia vía; se mantiene tal cual.
 
 ### Mejoras propuestas y no hechas
 
