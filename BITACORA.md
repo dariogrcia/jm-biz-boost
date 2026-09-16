@@ -475,6 +475,12 @@ hay login, cookies, base de datos ni secretos, y el formulario solo abre un enla
 Verificado: `tsc --noEmit` limpio, `npm run build` y `npm run prerender` generan las
 mismas **14 páginas** y el sitemap con 14 URLs.
 
+Commit `78d51f5`. **Desplegado el mismo día** con `npm run deploy` (versión del Worker
+`89752efc-d4cc-4a69-bda7-62aa860f6dcd`; 36 assets, 21 ya subidos). Verificado en
+producción: `/` y `/blog/novedades-fiscales-2026` responden 200 y `/no-existe` 404, y
+las tres respuestas son **idénticas byte a byte** al build local. A las 23:57 el
+bloqueo de LaLiga ya se había levantado y la web cargaba desde la conexión local.
+
 ---
 
 ## Pendiente
