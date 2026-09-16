@@ -445,6 +445,36 @@ botella es la **autoridad del dominio**: el sitemap se envió el 8-sep, ocho dí
 cola de rastreo de Google, no un error de configuración. Lo que mueve la aguja son
 enlaces entrantes, no más ajustes técnicos.
 
+### 16. Auditoría de seguridad y endurecimiento (16-sep-2026)
+
+Se pasó la skill **security-audit** de Cloudflare
+([`cloudflare/security-audit-skill`](https://github.com/cloudflare/security-audit-skill),
+instalada en `~/.claude/skills/security-audit`) sobre el commit `87fc5a2`, en perfil
+**`quick`** y **solo lectura de código**: el Mac no puede montar el sandbox que exige la
+skill para ejecutar el proyecto, así que no se ejecutó nada ni se tocó producción. El
+informe completo queda **fuera del repo**, en
+`~/security-audit-skill/jm-biz-boost/run-1/REPORT.md`.
+
+**Resultado: ninguna vulnerabilidad.** 10 unidades de cobertura cerradas, crítico final
+sin huecos. Es lo esperable: en producción no se ejecuta código (Worker sin `main`), no
+hay login, cookies, base de datos ni secretos, y el formulario solo abre un enlace de
+`wa.me` sin enviar nada a ningún servidor. Tampoco hay secretos en el historial de git.
+
+#### Endurecimiento aplicado
+
+| Cambio | Por qué |
+| --- | --- |
+| `package-lock.json`: añadidos `resolved` + `integrity` a **380 de 502** entradas | Venían sin hash desde la migración Bun → npm (§3). Se tomaron del registro de npm **para las mismas versiones exactas** (ninguna dependencia cambia) y se verificó con `npm ci`, que comprueba cada hash contra el tarball. |
+| README y AGENTS: `npm install` → **`npm ci`** | Instala exactamente lo que fija el lockfile y falla si hay deriva. |
+| `jsonLd()` (`src/lib/seo.ts`) escapa `<`, `>`, `&`, U+2028 y U+2029 | El JSON-LD va sin escapar dentro de `<script>`. Hoy los datos son constantes, pero si el blog llegara a venir de un CMS, un `</script>` en un título inyectaría HTML. Los 43 bloques generados siguen siendo JSON válido. |
+| `.gitignore`: `.env` y `.env.*` (salvo `.env.example`) | No existía ninguno, pero no estaban cubiertos. |
+| `vite.config.ts`: servidor de desarrollo en `localhost` en vez de `::` | Antes era accesible desde cualquier equipo de la red (wifi pública incluida). Para probar desde el móvil: `npm run dev -- --host`. |
+| `scripts/prerender.mjs`: descarta rutas que salgan de `dist/client` | Un enlace con `..` podía escribir fuera de la carpeta de salida. Solo el propio contenido alimenta el rastreo, así que era defensa en profundidad. |
+| Eliminados `src/components/ui/sidebar.tsx` y `src/hooks/use-mobile.tsx` | Sin uso. El sidebar escribía una cookie `sidebar_state`, lo que contradecía «esta web no usa cookies» si algún día se importaba. `npm run lint` pasa de 6 a 5 warnings. |
+
+Verificado: `tsc --noEmit` limpio, `npm run build` y `npm run prerender` generan las
+mismas **14 páginas** y el sitemap con 14 URLs.
+
 ---
 
 ## Pendiente
@@ -491,14 +521,26 @@ enlaces entrantes, no más ajustes técnicos.
    producción. El certificado de IONOS además no serviría, porque el sitio no está
    alojado allí.
 4. **Revisión legal de los textos** de `/aviso-legal`, `/privacidad` y `/cookies`.
+5. **Confirmar que el token de GitHub que estuvo en claro en el remoto está revocado**
+   en GitHub (_Settings → Developer settings_), no solo quitado de `.git/config`
+   (ver «Cosas que pueden morder» y §16).
+6. **¿Gmail personal publicado a propósito?** `src/routes/servicios.tsx:253` enlaza a
+   un correo personal de Gmail. No es un secreto, pero conviene confirmar que debe
+   ser público o cambiarlo por un correo del despacho (§16).
 
 ### Mejoras propuestas y no hechas
 
 7. ~~Google Search Console~~ — **hecho** el 8-sep-2026, ver §11.
 8. **Actions del workflow desactualizadas** — ya no aplica, el workflow se
    eliminó al dejar GitHub Pages. Mencionado por si se reintroduce CI.
-9. Los 6 warnings de `react-refresh` que quedan en `npm run lint` son de
-   componentes de shadcn/ui, propios de la librería.
+9. Los 5 warnings de `react-refresh` que quedan en `npm run lint` son de
+   componentes de shadcn/ui, propios de la librería (eran 6 hasta quitar el
+   sidebar, §16).
+10. **Cabeceras de seguridad versionadas** con un `public/_headers`: CSP,
+    `frame-ancestors`, `Referrer-Policy`, `X-Content-Type-Options`. Hoy solo existen
+    en el panel de Cloudflare (o no existen). No hay fallo explotable (ninguna
+    página tiene acciones sensibles), pero tenerlas en el repo las deja revisables.
+    Coordinar con la activación de HSTS. Propuesta de la auditoría (§16).
 
 ---
 

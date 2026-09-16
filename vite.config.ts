@@ -64,7 +64,8 @@ export default defineConfig({
   },
 
   server: {
-    host: "::",
+    // Solo este equipo. Para probar desde el móvil en la misma red: npm run dev -- --host
+    host: "localhost",
     port: 8080,
     // Editors write in several passes; wait for the file to settle before reloading.
     watch: { awaitWriteFinish: { stabilityThreshold: 1000, pollInterval: 100 } },

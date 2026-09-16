@@ -31,7 +31,7 @@ a ninguna plataforma de generación externa.
 Requisitos: **Node 22+** (algunas dependencias lo exigen).
 
 ```bash
-npm install        # instalar dependencias
+npm ci             # instalar dependencias exactas del lockfile
 npm run dev        # servidor de desarrollo (http://localhost:8080)
 npm run build      # build de producción
 npm run prerender  # HTML estático (requiere build antes)

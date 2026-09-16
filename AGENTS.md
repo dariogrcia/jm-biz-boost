@@ -7,7 +7,7 @@ estático y vive en el código: no hay backend ni base de datos.
 ## Comandos
 
 ```sh
-npm install
+npm ci             # instala exactamente lo que fija package-lock.json
 npm run dev        # http://localhost:8080
 npm run build      # build de producción
 npm run prerender  # HTML estático a partir del build (necesita build antes)

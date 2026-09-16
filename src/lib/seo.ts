@@ -65,7 +65,18 @@ export function seo({
   };
 }
 
-/** Inserta un bloque JSON-LD en el head. */
+/**
+ * Inserta un bloque JSON-LD en el head. El contenido va sin escapar dentro de
+ * <script>, así que se codifican <, >, & y los separadores U+2028/U+2029: un
+ * texto con «</script>» no puede cerrar el bloque aunque los datos dejen de ser
+ * constantes (por ejemplo, si el blog pasa a venir de un CMS).
+ */
 export function jsonLd(datos: unknown) {
-  return { type: "application/ld+json", children: JSON.stringify(datos) };
+  const json = JSON.stringify(datos)
+    .replace(/</g, "\\u003c")
+    .replace(/>/g, "\\u003e")
+    .replace(/&/g, "\\u0026")
+    .replace(/\u2028/g, "\\u2028")
+    .replace(/\u2029/g, "\\u2029");
+  return { type: "application/ld+json", children: json };
 }

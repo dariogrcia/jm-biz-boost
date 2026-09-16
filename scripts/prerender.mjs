@@ -9,7 +9,7 @@
 
 import { writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
+import { dirname, join, relative, resolve, isAbsolute } from "node:path";
 import { pathToFileURL } from "node:url";
 
 const ROOT = resolve(import.meta.dirname, "..");
@@ -61,6 +61,12 @@ while (queue.length) {
   const html = await res.text();
   const rel = toRelative(path);
   const file = join(OUT_DIR, rel, "index.html");
+  // Un enlace con «..» no puede escribir fuera de dist/client.
+  const dentro = relative(OUT_DIR, file);
+  if (dentro.startsWith("..") || isAbsolute(dentro)) {
+    console.warn(`! ${path} sale de ${OUT_DIR} (skipped)`);
+    continue;
+  }
   await mkdir(dirname(file), { recursive: true });
   await writeFile(file, html);
   rendered.push(rel === "" ? "/" : `/${rel}`);
