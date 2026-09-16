@@ -472,6 +472,15 @@ enlaces entrantes, no más ajustes técnicos.
    más adelante a propósito: HSTS **no se puede desactivar**, vive en el navegador de
    cada visitante durante todo el max-age (ver §15 y «Cosas que pueden morder»).
 
+   **Revisión programada el 23-sep-2026 a las 10:00** con una rutina de Claude
+   Code en la nube (`trig_014kxUHBkD4KLPs55sPna4mx`, ejecución única,
+   https://claude.ai/code/routines/trig_014kxUHBkD4KLPs55sPna4mx). Lee esta
+   bitácora y crea en Claude Docs una checklist para revisar en Search Console:
+   si `/servicios`, `/sobre-nosotros`, `/contacto` y `/blog` ya están indexadas,
+   la evolución del informe «Páginas» y si la página de referencia de `/blog` ya
+   aparece con `https://`. La rutina no entra en Search Console ni toca el repo:
+   la revisión la hace el propietario.
+
 1. **Ajustar la dirección de la ficha de Google** cuando se haya asentado (ver
    §12): falta «Urb. Parquesol» y el marcador está a ~107 m. Hacerlo con
    cuidado: puede disparar una nueva verificación.
