@@ -403,8 +403,8 @@ Incluyen `/servicios`, `/sobre-nosotros`, `/contacto` y los 6 artículos del blo
 
 #### Lo que se verificó que está bien
 
-Comprobado con la prueba en vivo de Search Console (el dominio no carga en el Chrome
-local, ver «Cosas que pueden morder»):
+Comprobado con la prueba en vivo de Search Console (el dominio no cargaba en local por
+los bloqueos de LaLiga, ver «Cosas que pueden morder»):
 
 - canonical autorreferencial correcto en `/`, `/servicios` y `/blog`;
 - `<meta name="robots" content="index, follow, max-image-preview:large">`;
@@ -520,7 +520,22 @@ enlaces entrantes, no más ajustes técnicos.
 - **«Usar siempre HTTPS» en Cloudflare debe seguir activado** (§15). Si se desactiva,
   el sitio vuelve a responder 200 por HTTP y, al ser relativos los enlaces internos,
   la versión insegura se propaga sola por todo el sitio.
-- **El dominio no carga en el Chrome del propietario**: Chrome revierte la navegación
-  o muestra página de error, mientras Googlebot accede sin problema y otros sitios
-  cargan bien en el mismo navegador. Sin diagnosticar; no afecta al SEO, pero obliga a
-  verificar el HTML servido a través de la prueba en vivo de Search Console.
+- **Los bloqueos de LaLiga dejan la web inaccesible desde España** durante las
+  jornadas de fútbol. Diagnosticado el 16-sep-2026 (antes figuraba aquí como «el
+  dominio no carga en el Chrome del propietario, sin diagnosticar»). El dominio
+  resuelve a las IPs compartidas de Cloudflare `188.114.96.5` y `188.114.97.5`, que
+  los operadores bloquean por orden judicial mientras hay partidos. Ese día el DNS
+  respondía bien, pero la conexión al 443 de esas dos IPs no contestaba (otras IPs de
+  Cloudflare y el resto de internet, sí). [hayahora.futbol](https://hayahora.futbol/)
+  las daba como bloqueadas en **Movistar, Vodafone, Orange, DIGI y MásMóvil** desde
+  las ~18:40 hora peninsular.
+  - Afecta a **cualquier visitante con conexión española** mientras dure el
+    bloqueo, clientes incluidos; pasar a datos móviles no sirve.
+  - **No afecta al SEO**: Googlebot rastrea desde fuera de España.
+  - Se levanta solo al acabar la jornada. Para ver la web durante un bloqueo: VPN o
+    la app 1.1.1.1 (WARP) de Cloudflare.
+  - Antes de dar el sitio por caído, consultar hayahora.futbol. Mientras tanto, el
+    HTML servido se verifica con la prueba en vivo de Search Console.
+  - No hay ajuste de Cloudflare que lo evite con garantías: las IPs son compartidas.
+    La única salida segura sería no servir la web detrás de Cloudflare, con sus
+    propios costes.
