@@ -1,0 +1,18 @@
+# Cabeceras de respuesta de Cloudflare (Workers Static Assets).
+#
+# Vite copia este archivo a dist/client/_headers y scripts/prerender.mjs
+# sustituye el marcador de script-src por el sha256 de cada <script> inline del HTML
+# generado (hidratación y restauración del scroll de TanStack): cambian en cada
+# build, así que no se pueden escribir a mano. Sin prerender, la CSP bloquearía
+# esos scripts; `npm run deploy` siempre lo ejecuta.
+#
+# HSTS NO va aquí a propósito: es irreversible durante su max-age y se activará
+# desde Cloudflare cuando toque (ver BITACORA.md, «Decisiones abiertas»).
+
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' __CSP_SCRIPT_HASHES__; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()
+  Cross-Origin-Opener-Policy: same-origin

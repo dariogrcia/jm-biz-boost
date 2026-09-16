@@ -481,6 +481,63 @@ producción: `/` y `/blog/novedades-fiscales-2026` responden 200 y `/no-existe` 
 las tres respuestas son **idénticas byte a byte** al build local. A las 23:57 el
 bloqueo de LaLiga ya se había levantado y la web cargaba desde la conexión local.
 
+### 17. Cabeceras de seguridad en `public/_headers` (17-sep-2026)
+
+Hasta ahora la web **no enviaba ninguna cabecera de seguridad** (ni en el repo ni en el
+panel de Cloudflare). Se añade `public/_headers`, que Vite copia a `dist/client` y
+Cloudflare aplica a todas las respuestas (el propio `_headers` no se sirve: 404).
+
+| Cabecera | Valor / efecto |
+| --- | --- |
+| `Content-Security-Policy` | `default-src 'self'`; scripts solo propios **+ hashes** de los inline; estilos propios e inline; imágenes, fuentes y conexiones solo propias; `object-src 'none'`, `base-uri 'self'`, `form-action 'self'`, `frame-ancestors 'none'`, `upgrade-insecure-requests` |
+| `X-Frame-Options` | `DENY` (lo mismo que `frame-ancestors` para navegadores antiguos) |
+| `X-Content-Type-Options` | `nosniff` |
+| `Referrer-Policy` | `strict-origin-when-cross-origin` |
+| `Permissions-Policy` | cámara, micrófono, geolocalización, pagos, USB y Topics desactivados |
+| `Cross-Origin-Opener-Policy` | `same-origin` |
+
+**HSTS no está incluido a propósito**: sigue en «Decisiones abiertas» y se activará desde
+Cloudflare.
+
+#### Por qué la CSP se genera en el prerender
+
+Cada página lleva scripts inline de TanStack (hidratación y restauración del scroll)
+cuyo contenido **cambia en cada build**. En vez de `'unsafe-inline'`, la plantilla
+`public/_headers` trae el marcador `__CSP_SCRIPT_HASHES__` y `scripts/prerender.mjs`
+lo sustituye por el `sha256` de cada script inline de todo el HTML generado (hoy 16
+hashes; la línea ocupa ~920 caracteres). El build **falla** si falta el marcador, si
+no sale ningún hash o si una línea supera los 2000 caracteres que admite Cloudflare
+(pasaría hacia las ~30 páginas; habría que replantearlo). Se lee siempre de `public/`,
+así que repetir el prerender funciona.
+
+#### Incidente: página en blanco durante unos minutos
+
+El primer despliegue (versión `f2fbe7b8`, ~00:03 del 17-sep) **dejó la web en blanco**:
+`Error: Invariant failed` de TanStack y sin contenido. Se revirtió en ~2 minutos con
+`wrangler rollback 89752efc…` y se verificó que volvía a funcionar.
+
+Causa: el script de hidratación («stream barrier») lleva un carácter **U+0000** en los
+ids de ruta. El navegador analiza el HTML, lo convierte en U+FFFD **antes** de calcular
+el hash, y el prerender lo calculaba sobre el texto original. El hash no coincidía, la
+CSP bloqueaba el script, no existía `window.$_TSR` y la hidratación abortaba. Se
+corrigió normalizando como el navegador (U+0000 → U+FFFD, CR/CRLF → LF) antes del hash.
+
+Dos trampas al depurarlo, por si vuelve a hacer falta:
+- **En local la caché engaña**: Chrome revalida el HTML con un 304 y conserva las
+  cabeceras antiguas (CSP incluida). Para comparar variantes, usar **un puerto nuevo en
+  cada prueba** de `wrangler dev` (origen distinto, sin caché).
+- Los scripts inline que se ejecutan **se borran solos** del DOM
+  (`document.currentScript.remove()`): los que quedan en la página son los bloqueados.
+
+#### Verificación final (versión `c6e49af3-1542-4b2a-a4aa-3be03a10522c`)
+
+- Las **14 URLs del sitemap** y `/no-existe` (404) sirven la CSP y **todos** sus scripts
+  inline tienen hash (comprobado con la misma normalización del navegador).
+- En Chrome, en producción: portada, navegación interna a `/contacto` (formulario
+  presente), un artículo del blog y la 404 cargan con título y contenido, sin scripts
+  bloqueados, imágenes rotas ni errores de hidratación.
+- Antes de desplegar, lo mismo en local con `wrangler dev` y la CSP estricta.
+
 ---
 
 ## Pendiente
@@ -542,11 +599,8 @@ bloqueo de LaLiga ya se había levantado y la web cargaba desde la conexión loc
 9. Los 5 warnings de `react-refresh` que quedan en `npm run lint` son de
    componentes de shadcn/ui, propios de la librería (eran 6 hasta quitar el
    sidebar, §16).
-10. **Cabeceras de seguridad versionadas** con un `public/_headers`: CSP,
-    `frame-ancestors`, `Referrer-Policy`, `X-Content-Type-Options`. Hoy solo existen
-    en el panel de Cloudflare (o no existen). No hay fallo explotable (ninguna
-    página tiene acciones sensibles), pero tenerlas en el repo las deja revisables.
-    Coordinar con la activación de HSTS. Propuesta de la auditoría (§16).
+10. ~~Cabeceras de seguridad versionadas~~ — **hecho** el 17-sep-2026 en
+    `public/_headers`, ver §17. HSTS sigue aparte, en «Decisiones abiertas».
 
 ---
 
@@ -596,3 +650,11 @@ bloqueo de LaLiga ya se había levantado y la web cargaba desde la conexión loc
   - No hay ajuste de Cloudflare que lo evite con garantías: las IPs son compartidas.
     La única salida segura sería no servir la web detrás de Cloudflare, con sus
     propios costes.
+- **La CSP bloquea cualquier script que no esté en la lista** (§17). Un script de
+  terceros (analítica, chat, mapa embebido, reCAPTCHA) o un iframe no funcionarán hasta
+  añadir su origen en `public/_headers`. Los scripts inline se cubren solos vía
+  prerender, **pero solo si se despliega con `npm run deploy`**: subir `dist/` sin
+  prerender dejaría el marcador sin sustituir y la web en blanco.
+- **Si la web sale en blanco tras un despliegue**, revertir primero
+  (`npx wrangler rollback <versión anterior>`) y luego investigar. Mirar si quedan
+  scripts inline en el DOM: son los que la CSP bloqueó (§17).

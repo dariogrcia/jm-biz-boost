@@ -7,7 +7,8 @@
 // internal links starting from the base path. Output is written into
 // dist/client so it can be published as-is to GitHub Pages.
 
-import { writeFile, mkdir } from "node:fs/promises";
+import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import { existsSync } from "node:fs";
 import { dirname, join, relative, resolve, isAbsolute } from "node:path";
 import { pathToFileURL } from "node:url";
@@ -46,6 +47,7 @@ const extractLinks = (html) => [...html.matchAll(/href="([^"]+)"/g)].map((m) => 
 const seen = new Set();
 const queue = [BASE];
 const rendered = [];
+const htmls = [];
 
 while (queue.length) {
   const path = queue.shift();
@@ -69,6 +71,7 @@ while (queue.length) {
   }
   await mkdir(dirname(file), { recursive: true });
   await writeFile(file, html);
+  htmls.push(html);
   rendered.push(rel === "" ? "/" : `/${rel}`);
 
   for (const href of extractLinks(html)) {
@@ -130,8 +133,46 @@ const notFoundHtml = (await notFoundRes.text()).replace(
   '<meta name="robots" content="noindex, follow"/></head>',
 );
 await writeFile(join(OUT_DIR, "404.html"), notFoundHtml);
+htmls.push(notFoundHtml);
+
+// CSP con hashes: la plantilla public/_headers trae __CSP_SCRIPT_HASHES__ y aquí
+// se sustituye por el sha256 de cada <script> inline ejecutable del HTML generado,
+// escribiendo el resultado en dist/client/_headers. Se lee siempre de public/ para
+// que repetir el prerender funcione. Los JSON-LD no se ejecutan y la CSP no los afecta.
+const PLANTILLA_HEADERS = join(ROOT, "public", "_headers");
+const HEADERS_FILE = join(OUT_DIR, "_headers");
+const MARCADOR = "__CSP_SCRIPT_HASHES__";
+const plantilla = await readFile(PLANTILLA_HEADERS, "utf8");
+if (!/^\s*Content-Security-Policy:.*__CSP_SCRIPT_HASHES__/m.test(plantilla)) {
+  console.error(`✗ ${PLANTILLA_HEADERS} no contiene ${MARCADOR}.`);
+  process.exit(1);
+}
+const hashes = new Set();
+for (const html of htmls) {
+  for (const [, attrs, body] of html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)) {
+    if (/\ssrc=/.test(attrs) || /type="application\/ld\+json"/.test(attrs) || !body) continue;
+    // El navegador calcula el hash sobre el texto ya analizado como HTML: los
+    // saltos CR/CRLF pasan a LF y U+0000 a U+FFFD. TanStack mete U+0000 en los ids
+    // de ruta del script de hidratación; sin esta normalización su hash no coincide,
+    // la CSP lo bloquea y la página queda en blanco.
+    const texto = body.replace(/\r\n?/g, "\n").replaceAll("\0", "�");
+    hashes.add(`'sha256-${createHash("sha256").update(texto).digest("base64")}'`);
+  }
+}
+const cabeceras = plantilla.replaceAll(MARCADOR, [...hashes].sort().join(" "));
+if (cabeceras.includes(MARCADOR) || hashes.size === 0) {
+  console.error("✗ No se pudieron calcular los hashes de la CSP.");
+  process.exit(1);
+}
+// Cloudflare ignora líneas de más de 2000 caracteres en _headers.
+const larga = cabeceras.split("\n").find((l) => l.length > 2000);
+if (larga) {
+  console.error(`✗ Una línea de _headers supera 2000 caracteres (${larga.length}).`);
+  process.exit(1);
+}
+await writeFile(HEADERS_FILE, cabeceras);
 
 console.log(
-  `✓ Prerendered ${rendered.length} pages (base "${BASE}") · robots.txt: ${INDEXAR ? "indexable" : "NOINDEX"} · sitemap.xml`,
+  `✓ Prerendered ${rendered.length} pages (base "${BASE}") · robots.txt: ${INDEXAR ? "indexable" : "NOINDEX"} · sitemap.xml · CSP: ${hashes.size} hashes`,
 );
 for (const p of rendered.sort()) console.log(`    ${p}`);
