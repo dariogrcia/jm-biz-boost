@@ -13,7 +13,7 @@ Para el funcionamiento del día a día (comandos, estructura, despliegue), ver
 |                         |                                                                         |
 | ----------------------- | ----------------------------------------------------------------------- |
 | **Producción**          | https://jmasesoresantequera.es                                          |
-| Hosting                 | Cloudflare Workers (assets estáticos, Worker sin código)                |
+| Hosting                 | Cloudflare **Pages** (proyecto `jm-asesores`), dominio en «Solo DNS» (§19) |
 | Registrador del dominio | IONOS · DNS delegado a Cloudflare                                       |
 | Repositorio             | `github.com/dariogrcia/jm-biz-boost`, rama `main`                       |
 | Último despliegue       | 17-sep-2026 · commit `ef809d5` · versión `c6e49af3` (§17)               |
@@ -566,6 +566,39 @@ hashes del prerender, redirecciones, HTTPS forzado, que hoy dependen en parte de
 ajustes de la zona con proxy) y perder la caché y protecciones del proxy. Tampoco es
 garantía: LaLiga podría bloquear también las IPs de Pages. **Decisión abierta.**
 
+### 19. Migración a Cloudflare Pages y dominio en «Solo DNS» (17-sep-2026)
+
+Para que los bloqueos de LaLiga dejen de tumbar la web (§18). Un dominio de Worker exige
+el proxy de Cloudflare, y esas IPs (188.114.96.5 / .97.5) son las bloqueadas. Pages sí
+admite dominio propio sin proxy.
+
+**Qué se hizo:**
+
+1. Proyecto de Pages `jm-asesores` y despliegue de `dist/client`.
+2. **El prerender ahora escribe `servicios.html` en vez de `servicios/index.html`.**
+   Con `index.html`, Pages redirige `/servicios` → `/servicios/` (308) y cambiaría la
+   forma canónica de todas las URLs, que Google ya tiene indexadas sin barra. Con el
+   fichero plano, `/servicios` responde 200 y `/servicios/` redirige a ella. Se detectó
+   probando en `jm-asesores.pages.dev` antes de tocar el dominio.
+3. Se quitaron los dominios personalizados del **Worker** y se añadieron al proyecto de
+   **Pages** (apex y `www`).
+4. Los dos CNAME pasaron a **«Solo DNS»**: el dominio resuelve a 172.66.47.182 y
+   172.66.44.74, que no estaban bloqueadas, y la web volvió a cargar al momento.
+5. `wrangler.jsonc` pasa a `pages_build_output_dir`; `npm run deploy` usa
+   `wrangler pages deploy`. El Worker `jm-asesores` sigue existiendo **sin dominios**,
+   por si hiciera falta volver atrás.
+
+**Verificado en producción:** portada, `/servicios`, `/contacto`, `/blog` y un artículo →
+200; `/no-existe` → 404; `http://` → 301 a `https://`; CSP con los hashes del prerender,
+`nosniff` y `X-Frame-Options`; `www` sirve el sitio con la canonical al dominio sin www,
+igual que antes. Registros MX/TXT sin tocar.
+
+**Qué se pierde sin proxy:** caché y protecciones de zona de Cloudflare (WAF, reglas,
+«Usar siempre HTTPS» de la zona; el redirect a HTTPS lo hace ahora Pages). Analytics de
+la zona dejarán de ver este tráfico. **Riesgo:** si LaLiga bloquea también las IPs de
+Pages, volvería a pasar. Para revertir: volver a activar la nube naranja y devolver los
+dominios al Worker.
+
 ---
 
 ## Pendiente
@@ -605,10 +638,6 @@ garantía: LaLiga podría bloquear también las IPs de Pages. **Decisión abiert
 1. **Ajustar la dirección de la ficha de Google** cuando se haya asentado (ver
    §12): falta «Urb. Parquesol» y el marcador está a ~107 m. Hacerlo con
    cuidado: puede disparar una nueva verificación.
-
-1b. **¿Migrar a Cloudflare Pages para esquivar los bloqueos de LaLiga?** (§18). En
-   Vertex Studio funcionó poniendo el dominio en «Solo DNS», pero con Workers no se
-   puede. Valorar si compensa la migración frente a esperar a que acabe cada jornada.
 
 2. ~~Confirmar el horario~~ — **hecho**: es L–V 9:00–14:00, ver §12.
 3. **Reembolso del SSL wildcard de IONOS.** No hace falta: Cloudflare emite
@@ -682,8 +711,8 @@ garantía: LaLiga podría bloquear también las IPs de Pages. **Decisión abiert
   - No hay ajuste de Cloudflare que lo evite con garantías: las IPs son compartidas.
     La única salida segura sería no servir la web detrás de Cloudflare, con sus
     propios costes.
-  - **Se repitió el 17-sep-2026** (§18). En Vertex Studio (Pages) se esquivó con el
-    dominio en «Solo DNS»; en JM Asesores (Workers) no es posible sin migrar a Pages.
+  - **Se repitió el 17-sep-2026** (§18). Esa noche se migró la web a Pages y se puso el
+    dominio en «Solo DNS» (§19): desde entonces no depende de las IPs bloqueadas.
 - **La CSP bloquea cualquier script que no esté en la lista** (§17). Un script de
   terceros (analítica, chat, mapa embebido, reCAPTCHA) o un iframe no funcionarán hasta
   añadir su origen en `public/_headers`. Los scripts inline se cubren solos vía

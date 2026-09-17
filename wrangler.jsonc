@@ -3,32 +3,20 @@
   "name": "jm-asesores",
   "compatibility_date": "2026-09-01",
 
-  // El sitio se sirve solo desde el dominio propio. Sin esto seguiría accesible
-  // también en jm-asesores.<subdominio>.workers.dev, y serían dos URLs públicas
-  // con el mismo contenido.
-  "workers_dev": false,
-  "routes": [
-    { "pattern": "jmasesoresantequera.es", "custom_domain": true },
-    { "pattern": "www.jmasesoresantequera.es", "custom_domain": true },
-  ],
-
-  // Worker sin código: todo el contenido del sitio es estático y lo genera
-  // `npm run prerender`, así que Cloudflare sirve los ficheros directamente.
-  // No hay `main`: no se ejecuta nada en el edge, no hay cold starts y las
-  // peticiones a assets no cuentan como invocaciones.
-  "assets": {
-    "directory": "./dist/client",
-
-    // Las 11 rutas del sitio están prerenderizadas, así que una URL que no
-    // exista es un 404 de verdad: se sirve 404.html con estado 404, en vez de
-    // devolver la home con un 200 (que es lo que hacía falta en GitHub Pages y
-    // lo que confunde a los buscadores).
-    "not_found_handling": "404-page",
-
-    // El router genera los enlaces sin barra final (/servicios), así que esa es
-    // la forma canónica: se sirve directamente con 200 y /servicios/ redirige a
-    // ella. Con "auto-trailing-slash" pasaba al revés y cada navegación se
-    // comía un 307 antes de llegar a la página.
-    "html_handling": "drop-trailing-slash",
-  },
+  // Cloudflare PAGES, no Workers (17-sep-2026). Se migró para poder servir el
+  // dominio sin el proxy de Cloudflare («Solo DNS») y esquivar así los bloqueos
+  // de IPs de LaLiga, que dejaban la web inaccesible desde España en días de
+  // partido. Un dominio de Worker exige el proxy activado; uno de Pages no.
+  // Ver BITACORA.md §19.
+  //
+  // El sitio es estático: `npm run build` + `npm run prerender` dejan el HTML ya
+  // generado en dist/client y Pages lo sirve tal cual.
+  //
+  // Detalles que replican el comportamiento que había en Workers:
+  //   - 404 real: Pages sirve 404.html con estado 404 para rutas que no existen.
+  //   - URLs sin barra final: el prerender escribe `servicios.html` (no
+  //     `servicios/index.html`), así /servicios responde 200 y /servicios/
+  //     redirige a ella. Con index.html Pages haría justo lo contrario.
+  //   - Cabeceras y CSP: dist/client/_headers, generado por el prerender.
+  "pages_build_output_dir": "./dist/client",
 }

@@ -62,7 +62,11 @@ while (queue.length) {
 
   const html = await res.text();
   const rel = toRelative(path);
-  const file = join(OUT_DIR, rel, "index.html");
+  // `servicios.html` y no `servicios/index.html`: con index.html, Cloudflare Pages
+  // redirige /servicios → /servicios/ (308) y cambiaría la forma canónica de todas
+  // las URLs, que Google ya tiene indexadas sin barra final. Con el fichero plano,
+  // tanto Pages como Workers sirven /servicios directamente (17-sep-2026).
+  const file = rel === "" ? join(OUT_DIR, "index.html") : join(OUT_DIR, `${rel}.html`);
   // Un enlace con «..» no puede escribir fuera de dist/client.
   const dentro = relative(OUT_DIR, file);
   if (dentro.startsWith("..") || isAbsolute(dentro)) {

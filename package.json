@@ -11,8 +11,8 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "deploy": "npm run build && npm run prerender && wrangler deploy",
-    "cf:preview": "npm run build && npm run prerender && wrangler dev"
+    "deploy": "npm run build && npm run prerender && wrangler pages deploy --project-name jm-asesores --branch main",
+    "cf:preview": "npm run build && npm run prerender && wrangler pages dev dist/client"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
