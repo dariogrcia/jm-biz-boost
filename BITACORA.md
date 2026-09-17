@@ -541,6 +541,31 @@ Dos trampas al depurarlo, por si vuelve a hacer falta:
   bloqueados, imágenes rotas ni errores de hidratación.
 - Antes de desplegar, lo mismo en local con `wrangler dev` y la CSP estricta.
 
+
+### 18. Nuevo bloqueo de LaLiga y lo que se probó en Vertex Studio (17-sep-2026)
+
+Hacia las 19:30 volvieron los bloqueos: `jmasesoresantequera.es` y `vertexstudiolab.es`
+no cargaban desde España. Las dos resuelven a las mismas IPs del proxy de Cloudflare
+(188.114.96.5 y 188.114.97.5), que no respondían; hayahora.futbol las daba como
+bloqueadas.
+
+**En Vertex Studio se arregló** pasando los CNAME del dominio a **«Solo DNS»** (nube
+gris). Esa web está en **Cloudflare Pages**, que puede servir un dominio propio sin el
+proxy: el dominio pasa a resolver a las IPs de Pages (172.66.44.176 y 172.66.47.80), que
+no estaban bloqueadas, y volvió a cargar al momento (ver `vertex-web-v5/BITACORA.md` §13).
+
+**En JM Asesores no se puede hacer igual:** la web está en **Workers** (static assets con
+dominio propio), y un dominio de Worker solo funciona con el proxy activado. Quitar la
+nube naranja dejaría la web caída siempre, no solo en días de partido. Se esperó a que
+se levantara el bloqueo.
+
+**Si se quiere evitar en el futuro**, la opción es servir JM Asesores desde Cloudflare
+Pages en lugar de Workers (el sitio es estático: `dist/` con `_headers`) y poner su
+dominio en «Solo DNS», como Vertex. Costes: una migración con su verificación (CSP con
+hashes del prerender, redirecciones, HTTPS forzado, que hoy dependen en parte de
+ajustes de la zona con proxy) y perder la caché y protecciones del proxy. Tampoco es
+garantía: LaLiga podría bloquear también las IPs de Pages. **Decisión abierta.**
+
 ---
 
 ## Pendiente
@@ -580,6 +605,10 @@ Dos trampas al depurarlo, por si vuelve a hacer falta:
 1. **Ajustar la dirección de la ficha de Google** cuando se haya asentado (ver
    §12): falta «Urb. Parquesol» y el marcador está a ~107 m. Hacerlo con
    cuidado: puede disparar una nueva verificación.
+
+1b. **¿Migrar a Cloudflare Pages para esquivar los bloqueos de LaLiga?** (§18). En
+   Vertex Studio funcionó poniendo el dominio en «Solo DNS», pero con Workers no se
+   puede. Valorar si compensa la migración frente a esperar a que acabe cada jornada.
 
 2. ~~Confirmar el horario~~ — **hecho**: es L–V 9:00–14:00, ver §12.
 3. **Reembolso del SSL wildcard de IONOS.** No hace falta: Cloudflare emite
@@ -653,6 +682,8 @@ Dos trampas al depurarlo, por si vuelve a hacer falta:
   - No hay ajuste de Cloudflare que lo evite con garantías: las IPs son compartidas.
     La única salida segura sería no servir la web detrás de Cloudflare, con sus
     propios costes.
+  - **Se repitió el 17-sep-2026** (§18). En Vertex Studio (Pages) se esquivó con el
+    dominio en «Solo DNS»; en JM Asesores (Workers) no es posible sin migrar a Pages.
 - **La CSP bloquea cualquier script que no esté en la lista** (§17). Un script de
   terceros (analítica, chat, mapa embebido, reCAPTCHA) o un iframe no funcionarán hasta
   añadir su origen en `public/_headers`. Los scripts inline se cubren solos vía
