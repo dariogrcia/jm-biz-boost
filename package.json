@@ -11,8 +11,9 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "deploy": "npm run build && npm run prerender && wrangler pages deploy --project-name jm-asesores --branch main",
-    "cf:preview": "npm run build && npm run prerender && wrangler pages dev dist/client"
+    "deploy": "npm run build && npm run prerender && netlify deploy --prod --dir dist/client --site jm-asesores --no-build",
+    "preview:local": "npm run build && npm run prerender && netlify dev --dir dist/client",
+    "deploy:cloudflare": "npm run build && npm run prerender && wrangler pages deploy --project-name jm-asesores --branch main"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

@@ -131,6 +131,20 @@ Disallow: /
 `,
 );
 
+// _redirects: Netlify sirve también /servicios.html (el fichero real) y eso sería
+// contenido duplicado de /servicios. Se manda cada .html a su URL limpia con 301,
+// y www al dominio sin www. Cloudflare Pages usa el mismo formato de fichero.
+const redirecciones = rendered
+  .filter((r) => r !== "/")
+  .map((r) => `${r}.html ${r} 301!`)
+  .join("\n");
+await writeFile(
+  join(OUT_DIR, "_redirects"),
+  `# Generado por scripts/prerender.mjs: no editar a mano.
+${redirecciones}
+`,
+);
+
 const notFoundRes = await server.fetch(new Request(`${ORIGIN}${BASE}__404__`));
 const notFoundHtml = (await notFoundRes.text()).replace(
   "</head>",

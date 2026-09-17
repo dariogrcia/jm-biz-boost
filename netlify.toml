@@ -1,0 +1,12 @@
+# Configuración de Netlify (hosting desde el 17-sep-2026, ver BITACORA.md §20).
+#
+# El sitio es estático y se genera fuera de Netlify: `npm run deploy` hace build +
+# prerender en local y sube dist/client con la CLI. No hay build en Netlify, así
+# que no hace falta [build].command.
+#
+# Cabeceras y redirecciones NO se declaran aquí: las genera scripts/prerender.mjs
+# en dist/client/_headers (CSP con los hashes de cada build) y dist/client/_redirects
+# (.html → URL limpia). Netlify y Cloudflare Pages leen los dos ficheros, así que el
+# mismo dist/ sirve para ambos y se puede volver atrás con `npm run deploy:cloudflare`.
+[build]
+  publish = "dist/client"

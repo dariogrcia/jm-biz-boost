@@ -13,7 +13,7 @@ Para el funcionamiento del día a día (comandos, estructura, despliegue), ver
 |                         |                                                                         |
 | ----------------------- | ----------------------------------------------------------------------- |
 | **Producción**          | https://jmasesoresantequera.es                                          |
-| Hosting                 | Cloudflare **Pages** (proyecto `jm-asesores`), dominio en «Solo DNS» (§19) |
+| Hosting                 | **Netlify** (proyecto `jm-asesores`), dominio en Cloudflare «Solo DNS» (§20) |
 | Registrador del dominio | IONOS · DNS delegado a Cloudflare                                       |
 | Repositorio             | `github.com/dariogrcia/jm-biz-boost`, rama `main`                       |
 | Último despliegue       | 17-sep-2026 · commit `ef809d5` · versión `c6e49af3` (§17)               |
@@ -599,6 +599,46 @@ la zona dejarán de ver este tráfico. **Riesgo:** si LaLiga bloquea también la
 Pages, volvería a pasar. Para revertir: volver a activar la nube naranja y devolver los
 dominios al Worker.
 
+### 20. Hosting en Netlify (17-sep-2026)
+
+Cloudflare Pages sin proxy (§19) esquivaba el bloqueo de ese día, pero seguía en IPs de
+Cloudflare, que son las que bloquean. El propietario eligió salir de Cloudflare para el
+hosting y **dejar solo el DNS** allí.
+
+**Montaje:** proyecto de Netlify `jm-asesores` (equipo «Vertex Studio»), se sube
+`dist/client` ya generado en local (`npm run deploy`), sin build en Netlify. En
+Cloudflare, `jmasesoresantequera.es` y `www` son CNAME a `jm-asesores.netlify.app` en
+**«Solo DNS»**. Certificado Let's Encrypt emitido por Netlify; tardó ~8 minutos y hasta
+entonces el dominio daba error de certificado.
+
+**Dos cosas que hubo que corregir:**
+
+1. **Netlify creó el proyecto como «Private»** (así vienen las cuentas nuevas): devolvía
+   **401 a todo el mundo**. Se cambió a «Public» en *Project configuration → General →
+   Visitor access*.
+2. **`/servicios.html` respondía 200** además de `/servicios`, o sea contenido duplicado.
+   El prerender genera ahora `dist/client/_redirects` con un 301 de cada `.html` a su URL
+   limpia. Cloudflare Pages lee el mismo fichero.
+
+**Verificado en producción:** portada y páginas internas 200, `/no-existe` 404,
+`www` → 301 al dominio sin www, `http://` → 301 a `https://`, `.html` → 301 a la URL
+limpia, CSP con hashes y demás cabeceras, certificado `CN=jmasesoresantequera.es` de
+Let's Encrypt. IPs 35.157.26.135 y 63.176.8.218, fuera de los rangos bloqueados.
+
+**Repositorio:** `npm run deploy` publica en Netlify; `npm run deploy:cloudflare` sigue
+publicando el mismo `dist/` en Cloudflare Pages. `netlify.toml` solo declara `publish`;
+las cabeceras y redirecciones siguen viniendo del prerender, así que ambos hosts sirven
+exactamente lo mismo. README actualizado.
+
+**Se mantiene, a propósito, sin borrar** (decisión del propietario: dejarlo un tiempo por
+si hay que volver atrás): el proyecto de Cloudflare Pages `jm-asesores` y el Worker
+`jm-asesores` sin dominios. Para revertir: `npm run deploy:cloudflare`, añadir los
+dominios en Pages y dejar el DNS en «Solo DNS».
+
+**Lo que se pierde frente a Cloudflare:** su caché y protecciones de zona ya no aplican
+(tampoco aplicaban desde §19), y las analíticas de Cloudflare no verán este tráfico.
+Netlify gratis: 100 GB/mes de tráfico, de sobra para este sitio.
+
 ---
 
 ## Pendiente
@@ -712,7 +752,8 @@ dominios al Worker.
     La única salida segura sería no servir la web detrás de Cloudflare, con sus
     propios costes.
   - **Se repitió el 17-sep-2026** (§18). Esa noche se migró la web a Pages y se puso el
-    dominio en «Solo DNS» (§19): desde entonces no depende de las IPs bloqueadas.
+    dominio en «Solo DNS» (§19) y, después, se sacó el hosting a Netlify (§20): el
+    dominio ya no resuelve a IPs de Cloudflare.
 - **La CSP bloquea cualquier script que no esté en la lista** (§17). Un script de
   terceros (analítica, chat, mapa embebido, reCAPTCHA) o un iframe no funcionarán hasta
   añadir su origen en `public/_headers`. Los scripts inline se cubren solos vía

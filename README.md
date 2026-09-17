@@ -4,7 +4,7 @@ Web corporativa de **JM Asesores**, asesoría fiscal, contable y laboral en
 Antequera (Málaga). Incluye páginas de servicios, sobre nosotros, contacto y un
 blog con artículos sobre fiscalidad, contabilidad y finanzas.
 
-🔗 **En producción:** https://jm-asesores.dariojesusgarcia6.workers.dev
+🔗 **En producción:** https://jmasesoresantequera.es
 
 ---
 
@@ -65,15 +65,25 @@ src/
 
 ---
 
-## Despliegue — Cloudflare Workers
+## Despliegue — Netlify
 
 El sitio se publica con un solo comando:
 
 ```bash
-npm run deploy      # build + prerender + wrangler deploy
+npm run deploy      # build + prerender + subida a Netlify
 ```
 
-Requiere estar autenticado en Cloudflare una vez (`npx wrangler login`).
+Requiere estar autenticado en Netlify una vez (`npx netlify login`).
+
+**Por qué Netlify y no Cloudflare** (17-sep-2026): los bloqueos de IPs de LaLiga
+tumbaban la web desde España en días de partido, porque afectaban a las IPs
+compartidas de Cloudflare. Ver `BITACORA.md` §18–§20.
+
+La configuración de Cloudflare Pages sigue en el repo por si hay que volver atrás:
+
+```bash
+npm run deploy:cloudflare   # mismo dist/, a Cloudflare Pages
+```
 
 ### Por qué hay un paso de "prerender"
 
@@ -93,20 +103,23 @@ real, renderizando una ruta inexistente, no una copia de la home.
 
 ### Qué se despliega
 
-[`wrangler.jsonc`](wrangler.jsonc) define un Worker **sin código**: no hay
-`main`, solo `assets`. Cloudflare sirve `dist/client` directamente desde el edge,
-así que no hay cold starts y las peticiones a ficheros estáticos no cuentan como
-invocaciones del Worker.
+Se sube `dist/client` tal cual, ya generado en local: en Netlify no hay build.
+Dos ficheros que produce el prerender mandan sobre el comportamiento, y los leen
+igual Netlify y Cloudflare Pages:
 
-Dos ajustes que importan:
+- **`_headers`** — CSP con los hashes de los scripts inline de cada build, más el
+  resto de cabeceras de seguridad.
+- **`_redirects`** — cada `ruta.html` redirige con 301 a `/ruta`. Sin esto, la
+  misma página estaría en dos URLs.
 
-- `not_found_handling: "404-page"` — una URL que no existe devuelve `404.html`
-  con **estado 404**. (En GitHub Pages había que servir la home con un 200 y
-  dejar que el router de cliente lo resolviera, lo que confunde a los
-  buscadores.)
-- `html_handling: "drop-trailing-slash"` — el router genera los enlaces sin barra
-  final, así que `/servicios` es la URL canónica y se sirve directamente;
-  `/servicios/` redirige a ella.
+Y dos detalles del propio prerender:
+
+- **HTML plano** (`servicios.html`, no `servicios/index.html`): así `/servicios`
+  es la URL canónica y `/servicios/` redirige a ella. Con `index.html` pasaría al
+  revés y cambiarían todas las URLs ya indexadas.
+- **`404.html` real**, renderizando una ruta inexistente: Netlify lo sirve con
+  estado 404 (en GitHub Pages había que devolver la home con 200, lo que confunde
+  a los buscadores).
 
 ### Base path
 
@@ -117,9 +130,10 @@ subdirectorio, pero no se define.
 
 ### Dominio propio
 
-Para usar un dominio propio (p. ej. `www.jmasesores.es`), añade el dominio a la
-zona en Cloudflare y una ruta al Worker `jm-asesores` desde el panel, o declara
-`routes` en `wrangler.jsonc`.
+`jmasesoresantequera.es` y `www` están dados de alta en el proyecto de Netlify, y
+en Cloudflare son sendos CNAME a `jm-asesores.netlify.app` en modo **«Solo DNS»**
+(sin el proxy naranja): esa es justo la parte que esquiva los bloqueos de LaLiga.
+El certificado lo emite Netlify con Let's Encrypt.
 
 ---
 
@@ -129,5 +143,5 @@ zona en Cloudflare y una ruta al Worker `jm-asesores` desde el panel, o declara
 npm run deploy
    ├─ vite build                   → dist/client (assets) + dist/server (SSR)
    ├─ node scripts/prerender.mjs   → HTML estático + 404.html
-   └─ wrangler deploy              → https://jm-asesores.dariojesusgarcia6.workers.dev
+   └─ netlify deploy --prod        → https://jmasesoresantequera.es
 ```
